@@ -9,6 +9,10 @@ public class Compentences {
     private String skill;
     private Room room;
 
+    public Compentences(String skill) {
+        this.skill = skill;
+    }  
+    
     public Compentences(String skill, Room room) {
         this.skill = skill;
         this.room = room;

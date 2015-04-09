@@ -8,15 +8,18 @@ public class Room {
     private int id;
     private String type;
     private String status;
-    private int staffAmount;
-    
+    private int minStaffAmount;
+    private int maxStaffAmount;
+    private String validFrom;
 
-    public Room(int id, String type, String status, int staffAmount) {
+    public Room(int id, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
         this.id = id;
         this.type = type;
         this.status = status;
-        this.staffAmount = staffAmount;
-    }
+        this.minStaffAmount = minStaffAmount;
+        this.maxStaffAmount = maxStaffAmount;
+        this.validFrom = validFrom;
+    }       
 
     public Room(int room) {
         this.id = id;
@@ -46,13 +49,31 @@ public class Room {
         this.status = status;
     }
 
-    public int getStaffAmount() {
-        return staffAmount;
+    public int getMinStaffAmount() {
+        return minStaffAmount;
     }
 
-    public void setStaffAmount(int staffAmount) {
-        this.staffAmount = staffAmount;
+    public void setMinStaffAmount(int minStaffAmount) {
+        this.minStaffAmount = minStaffAmount;
     }
+
+    public int getMaxStaffAmount() {
+        return maxStaffAmount;
+    }
+
+    public void setMaxStaffAmount(int maxStaffAmount) {
+        this.maxStaffAmount = maxStaffAmount;
+    }
+
+    public String getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(String validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    
     
     
     

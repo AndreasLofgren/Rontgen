@@ -8,11 +8,11 @@ import java.time.LocalTime;
  * @author stine
  */
 public class Actualcompentence {
-    private LocalTime expirationDate;
+    private String expirationDate;
     private Compentences compentence;
     private Staff staff;
 
-    public Actualcompentence(LocalTime expirationDate, Compentences compentence, Staff staff) {
+    public Actualcompentence(String expirationDate, Compentences compentence, Staff staff) {
         this.expirationDate = expirationDate;
         this.compentence = compentence;
         this.staff = staff;
@@ -34,11 +34,11 @@ public class Actualcompentence {
         this.staff = staff;
     }
 
-    public LocalTime getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalTime expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
     
