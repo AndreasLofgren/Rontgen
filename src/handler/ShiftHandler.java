@@ -33,9 +33,9 @@ public class ShiftHandler {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                //LocalTime date = rs.getObject("dates", date<LocalTime>);
-                //LocalTime dayStart = rs.getObject("dayStart", dayStart<LocalTime>);
-                //LocalTime dayEnd = rs.getObject("dayEnd", dayEnd<LocalTime>);
+                String date = rs.getString("dates");
+                String shiftStart = rs.getString("dayStart");
+                String shiftEnd = rs.getString("dayEnd");
                 int staff = rs.getInt("staffId");
                 int room = rs.getInt("roomId");
                

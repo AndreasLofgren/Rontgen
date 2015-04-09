@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Actualcompentence;
+import model.Compentences;
 import model.Staff;
 
 /**
@@ -28,11 +29,11 @@ public class ActualCompentenceHandler {
             ResultSet rs = stmt.executeQuery(sql);
             
             while (rs.next()) {
-                //LocalTime expirationDate = rs.getObject("expirationDate", expirationDate<LocalTime>);
+               String expirationDate = rs.getString("expirationDate");
                 String navn = rs.getString("navn");
                 int staff = rs.getInt("staffId");
                 
-                Actualcompentence a1 = new Actualcompentence(expirationDate, navn, new Staff(staff));
+                Actualcompentence a1 = new Actualcompentence(expirationDate, new Compentences(navn), new Staff(staff));
                 actualcompentenceResult.add(a1);
             }
         } catch (SQLException ex) {
@@ -41,4 +42,16 @@ public class ActualCompentenceHandler {
         
         return actualcompentenceResult;
     }
+    
+    public void insertActualCompentence(String expirationDate, Compentences compentence, Staff staff) {
+        try {
+            String sql = "INSERT INTO ActualCompentence VALUES ("+expirationDate+", "+compentence.getSkill()+", "+staff.getId()+");";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeQuery(sql);
+            
+        } catch (SQLException ex){
+            System.out.println("SQLException"+ex);
+        }
+    }
+    
 }
