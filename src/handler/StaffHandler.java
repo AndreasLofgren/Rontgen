@@ -58,8 +58,15 @@ public class StaffHandler {
         }
     }
     
-    public void updateStaff() {
+    public void updateStaff(int newId, String newfirstName, String newlastName, String newnickname, String uniqueId) {
+        try {
+        String sql = "UPDATE Staff SET Id=" + newId + ",firstName=" + newfirstName + ",lastName=" + newlastName + ",nickname=" + newnickname + " WHERE Id=" + uniqueId + ";";
+        Statement stmt = dbhandler.getStmt();
+        stmt.executeUpdate(sql);
         
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex);
+        }
     }
 }
 
