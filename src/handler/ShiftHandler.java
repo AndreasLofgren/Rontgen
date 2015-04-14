@@ -38,11 +38,10 @@ public class ShiftHandler {
                 //LocalTime dayEnd = rs.getObject("dayEnd", dayEnd<LocalTime>);
                 int staff = rs.getInt("staffId");
                 int room = rs.getInt("roomId");
-               
-                
+
                 Shift s1 = new Shift(id, date, shiftStart, shiftEnd, new Staff(staff), new Room(room));
                 shiftResult.add(s1);
-                
+
             }
         } catch (SQLException ex) {
             System.out.println("SQLException" + ex.getMessage());
@@ -50,15 +49,30 @@ public class ShiftHandler {
 
         return shiftResult;
     }
-    
+
     public void insertShift(int id, LocalTime date, LocalTime shiftStart, LocalTime shiftEnd, Staff staff, Room room) {
         try {
-        String sql = "INSERT INTO Shift VALUES ("+id+", "+date+", "+shiftStart+", "+shiftEnd+", "+staff.getId()+", "+room.getId()+");";
-        Statement stmt = dbhandler.getStmt();
-        stmt.executeUpdate(sql);
-        
+            String sql = "INSERT INTO Shift VALUES (" + id + ", " + date + ", " + shiftStart + ", " + shiftEnd + ", " + staff.getId() + ", " + room.getId() + ");";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
         } catch (SQLException ex) {
-            System.out.println("SQLException"+ex);
+            System.out.println("SQLException" + ex);
+        }
+    }
+
+    public void updateShift(String newId, String newDate, String newShiftStart,
+            String newShiftEnd, int newStaffId, int newRoomId, int uniqueId) {
+        try {
+            String sql = "UPDATE shift SET id=" + newId + ", date=" + newDate
+                    + ", " + "shiftStart=" + newShiftStart + ", shiftEnd="
+                    + newShiftEnd + ", " + "staffId=" + newStaffId + ", roomId="
+                    + newRoomId + " WHERE id=" + uniqueId + ";";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException " + ex);
         }
     }
 }
