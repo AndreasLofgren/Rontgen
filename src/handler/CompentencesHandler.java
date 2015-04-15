@@ -31,7 +31,6 @@ public class CompentencesHandler {
             while (rs.next()) {
                 String skill = rs.getString("skill");
                 int roomId = rs.getInt("roomId");
-                int commentId = rs.getInt("commentId");
 
                 Compentences c2 = new Compentences(skill, new Room(roomId));
                 compentencesResult.add(c2);
@@ -42,16 +41,27 @@ public class CompentencesHandler {
         }
         return compentencesResult;
     }
-    
+
     public void insertCompentences(String skill, Room room) {
         try {
-            String sql = "INSERT INTO Compentences VALUES ("+skill+", "+room.getId()+");";
+            String sql = "INSERT INTO Compentences VALUES (" + skill + ", " + room.getId() + ");";
             Statement stmnt = dbhandler.getStmt();
             stmnt.executeUpdate(sql);
-            
-            } catch (SQLException ex) {
-            System.out.println("SQLException"+ex);
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex);
         }
     }
-    
+
+    public void updateCompentence(String newSkill, int newRoomId, String uniqueSkill) {
+        try {
+            String sql = "UPDATE compentences SET skill=" + newSkill + ",roomId=" + newRoomId + " WHERE skill=" + uniqueSkill + ";";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex);
+        }
+
+    }
 }
