@@ -55,5 +55,4 @@ public class Staff {
         this.nickname = nickname;
     }
 
-
 }

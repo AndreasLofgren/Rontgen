@@ -1,4 +1,3 @@
-
 package model;
 
 /**
@@ -6,6 +5,7 @@ package model;
  * @author stine
  */
 public class Message {
+
     private String description;
     private Staff staff;
 
@@ -29,6 +29,5 @@ public class Message {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

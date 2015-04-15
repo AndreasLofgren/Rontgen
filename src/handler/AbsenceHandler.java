@@ -3,7 +3,6 @@ package handler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import model.Absence;
 import model.Staff;
@@ -31,9 +30,9 @@ public class AbsenceHandler {
             while (rs.next()) {
                 String dayStart = rs.getString("dayStart");
                 String dayEnd = rs.getString("dayEnd");
-                int staff = rs.getInt("staffId");
+                int staffId = rs.getInt("staffId");
 
-                Absence a1 = new Absence(new Staff(staff), dayStart, dayEnd);
+                Absence a1 = new Absence(new Staff(staffId), dayStart, dayEnd);
 
                 absenceResult.add(a1);
 

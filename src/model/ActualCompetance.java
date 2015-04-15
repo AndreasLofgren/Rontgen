@@ -1,28 +1,28 @@
-
 package model;
-
 
 /**
  *
  * @author stine
  */
-public class Actualcompentence {
+public class ActualCompetance {
+
     private String expirationDate;
-    private Compentences compentence;
+    private Competance competance;
     private Staff staff;
 
-    public Actualcompentence(String expirationDate, Compentences compentence, Staff staff) {
+    public ActualCompetance(String expirationDate, Competance competance,
+            Staff staff) {
         this.expirationDate = expirationDate;
-        this.compentence = compentence;
+        this.competance = competance;
         this.staff = staff;
     }
 
-    public Compentences getCompentence() {
-        return compentence;
+    public Competance getCompetance() {
+        return competance;
     }
 
-    public void setCompentence(Compentences compentence) {
-        this.compentence = compentence;
+    public void setCompetance(Competance competance) {
+        this.competance = competance;
     }
 
     public Staff getStaff() {
@@ -40,6 +40,5 @@ public class Actualcompentence {
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
-    
-    
+
 }

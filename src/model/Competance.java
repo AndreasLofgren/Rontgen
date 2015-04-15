@@ -4,16 +4,16 @@ package model;
  *
  * @author stine
  */
-public class Compentences {
+public class Competance {
 
     private String skill;
     private Room room;
 
-    public Compentences(String skill) {
+    public Competance(String skill) {
         this.skill = skill;
-    }  
-    
-    public Compentences(String skill, Room room) {
+    }
+
+    public Competance(String skill, Room room) {
         this.skill = skill;
         this.room = room;
 

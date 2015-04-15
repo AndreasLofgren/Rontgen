@@ -1,10 +1,8 @@
 package handler;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import model.Room;
 import model.Shift;
@@ -39,7 +37,8 @@ public class ShiftHandler {
                 int staff = rs.getInt("staffId");
                 int room = rs.getInt("roomId");
 
-                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, new Staff(staff), new Room(room));
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                        new Staff(staff), new Room(room));
                 shiftResult.add(s1);
 
             }
@@ -50,9 +49,12 @@ public class ShiftHandler {
         return shiftResult;
     }
 
-    public void insertShift(int id, LocalTime date, LocalTime shiftStart, LocalTime shiftEnd, Staff staff, Room room) {
+    public void insertShift(int id, String date, String shiftStart,
+            String shiftEnd, Staff staff, Room room) {
         try {
-            String sql = "INSERT INTO Shift VALUES (" + id + ", " + date + ", " + shiftStart + ", " + shiftEnd + ", " + staff.getId() + ", " + room.getId() + ");";
+            String sql = "INSERT INTO Shift VALUES (" + id + ", " + date + ", "
+                    + shiftStart + ", " + shiftEnd + ", " + staff.getId() + ", "
+                    + room.getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 

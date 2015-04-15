@@ -34,39 +34,43 @@ public class MessageHandler {
 
             while (rs.next()) {
                 String description = rs.getString("description");
-                int staff = rs.getInt("staffId");
+                int staffId = rs.getInt("staffId");
 
-                Message m1 = new Message(description, new Staff(staff)); //Usikkerhed ved new Staff (TEST)
+                Message m1 = new Message(description, new Staff(staffId));
                 messageResult.add(m1);
             }
 
         } catch (SQLException ex) {
             System.out.println("SQLException" + ex.getMessage());
-           
+
         }
         return messageResult;
     }
-    
+
     public void insertMesssage(String description, Staff staff) {
         try {
-            String sql = "INSERT INTO Message VALUES ("+description+", "+staff.getId()+");";
-        Statement stmt = dbhandler.getStmt();
-        stmt.executeUpdate(sql);
-        
-        } catch (SQLException ex){
-            System.out.println("SQLException"+ex);
-        }
-    }
-    
-    public void updateMessage(String newdescription, int newstaffId, String uniquestaffId){
-        try {
-        String sql = "UPDATE Message SET description=" + newdescription + ", staffId=" + newstaffId + " WHERE staffId=" + uniquestaffId + ";";
-        Statement stmt = dbhandler.getStmt();
-        stmt.executeUpdate(sql);
-        
+            String sql = "INSERT INTO Message VALUES (" + description + ", "
+                    + staff.getId() + ");";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
         } catch (SQLException ex) {
-            System.out.println("SQLException"+ex);
+            System.out.println("SQLException" + ex);
         }
     }
-    
+
+    public void updateMessage(String newdescription, int newstaffId,
+            String uniquestaffId) {
+        try {
+            String sql = "UPDATE Message SET description=" + newdescription
+                    + ", staffId=" + newstaffId + " WHERE staffId="
+                    + uniquestaffId + ";";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex);
+        }
+    }
+
 }

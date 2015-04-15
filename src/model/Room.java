@@ -5,6 +5,7 @@ package model;
  * @author stine
  */
 public class Room {
+
     private int id;
     private String type;
     private String status;
@@ -12,16 +13,17 @@ public class Room {
     private int maxStaffAmount;
     private String validFrom;
 
-    public Room(int id, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
+    public Room(int id, String type, String status, int minStaffAmount,
+            int maxStaffAmount, String validFrom) {
         this.id = id;
         this.type = type;
         this.status = status;
         this.minStaffAmount = minStaffAmount;
         this.maxStaffAmount = maxStaffAmount;
         this.validFrom = validFrom;
-    }       
+    }
 
-    public Room(int room) {
+    public Room(int id) {
         this.id = id;
     }
 
@@ -73,8 +75,4 @@ public class Room {
         this.validFrom = validFrom;
     }
 
-    
-    
-    
-    
 }
