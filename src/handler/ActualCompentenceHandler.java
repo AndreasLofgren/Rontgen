@@ -28,7 +28,7 @@ public class ActualCompentenceHandler {
             ResultSet rs = stmt.executeQuery(sql);
             
             while (rs.next()) {
-                //LocalTime expirationDate = rs.getObject("expirationDate", expirationDate<LocalTime>);
+                String expirationDate = rs.getString("expirationDate");
                 String navn = rs.getString("navn");
                 int staff = rs.getInt("staffId");
                 
@@ -40,5 +40,16 @@ public class ActualCompentenceHandler {
         }
         
         return actualcompentenceResult;
+    }
+    
+    public void updateAcutualCompentence(String newExpirationDate, String newName, int newStaffId, int uniqueStaffId) {
+        try {
+            String sql = "UPDATE actualcCompentence SET skill=" + newExpirationDate + ",roomId=" + newName + ", staffId="+ newStaffId + " WHERE skill=" + uniqueStaffId + ";";
+            Statement stmt = dbhandler.getStmt();
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex);
+        }
     }
 }
