@@ -22,21 +22,21 @@ public class CreateShow {
     private Shift shift;
     private Room room;
     private Absence absence;
-    private Competance compentence;
-    private ActualCompetance actualcompentence;
+    private Competance competance;
+    private ActualCompetance actualCompetance;
     private Student student;
     private Employee employee;
     private Message message;
 
     public CreateShow(Staff staff, Shift shift, Room room, Absence absence,
-            Competance compentence, ActualCompetance actualcompentence,
+            Competance competance, ActualCompetance actualCompetance,
             Student student, Employee employee, Message message) {
         this.staff = staff;
         this.shift = shift;
         this.room = room;
         this.absence = absence;
-        this.compentence = compentence;
-        this.actualcompentence = actualcompentence;
+        this.competance = competance;
+        this.actualCompetance = actualCompetance;
         this.student = student;
         this.employee = employee;
         this.message = message;

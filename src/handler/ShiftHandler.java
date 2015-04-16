@@ -17,7 +17,7 @@ public class ShiftHandler {
     private DBHandler dbhandler;
     private ArrayList<Shift> shiftResult;
 
-    private ShiftHandler() {
+    public ShiftHandler() {
         dbhandler = DBHandler.getInstance();
     }
 
@@ -34,11 +34,39 @@ public class ShiftHandler {
                 String date = rs.getString("dates");
                 String shiftStart = rs.getString("dayStart");
                 String shiftEnd = rs.getString("dayEnd");
-                int staff = rs.getInt("staffId");
-                int room = rs.getInt("roomId");
+                int staffId = rs.getInt("staffId");
+                int roomId = rs.getInt("roomId");
 
                 Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
-                        new Staff(staff), new Room(room));
+                        new Staff(staffId), new Room(roomId));
+                shiftResult.add(s1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+
+        return shiftResult;
+    }
+    
+    public ArrayList<Shift> getShift(String day) {
+        shiftResult = new ArrayList<>();
+
+        try {
+            String sql = "Select * from shift WHERE date = " + day + ";";
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String date = rs.getString("dates");
+                String shiftStart = rs.getString("dayStart");
+                String shiftEnd = rs.getString("dayEnd");
+                int staffId = rs.getInt("staffId");
+                int roomId = rs.getInt("roomId");
+
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                        new Staff(staffId), new Room(roomId));
                 shiftResult.add(s1);
 
             }
