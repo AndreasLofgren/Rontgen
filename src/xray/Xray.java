@@ -134,6 +134,21 @@ public class Xray {
         //Vis personale
         JPanel personaleVis = new JPanel();
         jtp.add(personaleVis);
+        
+        JPanel personaleCenter = new JPanel();
+        personaleVis.add(personaleCenter, BorderLayout.CENTER);
+        
+        JPanel personaleSouth = new JPanel();
+        personaleVis.add(personaleSouth, BorderLayout.SOUTH);
+        
+        Container personalePaneCenter = jf.getContentPane();
+        personalePaneCenter.setLayout(new GridLayout(0, 1, 20, 20));           // ændrer tal til variabler
+        personaleCenter.add(personalePaneCenter);
+        
+        Container personalePaneSouth = jf.getContentPane();
+        personalePaneSouth.setLayout(new GridLayout(1, 0, 20, 20));           // ændrer tal til variabler
+        personaleSouth.add(personalePaneSouth);
+        
         JButton tilbage2 = new JButton("Tilbage");        
         tilbage2.addActionListener(new ActionListener() {
 
@@ -142,7 +157,69 @@ public class Xray {
                 jtp.setSelectedIndex(0);
             }
         });
-        personaleVis.add(tilbage2);
+        personalePaneSouth.add(tilbage2);
+        
+        JButton visMedarbejder1 = new JButton("Vis Medarbejder");
+        visMedarbejder1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneCenter.add(visMedarbejder1);
+        
+        JButton visRedigerFravaer1 = new JButton("Vis/rediger fravær");
+        visRedigerFravaer1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneCenter.add(visRedigerFravaer1);
+        
+        JButton redigerKompetencer1 = new JButton("Rediger kompetencer");
+        redigerKompetencer1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneCenter.add(redigerKompetencer1);
+        
+        JButton opretPersonale1 = new JButton("Opret Personale");
+        opretPersonale1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneCenter.add(opretPersonale1);
+        
+        JButton redigerPersonale1 = new JButton("Rediger Personale");
+        redigerPersonale1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneCenter.add(redigerPersonale1);
+        
+        JButton rumOversigt1 = new JButton("Rum oversigt");
+        rumOversigt1.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(0);
+        }
+            });
+        personalePaneSouth.add(rumOversigt1);
+        
+        
         
         //Vis statistikker
         JPanel statistikVis = new JPanel();
