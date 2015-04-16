@@ -10,8 +10,8 @@ public class Employee extends Staff {
     private int mobil;
     private String mail;
     private String occupation;
-    
-    public Employee(int id, int tlf, int mobil, String mail, String occupation){
+
+    public Employee(int id, int tlf, int mobil, String mail, String occupation) {
         super(id);
         this.tlf = tlf;
         this.mobil = mobil;
@@ -19,7 +19,8 @@ public class Employee extends Staff {
         this.occupation = occupation;
     }
 
-    public Employee(int tlf, int mobil, String mail, String occupation, int id, String firstName, String lastName, String nickname) {
+    public Employee(int tlf, int mobil, String mail, String occupation, int id,
+            String firstName, String lastName, String nickname) {
         super(id, firstName, lastName, nickname);
         this.tlf = tlf;
         this.mobil = mobil;

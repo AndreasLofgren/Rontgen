@@ -4,16 +4,18 @@ package model;
  *
  * @author stine
  */
-public class Student extends Staff{
+public class Student extends Staff {
+
     private int module;
-    
-    public Student(int module, int id){
+
+    public Student(int module, int id) {
         super(id);
         this.module = module;
-        
+
     }
 
-    public Student(int module, int id, String firstName, String lastName, String nickname) {
+    public Student(int module, int id, String firstName, String lastName,
+            String nickname) {
         super(id, firstName, lastName, nickname);
         this.module = module;
     }
@@ -26,7 +28,4 @@ public class Student extends Staff{
         this.module = module;
     }
 
-   
-    
-    
 }

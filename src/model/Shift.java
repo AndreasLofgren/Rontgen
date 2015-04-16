@@ -5,21 +5,23 @@ package model;
  * @author stine
  */
 public class Shift {
+
     private int id;
     private String type;
     private String shiftStart;
     private String shiftEnd;
     private Staff staff;
     private Room room;
-    
-    public Shift(int id, String type, String shiftStart, String shiftEnd, Staff staffId, Room roomId) {
+
+    public Shift(int id, String type, String shiftStart, String shiftEnd,
+            Staff staff, Room room) {
         this.id = id;
         this.type = type;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
         this.staff = staff;
         this.room = room;
-       
+
     }
 
     public int getId() {

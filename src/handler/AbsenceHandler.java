@@ -30,9 +30,9 @@ public class AbsenceHandler {
             while (rs.next()) {
                 String dayStart = rs.getString("dayStart");
                 String dayEnd = rs.getString("dayEnd");
-                int staff = rs.getInt("staffId");
+                int staffId = rs.getInt("staffId");
 
-                Absence a1 = new Absence(new Staff(staff), dayStart, dayEnd);
+                Absence a1 = new Absence(new Staff(staffId), dayStart, dayEnd);
 
                 absenceResult.add(a1);
 

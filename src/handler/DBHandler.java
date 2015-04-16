@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-
-
 /**
  *
  * @author stine
@@ -36,7 +34,7 @@ public class DBHandler {
     }
 
     public String[] loadFromFile() {
-        String filename = "Database.ini";  
+        String filename = "Database.ini";
         Scanner textScan;
         String[] params = new String[5];
 
@@ -67,7 +65,8 @@ public class DBHandler {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn;
-            String url = "jdbc:mysql://" + parameter[0] + ":" + parameter[1] + "/" + parameter[2];
+            String url = "jdbc:mysql://" + parameter[0] + ":" + parameter[1]
+                    + "/" + parameter[2];
             System.out.println("url: " + url);
             conn = DriverManager.getConnection(url, parameter[3], parameter[4]);
             stmt = conn.createStatement();
@@ -82,5 +81,5 @@ public class DBHandler {
     public Statement getStmt() {
         return stmt;
     }
-   
+
 }

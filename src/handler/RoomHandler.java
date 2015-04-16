@@ -36,7 +36,8 @@ public class RoomHandler {
                 int maxStaffAmount = rs.getInt("maxStaffAmount");
                 String validFrom = rs.getString("validFrom");
 
-                Room r1 = new Room(id, typ, state, minStaffAmount, maxStaffAmount, validFrom);
+                Room r1 = new Room(id, typ, state, minStaffAmount,
+                        maxStaffAmount, validFrom);
                 roomResult.add(r1);
             }
         } catch (SQLException ex) {
@@ -45,9 +46,12 @@ public class RoomHandler {
         return roomResult;
     }
 
-    public void insertRoom(int id, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
+    public void insertRoom(int id, String type, String status,
+            int minStaffAmount, int maxStaffAmount, String validFrom) {
         try {
-            String sql = "INSERT INTO Room VALUES (" + id + "), (" + type + "), (" + status + "), (" + minStaffAmount + "), (" + maxStaffAmount + "), (" + validFrom + ");";
+            String sql = "INSERT INTO Room VALUES (" + id + "), (" + type
+                    + "), (" + status + "), (" + minStaffAmount + "), ("
+                    + maxStaffAmount + "), (" + validFrom + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
 
@@ -56,9 +60,14 @@ public class RoomHandler {
         }
     }
 
-    public void updateRoom(int newRoomId, String newTyp, String newState, int newMinStaffAmount, int newMaxStaffAmount, String newValidFrom, int uniqueId) {
+    public void updateRoom(int newRoomId, String newTyp, String newState,
+            int newMinStaffAmount, int newMaxStaffAmount, String newValidFrom,
+            int uniqueId) {
         try {
-            String sql = "UPDATE room SET id=" + newRoomId + "typ=" + newTyp + "state=" + newState + "minStaffAmount=" + newMinStaffAmount + "maxStaffAmount=" + newMaxStaffAmount + "validFrom=" + newValidFrom + "WHERE id=" + uniqueId + ";";
+            String sql = "UPDATE room SET id=" + newRoomId + "typ=" + newTyp
+                    + "state=" + newState + "minStaffAmount="
+                    + newMinStaffAmount + "maxStaffAmount=" + newMaxStaffAmount
+                    + "validFrom=" + newValidFrom + "WHERE id=" + uniqueId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
