@@ -16,7 +16,7 @@ public class StaffHandler {
     private DBHandler dbhandler;
     private ArrayList<Staff> staffResult;
 
-    private StaffHandler() {
+    public StaffHandler() {
         dbhandler = DBHandler.getInstance();
     }
 

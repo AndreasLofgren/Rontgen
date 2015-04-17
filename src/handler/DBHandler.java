@@ -17,7 +17,7 @@ public class DBHandler {
     private static DBHandler instance;
     private Statement stmt;
 
-    private DBHandler() {
+    public DBHandler() {
         String[] params = loadFromFile();
         for (String param : params) {
             System.out.println(param);

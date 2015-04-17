@@ -15,7 +15,7 @@ public class EmployeeHandler {
     private DBHandler dbhandler;
     private ArrayList<Employee> employeeResult;
     
-    private EmployeeHandler(){
+    public EmployeeHandler(){
         dbhandler = DBHandler.getInstance();
     }
     
