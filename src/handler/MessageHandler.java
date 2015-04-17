@@ -21,7 +21,7 @@ public class MessageHandler {
     private DBHandler dbhandler;
     private ArrayList<Message> messageResult;
 
-    private MessageHandler() {
+    public MessageHandler() {
         dbhandler = DBHandler.getInstance();
     }
 

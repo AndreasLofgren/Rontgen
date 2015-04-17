@@ -15,7 +15,7 @@ public class StudentHandler {
     private DBHandler dbhandler;
     private ArrayList<Student> studentResult;
 
-    private StudentHandler() {
+    public StudentHandler() {
         dbhandler = DBHandler.getInstance();
     }
 

@@ -17,7 +17,7 @@ public class ActualCompetanceHandler {
     private DBHandler dbhandler;
     private ArrayList<ActualCompetance> actualCompetanceResult;
 
-    private ActualCompetanceHandler() {
+    public ActualCompetanceHandler() {
         dbhandler = DBHandler.getInstance();
     }
 

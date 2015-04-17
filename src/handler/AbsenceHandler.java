@@ -16,7 +16,7 @@ public class AbsenceHandler {
     private DBHandler dbhandler;
     private ArrayList<Absence> absenceResult;
 
-    private AbsenceHandler() {
+    public AbsenceHandler() {
         dbhandler = DBHandler.getInstance();
     }
 
