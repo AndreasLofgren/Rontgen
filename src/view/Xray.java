@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xray;
+package view;
 
 import handler.MessageHandler;
 import handler.StaffHandler;
@@ -22,6 +22,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import model.Message;
 import model.Staff;
+import view.create.CreateWeek;
+import view.extra.CustomButton;
 
 /**
  *
@@ -32,18 +34,20 @@ public class Xray {
     /**
      * @param args the command line arguments
      */
+        
     public static void main(String[] args) {
         JFrame jf = new JFrame();
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JTabbedPane jtp = new JTabbedPane();
+        
+        //Startside
         JPanel startside = new JPanel();
         jtp.add(startside);
         jtp.setTitleAt(0, "Startside");
         startside.setPreferredSize(new Dimension(800, 600));    // ændrer tal til variabler
         startside.setLayout(new BorderLayout());
 
-        //Startside
         JPanel center = new JPanel();
         startside.add(center, BorderLayout.CENTER);
 
@@ -113,7 +117,7 @@ public class Xray {
         });
 
         //Oprettelse af ugeplan        
-        JPanel ugeplanOpret = new JPanel();
+        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan");
         jtp.add(ugeplanOpret);
         jtp.setTitleAt(1, "Opret ugeplan");
         JButton tilbage = new JButton("Tilbage");
@@ -125,7 +129,7 @@ public class Xray {
             }
         });
         ugeplanOpret.add(tilbage);
-
+        
         //Vis ugeplan
         JPanel ugeplanVis = new JPanel();
         jtp.add(ugeplanVis);
@@ -139,6 +143,9 @@ public class Xray {
             }
         });
         ugeplanVis.add(tilbage1);
+        
+        CustomButton tilbage12 = new CustomButton();
+        tilbage12.createNavBut("Tilbage", 0);
 
         //Vis personale
         JPanel personaleVis = new JPanel();

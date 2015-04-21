@@ -4,24 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.ActualCompetance;
-import model.Competance;
+import model.ActualCompetence;
+import model.Competence;
 import model.Staff;
 
 /**
  *
  * @author stine
  */
-public class ActualCompetanceHandler {
+public class ActualCompetenceHandler {
 
     private DBHandler dbhandler;
-    private ArrayList<ActualCompetance> actualCompetanceResult;
+    private ArrayList<ActualCompetence> actualCompetanceResult;
 
-    public ActualCompetanceHandler() {
+    public ActualCompetenceHandler() {
         dbhandler = DBHandler.getInstance();
     }
 
-    public ArrayList<ActualCompetance> getActualCompetance() {
+    public ArrayList<ActualCompetence> getActualCompetance() {
         actualCompetanceResult = new ArrayList<>();
         try {
             String sql = "Select * from actualcompentence";
@@ -34,8 +34,8 @@ public class ActualCompetanceHandler {
                 String navn = rs.getString("navn");
                 int staffId = rs.getInt("staffId");
 
-                ActualCompetance a1 = new ActualCompetance(expirationDate,
-                        new Competance(navn), new Staff(staffId));
+                ActualCompetence a1 = new ActualCompetence(expirationDate,
+                        new Competence(navn), new Staff(staffId));
                 actualCompetanceResult.add(a1);
             }
         } catch (SQLException ex) {
@@ -46,10 +46,10 @@ public class ActualCompetanceHandler {
     }
 
     public void insertActualCompetance(String expirationDate,
-            Competance competance, Staff staff) {
+            Competence competence, Staff staff) {
         try {
             String sql = "INSERT INTO ActualCompentence VALUES ("
-                    + expirationDate + ", " + competance.getSkill() + ", "
+                    + expirationDate + ", " + competence.getSkill() + ", "
                     + staff.getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
