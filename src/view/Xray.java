@@ -5,31 +5,21 @@
  */
 package view;
 
-import handler.MessageHandler;
-import handler.StaffHandler;
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import model.Message;
-import model.Staff;
 import view.create.CreateWeek;
-import view.extra.CustomButton;
+import view.show.ShowStaff;
 
 /**
  *
  * @author stine
  */
-public class Xray {
+public class Xray extends JFrame {
 
     /**
      * @param args the command line arguments
@@ -42,93 +32,16 @@ public class Xray {
         JTabbedPane jtp = new JTabbedPane();
         
         //Startside
-        JPanel startside = new JPanel();
+        Homepage startside = new Homepage(jf, jtp);
         jtp.add(startside);
         jtp.setTitleAt(0, "Startside");
         startside.setPreferredSize(new Dimension(800, 600));    // ændrer tal til variabler
-        startside.setLayout(new BorderLayout());
-
-        JPanel center = new JPanel();
-        startside.add(center, BorderLayout.CENTER);
-
-        Container pane = jf.getContentPane();
-        pane.setLayout(new GridLayout(0, 1, 20, 20));           // ændrer tal til variabler
-        center.add(pane);
-
-        //Midlertidligt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        JButton ugeplaneOversigt = new JButton("Vis uger");
-        pane.add(ugeplaneOversigt);
-        ugeplaneOversigt.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(2);
-            }
-        });
-
-        JButton ugeplanOprettelse = new JButton("Opret uger");
-        pane.add(ugeplanOprettelse);
-        ugeplanOprettelse.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(1);
-            }
-        });
-
-        JButton personaleOversigt = new JButton("Personaleoversigt");
-        pane.add(personaleOversigt);
-        personaleOversigt.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-
-        JButton rumOversigt = new JButton("Rumoversigt");
-        pane.add(rumOversigt);
-        rumOversigt.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(4);
-            }
-        });
-
-        JButton kompetanceOversigt = new JButton("Kompetanceoversigt");
-        pane.add(kompetanceOversigt);
-        kompetanceOversigt.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(5);
-            }
-        });
-
-        JButton statistik = new JButton("Statistik");
-        pane.add(statistik);
-        statistik.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(6);
-            }
-        });
 
         //Oprettelse af ugeplan        
-        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan");
+        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan", jtp);
         jtp.add(ugeplanOpret);
         jtp.setTitleAt(1, "Opret ugeplan");
-        JButton tilbage = new JButton("Tilbage");
-        tilbage.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        ugeplanOpret.add(tilbage);
+        
         
         //Vis ugeplan
         JPanel ugeplanVis = new JPanel();
@@ -144,127 +57,10 @@ public class Xray {
         });
         ugeplanVis.add(tilbage1);
         
-        CustomButton tilbage12 = new CustomButton();
-        tilbage12.createNavBut("Tilbage", 0);
-
         //Vis personale
-        JPanel personaleVis = new JPanel();
+        ShowStaff personaleVis = new ShowStaff(jtp);
         jtp.add(personaleVis);
         jtp.setTitleAt(3, "Personaleoversigt");
-        personaleVis.setLayout(new BorderLayout());
-
-        JPanel personaleCenter = new JPanel();
-        personaleVis.add(personaleCenter, BorderLayout.CENTER);
-
-        JPanel personaleSouth = new JPanel();
-        personaleVis.add(personaleSouth, BorderLayout.SOUTH);
-
-        Container personalePaneCenter = new Container();
-        personalePaneCenter.setLayout(new GridLayout(0, 1, 20, 20));           // ændrer tal til variabler
-        personaleCenter.add(personalePaneCenter);
-
-        Container personalePaneSouth = new Container();
-        personalePaneSouth.setLayout(new GridLayout(1, 0, 20, 20));           // ændrer tal til variabler
-        personaleSouth.add(personalePaneSouth);
-
-        JPanel personaleWest = new JPanel();
-        personaleVis.add(personaleWest, BorderLayout.WEST);
-
-        JComboBox medarbejderListe = new JComboBox();
-        personaleWest.add(medarbejderListe);
-
-        StaffHandler sh = new StaffHandler();
-        ArrayList<Staff> medarbejdere = new ArrayList<>();
-        medarbejdere = sh.getStaff();
-
-        for (int i = 0; i < medarbejdere.size(); i++) {
-
-            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
-                    + medarbejdere.get(i).getLastName());
-        }
-
-        JPanel personaleEast = new JPanel();
-        personaleVis.add(personaleEast, BorderLayout.EAST);
-
-        JTextArea medarbejderInfo = new JTextArea();
-        personaleEast.add(medarbejderInfo);
-
-        JButton tilbage2 = new JButton("Tilbage");
-        tilbage2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        personalePaneSouth.add(tilbage2);
-
-        MessageHandler mh = new MessageHandler();
-        ArrayList<Message> beskeder = new ArrayList<>();
-        beskeder = mh.getMessage();
-
-        JButton visMedarbejder1 = new JButton("Vis Medarbejder");
-        visMedarbejder1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                medarbejderInfo.setText(" Navn: " + medarbejderListe.getSelectedItem()
-                        + "\n Adresse: " + "\n Telefon: " + "\n Mobil: "
-                        + "\n E-mail: " + "\n Stilling: " + "\n Noter: \n");
-                //+ beskeder.get(1).getDescription()
-            }
-        });
-        personalePaneCenter.add(visMedarbejder1);
-
-        JButton visRedigerFravaer1 = new JButton("Åben fravær");
-        visRedigerFravaer1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(10);
-            }
-        });
-        personalePaneCenter.add(visRedigerFravaer1);
-
-        JButton redigerKompetencer1 = new JButton("Rediger kompetencer");
-        redigerKompetencer1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(12);
-            }
-        });
-        personalePaneCenter.add(redigerKompetencer1);
-
-        JButton opretPersonale1 = new JButton("Opret Personale");
-        opretPersonale1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(7);
-            }
-        });
-        personalePaneCenter.add(opretPersonale1);
-
-        JButton redigerPersonale1 = new JButton("Rediger Personale");
-        redigerPersonale1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(11);
-            }
-        });
-        personalePaneCenter.add(redigerPersonale1);
-
-        JButton rumOversigt1 = new JButton("Rum oversigt");
-        rumOversigt1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(4);
-            }
-        });
-        personalePaneSouth.add(rumOversigt1);
 
         //Vis rum
         JPanel rumVis = new JPanel();

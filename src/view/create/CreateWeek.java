@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -16,12 +17,8 @@ import javax.swing.JPanel;
  */
 public class CreateWeek extends JPanel {
     
-    public CreateWeek(String name) {
-        
-    }
-    
-    public void createWeekPage(String name) {
-        
+    public CreateWeek(String opret_ugeplan, JTabbedPane jtp) {
+  
         JButton tilbage = new JButton("Tilbage");
         tilbage.addActionListener(new ActionListener() {
 
@@ -30,6 +27,7 @@ public class CreateWeek extends JPanel {
                 jtp.setSelectedIndex(0);
             }
         });
-        name.add(tilbage);
+        this.add(tilbage);    
     }
+    
 }
