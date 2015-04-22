@@ -168,13 +168,13 @@ public class Xray {
 
         StaffHandler sh = new StaffHandler();
         ArrayList<Staff> medarbejdere = new ArrayList<>();
-        medarbejdere = sh.getStaff();
+        // medarbejdere = sh.getStaff();
 
-        for (int i = 0; i < medarbejdere.size(); i++) {
-
-            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
-                    + medarbejdere.get(i).getLastName());
-        }
+//        for (int i = 0; i < medarbejdere.size(); i++) {
+//
+//            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
+//                    + medarbejdere.get(i).getLastName());
+//        }
 
         JPanel personaleEast = new JPanel();
         personaleVis.add(personaleEast, BorderLayout.EAST);
@@ -194,7 +194,7 @@ public class Xray {
 
         MessageHandler mh = new MessageHandler();
         ArrayList<Message> beskeder = new ArrayList<>();
-        beskeder = mh.getMessage();
+        //beskeder = mh.getMessage();
 
         JButton visMedarbejder1 = new JButton("Vis Medarbejder");
         visMedarbejder1.addActionListener(new ActionListener() {
