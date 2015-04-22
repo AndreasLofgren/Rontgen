@@ -8,6 +8,7 @@ package view.extra;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
 import view.Xray;
 
 /**
@@ -16,7 +17,7 @@ import view.Xray;
  */
 public class CustomButton extends JButton {
     JButton custom = new JButton();
-    
+    JTabbedPane jtp = new JTabbedPane();
     
     public void createNavBut(String name, int index) {
         
@@ -24,7 +25,7 @@ public class CustomButton extends JButton {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Xray.getTabbedPane().setSelectedIndex(index);
+                jtp.setSelectedIndex(index);
             }
         });
         
