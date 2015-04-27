@@ -12,8 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import view.create.CreateRoom;
 import view.create.CreateWeek;
 import view.show.ShowStaff;
+import view.show.ShowWeek;
 
 /**
  *
@@ -44,18 +46,11 @@ public class Xray extends JFrame {
         
         
         //Vis ugeplan
-        JPanel ugeplanVis = new JPanel();
+        
+        ShowWeek ugeplanVis = new ShowWeek(jtp);
         jtp.add(ugeplanVis);
         jtp.setTitleAt(2, "Vis ugeplan");
-        JButton tilbage1 = new JButton("Tilbage");
-        tilbage1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        ugeplanVis.add(tilbage1);
+        
         
         //Vis personale
         ShowStaff personaleVis = new ShowStaff(jtp);
@@ -119,18 +114,10 @@ public class Xray extends JFrame {
         opretMedarbejder.add(tilbage6);
 
         //Opret rum
-        JPanel opretRum = new JPanel();
+        CreateRoom opretRum = new CreateRoom(jtp);
         jtp.add(opretRum);
         jtp.setTitleAt(8, "Opret Rum");
-        JButton tilbage8 = new JButton("Tilbage");
-        tilbage8.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        opretRum.add(tilbage8);
+        
 
         //Opret kompetance
         JPanel opretKompetance = new JPanel();
