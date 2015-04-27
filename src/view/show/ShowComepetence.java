@@ -5,10 +5,12 @@
  */
 package view.show;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Andreas
  */
-public class ShowComepetence {
+public class ShowComepetence extends JPanel {
     
 }

@@ -12,11 +12,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import view.create.CreateStaff;
 import view.create.CreateCompetence;
+import view.create.CreateRoom;
 import view.create.CreateWeek;
 import view.show.ShowRoom;
 import view.show.ShowStaff;
-
+import view.show.ShowWeek;
+import view.show.ShowComepetence;
+ 
 /**
  *
  * @author stine
@@ -26,13 +30,12 @@ public class Xray extends JFrame {
     /**
      * @param args the command line arguments
      */
-        
     public static void main(String[] args) {
         JFrame jf = new JFrame();
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JTabbedPane jtp = new JTabbedPane();
-        
+
         //Startside
         Homepage startside = new Homepage(jf, jtp);
         jtp.add(startside);
@@ -40,25 +43,15 @@ public class Xray extends JFrame {
         startside.setPreferredSize(new Dimension(800, 600)); // ændrer tal til variabler
 
         //Oprettelse af ugeplan        
-        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan", jtp);
+        CreateWeek ugeplanOpret = new CreateWeek();
         jtp.add(ugeplanOpret);
         jtp.setTitleAt(1, "Opret ugeplan");
-        
-        
+
         //Vis ugeplan
-        JPanel ugeplanVis = new JPanel();
+        ShowWeek ugeplanVis = new ShowWeek(jtp);
         jtp.add(ugeplanVis);
         jtp.setTitleAt(2, "Vis ugeplan");
-        JButton tilbage1 = new JButton("Tilbage");
-        tilbage1.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        ugeplanVis.add(tilbage1);
-        
         //Vis personale
         ShowStaff personaleVis = new ShowStaff(jtp);
         jtp.add(personaleVis);
@@ -68,22 +61,12 @@ public class Xray extends JFrame {
         ShowRoom rumVis = new ShowRoom(jtp);
         jtp.add(rumVis);
         jtp.setTitleAt(4, "Rum oversigt");
-        
 
         //Vis kompetancer
-        JPanel kompetanceVis = new JPanel();
+        ShowComepetence kompetanceVis = new ShowComepetence();
         jtp.add(kompetanceVis);
         jtp.setTitleAt(5, "Vis kompetance");
-        JButton tilbage5 = new JButton("Tilbage");
-        tilbage5.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        kompetanceVis.add(tilbage5);
-
+        
         //Vis statistikker
         JPanel statistikVis = new JPanel();
         jtp.add(statistikVis);
@@ -99,32 +82,14 @@ public class Xray extends JFrame {
         statistikVis.add(tilbage3);
 
         //Opret personale
-        JPanel opretMedarbejder = new JPanel();
+        CreateStaff opretMedarbejder = new CreateStaff();
         jtp.add(opretMedarbejder);
         jtp.setTitleAt(7, "Opret personale");
-        JButton tilbage6 = new JButton("Tilbage");
-        tilbage6.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        opretMedarbejder.add(tilbage6);
-
+        
         //Opret rum
-        JPanel opretRum = new JPanel();
+        CreateRoom opretRum = new CreateRoom(jtp);
         jtp.add(opretRum);
         jtp.setTitleAt(8, "Opret Rum");
-        JButton tilbage8 = new JButton("Tilbage");
-        tilbage8.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        opretRum.add(tilbage8);
 
         //Opret kompetance
         CreateCompetence opretKompetence = new CreateCompetence(jtp);
@@ -145,7 +110,7 @@ public class Xray extends JFrame {
             }
         });
         fravar.add(tilbage9);
-        
+
         //Rediger personale
         JPanel redPersonale = new JPanel();
         jtp.add(redPersonale);
@@ -160,7 +125,7 @@ public class Xray extends JFrame {
             }
         });
         redPersonale.add(tilbage10);
-        
+
         //Rediger kompetance
         JPanel redKompetance = new JPanel();
         jtp.add(redKompetance);
@@ -175,7 +140,7 @@ public class Xray extends JFrame {
             }
         });
         redKompetance.add(tilbage11);
-        
+
         //Rediger rum
         JPanel redRum = new JPanel();
         jtp.add(redRum);
@@ -190,7 +155,7 @@ public class Xray extends JFrame {
             }
         });
         redRum.add(tilbage12);
-        
+
         jf.setContentPane(jtp);
         jf.pack();
         jf.setLocationRelativeTo(null);

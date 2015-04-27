@@ -5,10 +5,12 @@
  */
 package view.create;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Andreas
  */
-public class CreateStaff {
+public class CreateStaff extends JPanel{
     
 }

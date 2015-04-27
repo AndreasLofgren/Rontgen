@@ -5,11 +5,7 @@
  */
 package view.create;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 /**
  *
@@ -17,17 +13,5 @@ import javax.swing.JTabbedPane;
  */
 public class CreateWeek extends JPanel {
     
-    public CreateWeek(String opret_ugeplan, JTabbedPane jtp) {
-  
-        JButton tilbage = new JButton("Tilbage");
-        tilbage.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        this.add(tilbage);    
-    }
-    
+        
 }
