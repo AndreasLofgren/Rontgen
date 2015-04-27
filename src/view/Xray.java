@@ -12,7 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import view.create.CreateCompetence;
 import view.create.CreateWeek;
+import view.show.ShowRoom;
 import view.show.ShowStaff;
 
 /**
@@ -35,7 +37,7 @@ public class Xray extends JFrame {
         Homepage startside = new Homepage(jf, jtp);
         jtp.add(startside);
         jtp.setTitleAt(0, "Startside");
-        startside.setPreferredSize(new Dimension(800, 600));    // ændrer tal til variabler
+        startside.setPreferredSize(new Dimension(800, 600)); // ændrer tal til variabler
 
         //Oprettelse af ugeplan        
         CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan", jtp);
@@ -63,18 +65,10 @@ public class Xray extends JFrame {
         jtp.setTitleAt(3, "Personaleoversigt");
 
         //Vis rum
-        JPanel rumVis = new JPanel();
+        ShowRoom rumVis = new ShowRoom(jtp);
         jtp.add(rumVis);
         jtp.setTitleAt(4, "Rum oversigt");
-        JButton tilbage4 = new JButton("Tilbage");
-        tilbage4.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        rumVis.add(tilbage4);
+        
 
         //Vis kompetancer
         JPanel kompetanceVis = new JPanel();
@@ -133,18 +127,9 @@ public class Xray extends JFrame {
         opretRum.add(tilbage8);
 
         //Opret kompetance
-        JPanel opretKompetance = new JPanel();
-        jtp.add(opretKompetance);
+        CreateCompetence opretKompetence = new CreateCompetence(jtp);
+        jtp.add(opretKompetence);
         jtp.setTitleAt(9, "Opret kompetance");
-        JButton tilbage7 = new JButton("Tilbage");
-        tilbage7.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        opretKompetance.add(tilbage7);
 
         //Fravær
         JPanel fravar = new JPanel();
@@ -206,8 +191,6 @@ public class Xray extends JFrame {
         });
         redRum.add(tilbage12);
         
-        
-
         jf.setContentPane(jtp);
         jf.pack();
         jf.setLocationRelativeTo(null);

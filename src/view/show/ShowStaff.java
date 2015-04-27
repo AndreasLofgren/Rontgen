@@ -25,9 +25,8 @@ import model.Staff;
  *
  * @author Andreas
  */
-public class ShowStaff extends JPanel{
-    
-    
+public class ShowStaff extends JPanel {
+
     public ShowStaff(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 
