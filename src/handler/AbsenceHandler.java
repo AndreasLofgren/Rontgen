@@ -20,6 +20,7 @@ public class AbsenceHandler {
         dbhandler = DBHandler.getInstance();
     }
 
+    // Henter alle data fra Absence tabellen, omformer til Absence-obj og returnerer en liste med objekterne
     public ArrayList<Absence> getAbsence() {
         absenceResult = new ArrayList<>();
         try {

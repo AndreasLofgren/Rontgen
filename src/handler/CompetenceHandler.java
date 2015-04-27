@@ -4,24 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Competance;
+import model.Competence;
 import model.Room;
 
 /**
  *
  * @author stine
  */
-public class CompetanceHandler {
+public class CompetenceHandler {
 
     private DBHandler dbhandler;
-    private ArrayList<Competance> competanceResult;
+    private ArrayList<Competence> competenceResult;
 
-    public CompetanceHandler() {
+    public CompetenceHandler() {
         dbhandler = DBHandler.getInstance();
     }
 
-    public ArrayList<Competance> getCompetance() {
-        competanceResult = new ArrayList<>();
+    public ArrayList<Competence> getCompetance() {
+        competenceResult = new ArrayList<>();
 
         try {
             String sql = "Select * From compentences";
@@ -32,14 +32,14 @@ public class CompetanceHandler {
                 String skill = rs.getString("skill");
                 int roomId = rs.getInt("roomId");
 
-                Competance c2 = new Competance(skill, new Room(roomId));
-                competanceResult.add(c2);
+                Competence c2 = new Competence(skill, new Room(roomId));
+                competenceResult.add(c2);
 
             }
         } catch (SQLException ex) {
             System.out.println("SQLException" + ex.getMessage());
         }
-        return competanceResult;
+        return competenceResult;
     }
 
     public void insertCompetances(String skill, Room room) {
