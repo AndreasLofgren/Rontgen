@@ -19,7 +19,7 @@ import view.create.CreateWeek;
 import view.show.ShowRoom;
 import view.show.ShowStaff;
 import view.show.ShowWeek;
-import view.show.ShowComepetence;
+import view.show.ShowCompetence;
  
 /**
  *
@@ -43,7 +43,7 @@ public class Xray extends JFrame {
         startside.setPreferredSize(new Dimension(800, 600)); // ændrer tal til variabler
 
         //Oprettelse af ugeplan        
-        CreateWeek ugeplanOpret = new CreateWeek();
+        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan", jtp);
         jtp.add(ugeplanOpret);
         jtp.setTitleAt(1, "Opret ugeplan");
 
@@ -63,7 +63,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(4, "Rum oversigt");
 
         //Vis kompetancer
-        ShowComepetence kompetanceVis = new ShowComepetence();
+        ShowCompetence kompetanceVis = new ShowCompetence("Vis kompetence", jtp);
         jtp.add(kompetanceVis);
         jtp.setTitleAt(5, "Vis kompetance");
         
@@ -82,7 +82,7 @@ public class Xray extends JFrame {
         statistikVis.add(tilbage3);
 
         //Opret personale
-        CreateStaff opretMedarbejder = new CreateStaff();
+        CreateStaff opretMedarbejder = new CreateStaff("Opret personale", jtp);
         jtp.add(opretMedarbejder);
         jtp.setTitleAt(7, "Opret personale");
         

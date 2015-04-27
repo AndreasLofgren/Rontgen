@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -98,6 +100,5 @@ public class CreateCompetence extends JPanel{
         
         JButton tilbage = new JButton("Tilbage");
         panelSouth.add(tilbage);
-        
     }
 }
