@@ -12,7 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import view.create.CreateStaff;
 import view.create.CreateWeek;
+import view.show.ShowCompetence;
 import view.show.ShowStaff;
 
 /**
@@ -77,18 +79,9 @@ public class Xray extends JFrame {
         rumVis.add(tilbage4);
 
         //Vis kompetancer
-        JPanel kompetanceVis = new JPanel();
+        ShowCompetence kompetanceVis = new ShowCompetence("Vis kompetence", jtp);
         jtp.add(kompetanceVis);
         jtp.setTitleAt(5, "Vis kompetance");
-        JButton tilbage5 = new JButton("Tilbage");
-        tilbage5.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        kompetanceVis.add(tilbage5);
 
         //Vis statistikker
         JPanel statistikVis = new JPanel();
@@ -105,18 +98,10 @@ public class Xray extends JFrame {
         statistikVis.add(tilbage3);
 
         //Opret personale
-        JPanel opretMedarbejder = new JPanel();
+        CreateStaff opretMedarbejder = new CreateStaff("Opret personale", jtp);
         jtp.add(opretMedarbejder);
         jtp.setTitleAt(7, "Opret personale");
-        JButton tilbage6 = new JButton("Tilbage");
-        tilbage6.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        opretMedarbejder.add(tilbage6);
+        
 
         //Opret rum
         JPanel opretRum = new JPanel();
