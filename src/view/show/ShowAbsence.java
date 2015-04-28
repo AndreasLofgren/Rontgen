@@ -47,28 +47,24 @@ public class ShowAbsence extends JPanel {
         infoNorth.add(infox);
 
         //Fra dato (3 combobox) - datetime
-        
         JComboBox fromDayList = new JComboBox();
         infox.add(fromDayList);
 
         JLabel fromDay = new JLabel("Dag");
         infox.add(fromDay);
-        
 
         JComboBox fromMonthList = new JComboBox();
         infox.add(fromMonthList);
 
         JLabel fromMonth = new JLabel("Måned");
         infox.add(fromMonth);
-        
-        
+
         JComboBox fromYearList = new JComboBox();
         infox.add(fromYearList);
 
         JLabel fromYear = new JLabel("År");
         infox.add(fromYear);
-        
-        
+
         //Til dato
         JLabel tildato = new JLabel("Til dato: ");
         infoNorth.add(tildato);
@@ -82,21 +78,18 @@ public class ShowAbsence extends JPanel {
 
         JLabel toDay = new JLabel("Dag");
         infoy.add(toDay);
-        
 
         JComboBox toMonthList = new JComboBox();
         infoy.add(toMonthList);
 
         JLabel toMonth = new JLabel("Måned");
         infoy.add(toMonth);
-        
-        
+
         JComboBox toYearList = new JComboBox();
         infoy.add(toYearList);
 
         JLabel toYear = new JLabel("År");
         infoy.add(toYear);
-        
 
         //Knap Gem fravær
         JButton gemFravar = new JButton("Gem");

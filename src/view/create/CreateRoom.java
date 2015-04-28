@@ -1,19 +1,16 @@
 package view.create;
 
-import handler.RoomHandler;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import model.Room;
 
 /**
  *
@@ -67,7 +64,7 @@ public class CreateRoom extends JPanel {
         JComboBox statuscombo = new JComboBox();
         infonorth.add(statuscombo);
 
-        //Tilføjer status til rummet i combobox
+//      Tilføjer status til rummet i combobox
         statuscombo.addItem("Åben");
         statuscombo.addItem("Lukket");
         statuscombo.addItem("Service");
@@ -94,31 +91,31 @@ public class CreateRoom extends JPanel {
 
         JComboBox validDay = new JComboBox();
         infox.add(validDay);
-        
-        for (int i = 1; i <= 31; i++){
+
+        for (int i = 1; i <= 31; i++) {
             validDay.addItem(i);
         }
-        
+
         JLabel day = new JLabel("Dag");
         infox.add(day);
 
         JComboBox validMonth = new JComboBox();
         infox.add(validMonth);
-        
-        for (int i = 1; i <= 12; i++){
+
+        for (int i = 1; i <= 12; i++) {
             validMonth.addItem(i);
         }
-        
+
         JLabel month = new JLabel("Måned");
         infox.add(month);
 
         JComboBox validYear = new JComboBox();
         infox.add(validYear);
-        
-        for (int i = 2015; i < 2021; i++){
+
+        for (int i = 2015; i < 2021; i++) {
             validYear.addItem(i);
         }
-        
+
         JLabel year = new JLabel("År");
         infox.add(year);
 
@@ -128,8 +125,8 @@ public class CreateRoom extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-            //    RoomHandler rh = new RoomHandler();
-            //    rh.insertRoom(1, String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()), Integer.parseInt(minbemanding.getText()), Integer.parseInt(maxbemanding.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()));
+                //    RoomHandler rh = new RoomHandler();
+                //    rh.insertRoom(1, String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()), Integer.parseInt(minbemanding.getText()), Integer.parseInt(maxbemanding.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()));
                 jtp.setSelectedIndex(4);
             }
         });

@@ -65,7 +65,7 @@ public class EditRoom extends JPanel {
         JComboBox statuscombo = new JComboBox();
         infonorth.add(statuscombo);
 
-//Tilføjer status til rummet i combobox
+//      Tilføjer status til rummet i combobox
         statuscombo.addItem("Åben");
         statuscombo.addItem("Lukket");
         statuscombo.addItem("Service");
