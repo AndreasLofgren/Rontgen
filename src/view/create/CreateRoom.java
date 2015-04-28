@@ -88,7 +88,7 @@ public class CreateRoom extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(4);
             }
         });
         infosouth.add(gemroom);
@@ -99,7 +99,7 @@ public class CreateRoom extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(4);
             }
         });
         infosouth.add(tilbage);

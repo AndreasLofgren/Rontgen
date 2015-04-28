@@ -54,11 +54,11 @@ public class CompetenceHandler {
         }
     }
 
-    public void updateCompetance(String newSkill, int newRoomId,
+    public void updateCompetance(String newSkill, Room room,
             String uniqueSkill) {
         try {
             String sql = "UPDATE compentences SET skill=" + newSkill
-                    + ",roomId=" + newRoomId + " WHERE skill=" + uniqueSkill
+                    + ",roomId=" + room.getId()+ " WHERE skill=" + uniqueSkill
                     + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);

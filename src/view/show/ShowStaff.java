@@ -108,7 +108,7 @@ public class ShowStaff extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(12);
+                
             }
         });
         personalePaneCenter.add(redigerKompetencer1);

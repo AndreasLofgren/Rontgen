@@ -5,11 +5,13 @@
  */
 package view.show;
 
+import handler.CompetenceHandler;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import static sun.net.www.http.HttpClient.New;
+import model.Competence;
 
 /**
  *
@@ -74,41 +76,59 @@ public class ShowCompetence extends JPanel {
         JComboBox kompetenceList = new JComboBox();
         visKompetencePaneWest.add(kompetenceList);
         
+        CompetenceHandler ch = new CompetenceHandler();
+        ArrayList<Competence> competenceList = new ArrayList<>();
+//        competenceList = ch.getCompetance();
+//        
+//        for (int i = 0; i < competenceList.size(); i++) {
+//            kompetenceList.addItem(competenceList.get(i).getSkill());
+//        }
+        
+        
         JTextField fornyelsesInfo = new JTextField();
         visKompetencePaneCenter.add(fornyelsesInfo);
         
         JTextArea tilknyttetRumInfo = new JTextArea();
         visKompetencePaneEast.add(tilknyttetRumInfo);
         
-        JButton tilbage5 = new JButton("Tilbage");
-        tilbage5.addActionListener(new ActionListener() {
+        kompetenceList.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                fornyelsesInfo.setText("Hej");
+                tilknyttetRumInfo.append("Hej");
             }
         });
-        visKompetencePaneSouth.add(tilbage5);
         
-        JButton tilbage55 = new JButton("Opret Kompetence");
-        tilbage5.addActionListener(new ActionListener() {
+        JButton tilbage = new JButton("Tilbage");
+        tilbage.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.setSelectedIndex(0);
             }
         });
-        visKompetencePaneSouth.add(tilbage55);
+        visKompetencePaneSouth.add(tilbage);
         
-        JButton tilbage555 = new JButton("Rediger Kompetence");
-        tilbage5.addActionListener(new ActionListener() {
+        JButton opretKompetence = new JButton("Opret Kompetence");
+        opretKompetence.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(9);
             }
         });
-        visKompetencePaneSouth.add(tilbage555);
+        visKompetencePaneSouth.add(opretKompetence);
+        
+        JButton redKompetence = new JButton("Rediger Kompetence");
+        redKompetence.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(12);
+            }
+        });
+        visKompetencePaneSouth.add(redKompetence);
         
     }
 }

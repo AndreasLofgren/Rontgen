@@ -49,7 +49,7 @@ public class CreateWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(2);
             }
         });
         CreateweekplanSouth.add(gemweek);  
@@ -59,27 +59,17 @@ public class CreateWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(7);
             }
         });
         CreateweekplanSouth.add(medarbejder);
         
-        JButton ugeplan = new JButton("Vis Ugeplan");
-        ugeplan.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        CreateweekplanSouth.add(ugeplan);
-        
-        JButton tilbage = new JButton("Tilbage til Ugeplan");
+        JButton tilbage = new JButton("Annuller");
         tilbage.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(1);
             }
         });
         CreateweekplanSouth.add(tilbage);

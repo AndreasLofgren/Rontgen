@@ -112,7 +112,7 @@ public class CreateCompetence extends JPanel {
             }
         });
 
-        JButton tilbage = new JButton("Tilbage");
+        JButton tilbage = new JButton("Annuller");
         panelSouth.add(tilbage);
         tilbage.addActionListener(new ActionListener() {
 
