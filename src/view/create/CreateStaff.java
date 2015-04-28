@@ -5,6 +5,8 @@
  */
 package view.create;
 
+import handler.StaffHandler;
+import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -103,27 +105,40 @@ public class CreateStaff extends JPanel {
         JComboBox stillingListe = new JComboBox();
         CreatePersonalePaneCenter.add(stillingListe);
 
+        stillingListe.addItem("Afdelingssygeplejeske");
+        stillingListe.addItem("Afdelingsadminstrativ");
+        stillingListe.addItem("Sygeplejeske");
+        stillingListe.addItem("Radiograf");
+        stillingListe.addItem("Sygehjælper");
+        stillingListe.addItem("SOSU-assistent");
+
         JComboBox modulListe = new JComboBox();
         CreatePersonalePaneCenter.add(modulListe);
 
-        JButton tilbage6 = new JButton("Tilbage til Personaleoversigt");
-        tilbage6.addActionListener(new ActionListener() {
+        for (int i = 3; i < 11; i++) {
+            modulListe.addItem(i);
+        }
+
+        JButton tilbage = new JButton("Annuller");
+        tilbage.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.setSelectedIndex(3);
             }
         });
-        CreatePersonaleSouth.add(tilbage6);
+        CreatePersonaleSouth.add(tilbage);
 
-        JButton gem6 = new JButton("Gem medarbejder");
-        gem6.addActionListener(new ActionListener() {
+        JButton gem = new JButton("Gem medarbejder");
+        gem.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.setSelectedIndex(3);
+                StaffHandler sh = new StaffHandler();
+//                sh.insertStaff(1, fornavn.getText(), efternavn.getText(), kaldenavn.getText());
             }
         });
-        CreatePersonaleSouth.add(gem6);
+        CreatePersonaleSouth.add(gem);
     }
 }
