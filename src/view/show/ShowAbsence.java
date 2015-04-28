@@ -104,7 +104,7 @@ public class ShowAbsence extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                //Gemmefunktion til absence
             }
         });
         infoSouth.add(gemFravar);
@@ -115,7 +115,7 @@ public class ShowAbsence extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                jtp.setSelectedIndex(0);
             }
         });
         infoSouth.add(anullerFravar);
