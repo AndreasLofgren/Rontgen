@@ -7,7 +7,6 @@ package view;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import view.create.CreateStaff;
 import view.create.CreateCompetence;
@@ -21,6 +20,7 @@ import view.show.ShowRoom;
 import view.show.ShowStaff;
 import view.show.ShowWeek;
 import view.show.ShowCompetence;
+import view.show.ShowStatestik;
 
 /**
  *
@@ -69,7 +69,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(5, "Vis kompetance");
 
         //Vis statistikker
-        JPanel statistikVis = new JPanel();
+        ShowStatestik statistikVis = new ShowStatestik(jtp);
         jtp.add(statistikVis);
         jtp.setTitleAt(6, "Statistik");
 
