@@ -35,7 +35,7 @@ public class ShiftHandler {
                 String shiftStart = rs.getString("dayStart");
                 String shiftEnd = rs.getString("dayEnd");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
                 Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
                         new Staff(staffId), new Room(roomId));
@@ -63,7 +63,7 @@ public class ShiftHandler {
                 String shiftStart = rs.getString("dayStart");
                 String shiftEnd = rs.getString("dayEnd");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
                 Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
                         new Staff(staffId), new Room(roomId));
@@ -92,7 +92,7 @@ public class ShiftHandler {
     }
 
     public void updateShift(String newId, String newDate, String newShiftStart,
-            String newShiftEnd, int newStaffId, int newRoomId, int uniqueId) {
+            String newShiftEnd, int newStaffId, String newRoomId, int uniqueId) {
         try {
             String sql = "UPDATE shift SET id=" + newId + ", date=" + newDate
                     + ", " + "shiftStart=" + newShiftStart + ", shiftEnd="

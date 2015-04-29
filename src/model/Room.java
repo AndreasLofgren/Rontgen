@@ -6,14 +6,14 @@ package model;
  */
 public class Room {
 
-    private int id;
+    private String id;
     private String type;
     private String status;
     private int minStaffAmount;
     private int maxStaffAmount;
     private String validFrom;
 
-    public Room(int id, String type, String status, int minStaffAmount,
+    public Room(String id, String type, String status, int minStaffAmount,
             int maxStaffAmount, String validFrom) {
         this.id = id;
         this.type = type;
@@ -23,15 +23,15 @@ public class Room {
         this.validFrom = validFrom;
     }
 
-    public Room(int id) {
+    public Room(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
