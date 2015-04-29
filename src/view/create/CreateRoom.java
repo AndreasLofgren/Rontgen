@@ -41,6 +41,13 @@ public class CreateRoom extends JPanel {
         infocenter.setLayout(new GridLayout(0, 1, 10, 10));
         this.add(infocenter, BorderLayout.CENTER);
 
+        JLabel roomid = new JLabel("Navn på rum: ");
+        infonorth.add(roomid);
+
+        JTextField rumtext = new JTextField();
+        infonorth.add(rumtext);
+        rumtext.setText("Indtast navn på rummet");
+
         JLabel type = new JLabel("Type:");
         infonorth.add(type);
 
@@ -102,14 +109,16 @@ public class CreateRoom extends JPanel {
         JComboBox validMonth = new JComboBox();
         infox.add(validMonth);
 
+        JComboBox validYear = new JComboBox();
+
         for (int i = 1; i <= 12; i++) {
             validMonth.addItem(i);
         }
 
         JLabel month = new JLabel("Måned");
+
         infox.add(month);
 
-        JComboBox validYear = new JComboBox();
         infox.add(validYear);
 
         for (int i = 2015; i < 2021; i++) {
@@ -117,30 +126,115 @@ public class CreateRoom extends JPanel {
         }
 
         JLabel year = new JLabel("År");
+
         infox.add(year);
 
-        //Knap Gem
-        JButton gemroom = new JButton("Gem");
-        gemroom.addActionListener(new ActionListener() {
+        validMonth.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //    RoomHandler rh = new RoomHandler();
-                //    rh.insertRoom(1, String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()), Integer.parseInt(minbemanding.getText()), Integer.parseInt(maxbemanding.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()));
-                jtp.setSelectedIndex(4);
+
+                int year = Integer.parseInt(String.valueOf(validYear.getSelectedItem()));
+                int month = Integer.parseInt(String.valueOf(validMonth.getSelectedItem()));
+                int daysInMonth = 0;
+                switch (month) {
+                    case 1:
+                        daysInMonth = 31;
+                        break;
+                    case 2:
+                        daysInMonth = (year % 4 == 0) && (year % 100 != 0)
+                                || (year % 400 == 0) ? 29 : 28;
+                        break;
+                    case 3:
+                        daysInMonth = 31;
+                        break;
+                    case 4:
+                        daysInMonth = 30;
+                        break;
+                    case 5:
+                        daysInMonth = 31;
+                        break;
+                    case 6:
+                        daysInMonth = 30;
+                        break;
+                    case 7:
+                        daysInMonth = 31;
+                        break;
+                    case 8:
+                        daysInMonth = 31;
+                        break;
+                    case 9:
+                        daysInMonth = 30;
+                        break;
+                    case 10:
+                        daysInMonth = 31;
+                        break;
+                    case 11:
+                        daysInMonth = 30;
+                        break;
+                    case 12:
+                        daysInMonth = 31;
+                        break;
+                    default:
+                        daysInMonth = 30;
+                }
+                validDay.removeAllItems();
+                for (int i = 1; i <= daysInMonth; i++) {
+                    validDay.addItem(i);
+                }
+
             }
         });
+
+        validYear.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Integer.parseInt(String.valueOf(validMonth.getSelectedItem())) == 2) {
+                    int daysInMonth = 0;
+                    int year = 0;
+
+                    validDay.removeAllItems();
+                    daysInMonth = (year % 4 == 0) && (year % 100 != 0)
+                            || (year % 400 == 0) ? 29 : 28;
+                    for (int i = 1; i <= daysInMonth; i++) {
+                        validDay.addItem(i);
+
+                    }
+                }
+            }
+        });
+
+        //Knap Gem
+        JButton gemroom = new JButton("Gem");
+
+        gemroom.addActionListener(
+                new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e
+                    ) {
+                        //    RoomHandler rh = new RoomHandler();
+                        //    rh.insertRoom(1, String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()), Integer.parseInt(minbemanding.getText()), Integer.parseInt(maxbemanding.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()));
+                        jtp.setSelectedIndex(4);
+                    }
+                }
+        );
         infosouth.add(gemroom);
 
         //Knap Anuller
         JButton anuller = new JButton("Anuller");
-        anuller.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(4);
-            }
-        });
+        anuller.addActionListener(
+                new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e
+                    ) {
+                        jtp.setSelectedIndex(4);
+                    }
+                }
+        );
         infosouth.add(anuller);
 
     }
