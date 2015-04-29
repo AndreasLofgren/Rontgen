@@ -47,26 +47,27 @@ public class CreateRoom extends JPanel {
         //Combobox - Type
         JComboBox typecombo = new JComboBox();
         infonorth.add(typecombo);
-        typecombo.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Hentes fra RoomHandler
-            }
-        });
+        //Tilføjer type til rummet i combobox
+        typecombo.addItem("MR");
+        typecombo.addItem("CT");
+        typecombo.addItem("Ultralyd");
+        typecombo.addItem("Gennemlysning");
+        typecombo.addItem("Knogle");
+        typecombo.addItem("Adminstrativ");
+        typecombo.addItem("Vagtrum");
+
         JLabel status = new JLabel("Status:");
         infonorth.add(status);
 
 //      Combobox - Status
         JComboBox statuscombo = new JComboBox();
         infonorth.add(statuscombo);
-        statuscombo.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Hentes fra RoomHandler
-            }
-        });
+//      Tilføjer status til rummet i combobox
+        statuscombo.addItem("Åben");
+        statuscombo.addItem("Lukket");
+        statuscombo.addItem("Service");
 
         JLabel minbemanding = new JLabel("Min. bemanding:");
         infonorth.add(minbemanding);
@@ -82,27 +83,65 @@ public class CreateRoom extends JPanel {
         infonorth.add(maxbemandtext);
         maxbemandtext.setText("Indtast max. bemanding");
 
+        JLabel validFrom = new JLabel("Gyldigt fra: ");
+        infonorth.add(validFrom);
+
+        JPanel infox = new JPanel();
+        infonorth.add(infox);
+
+        JComboBox validDay = new JComboBox();
+        infox.add(validDay);
+
+        for (int i = 1; i <= 31; i++) {
+            validDay.addItem(i);
+        }
+
+        JLabel day = new JLabel("Dag");
+        infox.add(day);
+
+        JComboBox validMonth = new JComboBox();
+        infox.add(validMonth);
+
+        for (int i = 1; i <= 12; i++) {
+            validMonth.addItem(i);
+        }
+
+        JLabel month = new JLabel("Måned");
+        infox.add(month);
+
+        JComboBox validYear = new JComboBox();
+        infox.add(validYear);
+
+        for (int i = 2015; i < 2021; i++) {
+            validYear.addItem(i);
+        }
+
+        JLabel year = new JLabel("År");
+        infox.add(year);
+
         //Knap Gem
         JButton gemroom = new JButton("Gem");
         gemroom.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                //    RoomHandler rh = new RoomHandler();
+                //    rh.insertRoom(1, String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()), Integer.parseInt(minbemanding.getText()), Integer.parseInt(maxbemanding.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()));
+                jtp.setSelectedIndex(4);
             }
         });
         infosouth.add(gemroom);
 
-        //Knap Tilbage
-        JButton tilbage = new JButton("Tilbage");
-        tilbage.addActionListener(new ActionListener() {
+        //Knap Anuller
+        JButton anuller = new JButton("Anuller");
+        anuller.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(4);
             }
         });
-        infosouth.add(tilbage);
+        infosouth.add(anuller);
 
     }
 }

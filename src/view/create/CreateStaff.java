@@ -6,7 +6,6 @@
 package view.create;
 
 import handler.StaffHandler;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;

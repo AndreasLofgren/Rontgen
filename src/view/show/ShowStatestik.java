@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.show;
 
 import handler.StaffHandler;
@@ -26,30 +25,30 @@ import model.Staff;
  * @author hesc
  */
 public class ShowStatestik extends JPanel {
-    
+
     public ShowStatestik(JTabbedPane jtp) {
-        
+
         this.setLayout(new BorderLayout());
-        
+
         JPanel statestikWest = new JPanel();
         this.add(statestikWest, BorderLayout.WEST);
-        
+
         JPanel statestikEast = new JPanel();
         this.add(statestikEast, BorderLayout.EAST);
-        
+
         JPanel statestikNorth = new JPanel();
         statestikNorth.setLayout(new GridLayout(0, 2, 10, 10));
         this.add(statestikNorth, BorderLayout.NORTH);
-        
+
         JPanel statestikSouth = new JPanel();
         this.add(statestikSouth, BorderLayout.SOUTH);
-        
+
         JPanel statestikCenter = new JPanel();
         this.add(statestikCenter, BorderLayout.CENTER);
-        
+
         JLabel type = new JLabel("Statistiktype");
         statestikNorth.add(type);
-        
+
         JComboBox typecombobox = new JComboBox();
         statestikNorth.add(typecombobox);
         
@@ -63,10 +62,10 @@ public class ShowStatestik extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
-        
+
         JLabel statmedarbejder = new JLabel("Medarbejder");
         statestikNorth.add(statmedarbejder);
         
@@ -88,10 +87,10 @@ public class ShowStatestik extends JPanel {
               }
             }
         });
-        
+
         JLabel statrum = new JLabel("Rum");
         statestikNorth.add(statrum);
-        
+
         JComboBox rumcombobox = new JComboBox();
         statestikNorth.add(rumcombobox);
         
@@ -107,36 +106,36 @@ public class ShowStatestik extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
-        
+
         JLabel statstart = new JLabel("Startdato");
         statestikNorth.add(statstart);
-        
+
         JComboBox startdatocombobox = new JComboBox();
         statestikNorth.add(startdatocombobox);
         startdatocombobox.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
-        
+
         JLabel statslut = new JLabel("Slutdato");
         statestikNorth.add(statslut);
-        
+
         JComboBox slutdatocombobox = new JComboBox();
         statestikNorth.add(slutdatocombobox);
         slutdatocombobox.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
-        
+
         JTextArea statestiktekst = new JTextArea();
         statestikCenter.add(statestiktekst);
         statestiktekst.setPreferredSize(new Dimension(800, 400));            // tallene skal erstattes med variabler
@@ -171,5 +170,5 @@ public class ShowStatestik extends JPanel {
         });
         statestikSouth.add(tilbage33);
     }
-    
+
 }

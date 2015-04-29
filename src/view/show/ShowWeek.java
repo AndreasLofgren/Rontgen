@@ -39,21 +39,10 @@ public class ShowWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(1);
             }
         });
         flowborder.add(opretugeplan);
-
-        //Knap vis uge
-        JButton visuge = new JButton("Vis Uge");
-        visuge.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        flowborder.add(visuge);
 
         //Knap Print ugeplan
         JButton printugeplan = new JButton("Print Ugeplan");
@@ -61,7 +50,7 @@ public class ShowWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                
             }
         });
         flowborder.add(printugeplan);

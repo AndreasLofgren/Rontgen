@@ -7,7 +7,6 @@ package view;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import view.create.CreateStaff;
 import view.create.CreateCompetence;
@@ -16,6 +15,7 @@ import view.create.CreateWeek;
 import view.edit.EditCompetence;
 import view.edit.EditRoom;
 import view.edit.EditStaff;
+import view.show.ShowAbsence;
 import view.show.ShowRoom;
 import view.show.ShowStaff;
 import view.show.ShowWeek;
@@ -89,7 +89,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(9, "Opret kompetance");
 
         //Fravær
-        JPanel fravar = new JPanel();
+        ShowAbsence fravar = new ShowAbsence(jtp);
         jtp.add(fravar);
         jtp.setTitleAt(10, "Fravær");
 

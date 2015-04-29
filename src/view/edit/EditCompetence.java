@@ -5,9 +5,12 @@
  */
 package view.edit;
 
+import handler.CompetenceHandler;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -15,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import model.Competence;
+import model.Room;
 
 /**
  *
@@ -44,6 +49,9 @@ public class EditCompetence extends JPanel {
 
         JComboBox interval = new JComboBox();
         panelNorth.add(interval);
+        for (int i = 0; i < 12; i++) {
+            interval.addItem(i + 1);
+        }
 
         JLabel tilknytRum = new JLabel("Tilknyt til rum");
         panelNorth.add(tilknytRum);
@@ -92,11 +100,29 @@ public class EditCompetence extends JPanel {
 
         JLabel vagt = new JLabel("Vagt");
         checks.add(vagt);
+        
+        Competence competence = new Competence("MR");
 
         JButton gem = new JButton("Gem");
         panelSouth.add(gem);
+        gem.addActionListener(new ActionListener() {
 
-        JButton tilbage = new JButton("Tilbage");
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(5);
+                CompetenceHandler ch = new CompetenceHandler();
+//                ch.updateCompetance(skrivNavn.getText(), new Room(1), competence.getSkill());
+            }
+        });
+
+        JButton tilbage = new JButton("Annuller");
         panelSouth.add(tilbage);
+        tilbage.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.setSelectedIndex(5);
+            }
+        });
     }
 }
