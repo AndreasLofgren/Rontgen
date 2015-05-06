@@ -46,12 +46,11 @@ public class RoomHandler {
         return roomResult;
     }
 
-    public void insertRoom(String id, String type, String status,
-            int minStaffAmount, int maxStaffAmount, String validFrom) {
+    public void insertRoom(Room room) {
         try {
-            String sql = "INSERT INTO Room VALUES (" + id + "), (" + type
-                    + "), (" + status + "), (" + minStaffAmount + "), ("
-                    + maxStaffAmount + "), (" + validFrom + ");";
+            String sql = "INSERT INTO Room VALUES (" + room.getId() + "), (" + room.getType()
+                    + "), (" + room.getStatus() + "), (" + room.getMinStaffAmount() + "), ("
+                    + room.getMaxStaffAmount() + "), (" + room.getValidFrom() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
 
