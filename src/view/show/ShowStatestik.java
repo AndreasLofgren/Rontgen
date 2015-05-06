@@ -145,7 +145,7 @@ public class ShowStatestik extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                
             }
         });
         statestikSouth.add(opretstat);
