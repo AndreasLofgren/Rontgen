@@ -5,9 +5,9 @@
  */
 package view;
 
+import control.CreateShow;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +49,9 @@ public class Homepage extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                CreateShow newWeek = new CreateShow();
+                newWeek.createWeek("2015-05-05");
+                System.out.println(newWeek.createWeek("2015-05-05").get(0).get(0).getId());
                 jtp.setSelectedIndex(1);
             }
         });
