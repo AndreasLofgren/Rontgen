@@ -29,7 +29,7 @@ public class RoomHandler {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                String id = rs.getString("id");
                 String typ = rs.getString("typ");
                 String state = rs.getString("state");
                 int minStaffAmount = rs.getInt("minStaffAmount");
@@ -46,7 +46,7 @@ public class RoomHandler {
         return roomResult;
     }
 
-    public void insertRoom(int id, String type, String status,
+    public void insertRoom(String id, String type, String status,
             int minStaffAmount, int maxStaffAmount, String validFrom) {
         try {
             String sql = "INSERT INTO Room VALUES (" + id + "), (" + type
@@ -60,7 +60,7 @@ public class RoomHandler {
         }
     }
 
-    public void updateRoom(int newRoomId, String newTyp, String newState,
+    public void updateRoom(String newRoomId, String newTyp, String newState,
             int newMinStaffAmount, int newMaxStaffAmount, String newValidFrom,
             int uniqueId) {
         try {

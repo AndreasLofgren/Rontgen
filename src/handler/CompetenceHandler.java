@@ -30,7 +30,7 @@ public class CompetenceHandler {
 
             while (rs.next()) {
                 String skill = rs.getString("skill");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
                 Competence c2 = new Competence(skill, new Room(roomId));
                 competenceResult.add(c2);
