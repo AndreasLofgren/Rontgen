@@ -61,26 +61,26 @@ public class CreateShow {
                     nextDay.add(shift);
                     shifts.add(nextDay);
                 }
-                int k = 0;
-                while (dayShifts.get(j).getRoom() == null) {
-                    System.out.println(rooms.size());
 
-                    if (rooms.get(k).getStatus().equals("Åben")) {
-                        if (k < 15 //tæller < rooms.get(k).getMinStaffAmount()
-                                ) {
-                            dayShifts.get(j).setRoom(rooms.get(k));
+                if (dayShifts.get(j).getRoom() == null) {
+                    System.out.println("Room is null" + rooms.size());
+                    boolean foundRoom = false;
+                    for (int l = 0; l < rooms.size(); l++) {
+
+                        if (rooms.get(l).getStatus().equals("Åben") && !foundRoom) {
+                            foundRoom = true;
+                            dayShifts.get(j).setRoom(rooms.get(l));
                             System.out.println("Første if sætning: " + dayShifts.get(j).getRoom().toString());
-                        } else if (rooms.size() > k) {
-                            k++;
-                            System.out.println("Læg en til k: " + k);
                         } else {
-                            while (dayShifts.get(j).getRoom() == null) {
-                                dayShifts.get(j).setRoom(rooms.get(k));
-                                System.out.println("Anden if sætning: " + dayShifts.get(j).getRoom().toString());
-                            }
-                            k++;
+                            System.out.println(dayShifts.get(j).getRoom().toString() + "lukket");
                         }
                     }
+                    if (dayShifts.get(j).getRoom() == null) {
+                        System.out.println("OOPS - room is still null!");
+                    } else {
+                        System.out.println("Room found");
+                    }
+
                 }
 
 //                shufflePriority(staffs);

@@ -59,17 +59,17 @@ public class RoomHandler {
         }
     }
 
-    public void updateRoom(String newRoomId, String newTyp, String newState,
-            int newMinStaffAmount, int newMaxStaffAmount, String newValidFrom,
-            int uniqueId) {
+    public void updateRoom(Room room, int uniqueId) {
+        String sql = "UPDATE room SET id=" + room.getId() + " typ=" + room.getType()
+                + " state=" + room.getStatus() + " minStaffAmount="
+                + room.getMinStaffAmount() + " maxStaffAmount=" + room.getMaxStaffAmount()
+                + " validFrom=" + room.getValidFrom() + " WHERE id=" + uniqueId + ";";
         try {
-            String sql = "UPDATE room SET id=" + newRoomId + "typ=" + newTyp
-                    + "state=" + newState + "minStaffAmount="
-                    + newMinStaffAmount + "maxStaffAmount=" + newMaxStaffAmount
-                    + "validFrom=" + newValidFrom + "WHERE id=" + uniqueId + ";";
+
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
