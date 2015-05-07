@@ -1,8 +1,10 @@
 package control;
 
+import handler.AbsenceHandler;
 import handler.ShiftHandler;
 import handler.StaffHandler;
 import java.util.ArrayList;
+import model.Absence;
 import model.Shift;
 import model.Staff;
 
@@ -53,6 +55,47 @@ public class Statistic {
             }
         }
         return dagsVagt;
+    }
+
+    public void createfravaer(String dayBegyn, String daySlut) {
+        ArrayList<Absence> fravaer = new ArrayList<>();
+        AbsenceHandler ab = new AbsenceHandler();
+        fravaer = ab.getAbsence(dayBegyn, daySlut);
+
+        ArrayList<Staff> staffs = new ArrayList<>();
+        StaffHandler st = new StaffHandler();
+        staffs = st.getStaff();
+
+        ArrayList<ArrayList<Absence>> fravear = new ArrayList<>();
+
+        for (int i = 0; i < fravaer.size(); i++) {
+
+            for (int j = 0; j < staffs.size(); j++) {
+
+                if (staffs.get(j).equals(fravaer.get(i).getStaff())) {
+
+                    for (int k = 0; k < fravear.size(); k++) {
+
+                        for (int l = 0; l < fravear.get(k).size(); l++) {
+
+                            if (fravear.get(k).isEmpty() || fravear.get(k).get(l - 1).getStaff().equals(staffs.get(j))) {
+                                fravear.get(k).add(fravaer.get(i));
+
+                            } else {
+                                ArrayList<Absence> fraver = new ArrayList<>();
+                                fravear.add(fraver);
+                                fraver.add(fravaer.get(i));
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+        return fravear;
     }
 
 }
