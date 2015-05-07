@@ -47,10 +47,10 @@ public class MessageHandler {
         return messageResult;
     }
 
-    public void insertMesssage(String description, Staff staff) {
+    public void insertMesssage(Message message) {
         try {
-            String sql = "INSERT INTO Message VALUES (" + description + ", "
-                    + staff.getId() + ");";
+            String sql = "INSERT INTO Message VALUES (" + message.getDescription() + ", "
+                    + message.getStaff().getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
