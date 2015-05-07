@@ -10,6 +10,12 @@ public class ActualCompetence {
     private Competence competence;
     private Staff staff;
 
+    public ActualCompetence(Staff staff) {
+        this.staff = staff;
+    }
+    
+    
+
     public ActualCompetence(String expirationDate, Competence competence,
             Staff staff) {
         this.expirationDate = expirationDate;

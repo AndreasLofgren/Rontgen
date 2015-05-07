@@ -34,10 +34,11 @@ public class ShiftHandler {
                 String date = rs.getString("dates");
                 String shiftStart = rs.getString("dayStart");
                 String shiftEnd = rs.getString("dayEnd");
+                String comment = rs.getString("comment");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
-                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
                         new Staff(staffId), new Room(roomId));
                 shiftResult.add(s1);
 
@@ -62,10 +63,11 @@ public class ShiftHandler {
                 String date = rs.getString("dates");
                 String shiftStart = rs.getString("dayStart");
                 String shiftEnd = rs.getString("dayEnd");
+                String comment = rs.getString("comment");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
-                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
                         new Staff(staffId), new Room(roomId));
                 shiftResult.add(s1);
 
@@ -92,11 +94,11 @@ public class ShiftHandler {
     }
 
     public void updateShift(String newId, String newDate, String newShiftStart,
-            String newShiftEnd, int newStaffId, int newRoomId, int uniqueId) {
+            String newShiftEnd, int newStaffId, String newRoomId, int uniqueId) {
         try {
-            String sql = "UPDATE shift SET id=" + newId + ", date=" + newDate
-                    + ", " + "shiftStart=" + newShiftStart + ", shiftEnd="
-                    + newShiftEnd + ", " + "staffId=" + newStaffId + ", roomId="
+            String sql = " UPDATE shift SET id=" + newId + " , date=" + newDate
+                    + ", " + " shiftStart=" + newShiftStart + " , shiftEnd="
+                    + newShiftEnd + ", " + "staffId=" + newStaffId + " , roomId="
                     + newRoomId + " WHERE id=" + uniqueId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
