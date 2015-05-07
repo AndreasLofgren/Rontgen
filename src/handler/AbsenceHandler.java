@@ -58,7 +58,7 @@ public class AbsenceHandler {
 
     public void updateAbsence(String newdayStart, String newdayEnd, int newStaffId, int uniqueStaffId) {
         try {
-            String sql = "UPDATE absence SET dayStart=" + newdayStart + "dayEnd=" + newdayEnd + "staffId=" + newStaffId + "WHERE staffId =" + uniqueStaffId;
+            String sql = " UPDATE absence SET dayStart=" + newdayStart + " dayEnd=" + newdayEnd + " staffId=" + newStaffId + " WHERE staffId =" + uniqueStaffId;
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 

@@ -48,7 +48,7 @@ public class ActualCompetenceHandler {
     public void insertActualCompetance(String expirationDate,
             Competence competence, Staff staff) {
         try {
-            String sql = "INSERT INTO ActualCompentence VALUES ("
+            String sql = " INSERT INTO ActualCompentence VALUES ("
                     + expirationDate + ", " + competence.getSkill() + ", "
                     + staff.getId() + ");";
             Statement stmt = dbhandler.getStmt();
@@ -62,9 +62,9 @@ public class ActualCompetenceHandler {
     public void updateAcutualCompetance(String newExpirationDate,
             String newName, int newStaffId, int uniqueStaffId) {
         try {
-            String sql = "UPDATE actualcCompentence SET skill="
-                    + newExpirationDate + ",roomId=" + newName + ", staffId="
-                    + newStaffId + " WHERE skill=" + uniqueStaffId + ";";
+            String sql = " UPDATE actualcCompentence SET skill="
+                    + newExpirationDate + " , roomId=" + newName + " , staffId="
+                    + newStaffId + " WHERE skill= " + uniqueStaffId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
