@@ -47,25 +47,26 @@ public class RoomHandler {
     }
 
     public void insertRoom(Room room) {
+        String sql = "INSERT INTO Room VALUES (" + room.getId() + "), ("
+                + room.getType() + "), (" + room.getStatus() + "), ("
+                + room.getMinStaffAmount() + "), (" + room.getMaxStaffAmount()
+                + "), (" + room.getValidFrom() + ");";
         try {
-            String sql = "INSERT INTO Room VALUES (" + room.getId() + "), (" + room.getType()
-                    + "), (" + room.getStatus() + "), (" + room.getMinStaffAmount() + "), ("
-                    + room.getMaxStaffAmount() + "), (" + room.getValidFrom() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
-
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
     public void updateRoom(Room room, int uniqueId) {
-        String sql = "UPDATE room SET id=" + room.getId() + " typ=" + room.getType()
-                + " state=" + room.getStatus() + " minStaffAmount="
-                + room.getMinStaffAmount() + " maxStaffAmount=" + room.getMaxStaffAmount()
-                + " validFrom=" + room.getValidFrom() + " WHERE id=" + uniqueId + ";";
+        String sql = "UPDATE room SET id=" + room.getId() + " typ="
+                + room.getType() + " state=" + room.getStatus()
+                + " minStaffAmount=" + room.getMinStaffAmount()
+                + " maxStaffAmount=" + room.getMaxStaffAmount() + " validFrom="
+                + room.getValidFrom() + " WHERE id=" + uniqueId + ";";
         try {
-
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
