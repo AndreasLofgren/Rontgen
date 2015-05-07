@@ -44,7 +44,7 @@ public class CompetenceHandler {
 
     public void insertCompetances(String skill, Room room) {
         try {
-            String sql = "INSERT INTO Compentences VALUES (" + skill + ", "
+            String sql = " INSERT INTO Compentences VALUES (" + skill + ", "
                     + room.getId() + ");";
             Statement stmnt = dbhandler.getStmt();
             stmnt.executeUpdate(sql);
@@ -57,8 +57,8 @@ public class CompetenceHandler {
     public void updateCompetance(String newSkill, Room room,
             String uniqueSkill) {
         try {
-            String sql = "UPDATE compentences SET skill=" + newSkill
-                    + ",roomId=" + room.getId()+ " WHERE skill=" + uniqueSkill
+            String sql = " UPDATE compentences SET skill=" + newSkill
+                    + " , roomId= " + room.getId()+ " WHERE skill=" + uniqueSkill
                     + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);

@@ -62,8 +62,8 @@ public class MessageHandler {
     public void updateMessage(String newdescription, int newstaffId,
             String uniquestaffId) {
         try {
-            String sql = "UPDATE Message SET description=" + newdescription
-                    + ", staffId=" + newstaffId + " WHERE staffId="
+            String sql = " UPDATE Message SET description=" + newdescription
+                    + " , staffId=" + newstaffId + " WHERE staffId="
                     + uniquestaffId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);

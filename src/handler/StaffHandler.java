@@ -60,9 +60,9 @@ public class StaffHandler {
     public void updateStaff(int newId, String newfirstName, String newlastName,
             String newnickname, String uniqueId) {
         try {
-            String sql = "UPDATE Staff SET Id=" + newId + ",firstName="
-                    + newfirstName + ",lastName=" + newlastName + ",nickname="
-                    + newnickname + " WHERE Id=" + uniqueId + ";";
+            String sql = " UPDATE Staff SET Id=" + newId + " , firstName="
+                    + newfirstName + " , lastName=" + newlastName + " , nickname="
+                    + newnickname + " WHERE Id= " + uniqueId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
