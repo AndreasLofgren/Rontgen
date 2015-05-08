@@ -46,7 +46,7 @@ public class RoomHandlerTest {
      */
     @Test
     public void testGetRoom() {
-        System.out.println("getRoom");
+        System.out.println("Test for getRoom");
         RoomHandler rh = new RoomHandler();
         ArrayList<Room> list = rh.getRoom();
         int result = list.size();
@@ -65,38 +65,28 @@ public class RoomHandlerTest {
     /**
      * Test of insertRoom method, of class RoomHandler.
      */
-//    @Test
-//    public void testInsertRoom() {
-//        System.out.println("insertRoom");
-//        int id = 0;
-//        String type = "";
-//        String status = "";
-//        int minStaffAmount = 0;
-//        int maxStaffAmount = 0;
-//        String validFrom = "";
-//        RoomHandler instance = new RoomHandler();
-//        instance.insertRoom(id, type, status, minStaffAmount, maxStaffAmount, validFrom);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of updateRoom method, of class RoomHandler.
-//     */
-//    @Test
-//    public void testUpdateRoom() {
-//        System.out.println("updateRoom");
-//        int newRoomId = 0;
-//        String newTyp = "";
-//        String newState = "";
-//        int newMinStaffAmount = 0;
-//        int newMaxStaffAmount = 0;
-//        String newValidFrom = "";
-//        int uniqueId = 0;
-//        RoomHandler instance = new RoomHandler();
-//        instance.updateRoom(newRoomId, newTyp, newState, newMinStaffAmount, newMaxStaffAmount, newValidFrom, uniqueId);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testInsertRoom() {
+        System.out.println("insertRoom");
+        Room room = null;
+        RoomHandler rh = new RoomHandler();
+        rh.insertRoom(room);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateRoom method, of class RoomHandler.
+     */
+    @Test
+    public void testUpdateRoom() {
+        System.out.println("updateRoom");
+        Room room = null;
+        int uniqueId = 0;
+        RoomHandler instance = new RoomHandler();
+        instance.updateRoom(room, uniqueId);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
 }

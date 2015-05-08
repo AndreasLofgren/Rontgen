@@ -22,22 +22,22 @@ import static org.junit.Assert.*;
  * @author Andreas
  */
 public class AbsenceHandlerTest {
-    
+
     public AbsenceHandlerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,22 +47,22 @@ public class AbsenceHandlerTest {
      */
     @Test
     public void testGetAbsence() {
-        
+        System.out.println("Test for getAbsence");
         AbsenceHandler ah = new AbsenceHandler();
         ArrayList<Absence> list = ah.getAbsence();
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
         String sql = "Select count(*) From absence";
-        try{
+        try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
             int expectedResult = rs.getInt(1);
-        assertEquals("Antal af elementer på listen passer ikke:",expectedResult, result);
-        } catch (Exception ex){
-            fail("getAbsence kaster exception: "+ex.getMessage());
+            assertEquals("Antal af elementer på listen passer ikke: ", expectedResult, result);
+        } catch (Exception ex) {
+            fail("getAbsence kaster exception: " + ex.getMessage());
         }
         // TODO review the generated test code and remove the default call to fail.
-        
+
     }
 
     /**
@@ -94,5 +94,5 @@ public class AbsenceHandlerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
