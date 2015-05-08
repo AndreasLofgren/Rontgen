@@ -26,9 +26,9 @@ import model.Staff;
  *
  * @author hesc
  */
-public class ShowStatestik extends JPanel {
+public class ShowStatistic extends JPanel {
 
-    public ShowStatestik(JTabbedPane jtp) {
+    public ShowStatistic(JTabbedPane jtp) {
 
         this.setLayout(new BorderLayout());
 
