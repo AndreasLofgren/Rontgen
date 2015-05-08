@@ -44,6 +44,30 @@ public class AbsenceHandler {
 
         return absenceResult;
     }
+    
+    public ArrayList<Absence> getAbsence(String dayBegyn, String daySlut) {
+        absenceResult = new ArrayList<>();
+        try {
+            String sql = "Select * From absence where dayStart >=" + dayBegyn + " and dayEnd <=" + daySlut;
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String dayStart = rs.getString("dayStart");
+                String dayEnd = rs.getString("dayEnd");
+                int staffId = rs.getInt("staffId");
+
+                Absence a1 = new Absence(new Staff(staffId), dayStart, dayEnd);
+
+                absenceResult.add(a1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+
+        return absenceResult;
+    }
 
     public void insertAbsence(int id, Staff staff) {
         try {

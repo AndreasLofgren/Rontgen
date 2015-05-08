@@ -75,4 +75,9 @@ public class Room {
         this.validFrom = validFrom;
     }
 
+    @Override
+    public String toString() {
+        return "Room{" + "id=" + id + ", type=" + type + ", status=" + status + ", minStaffAmount=" + minStaffAmount + ", maxStaffAmount=" + maxStaffAmount + ", validFrom=" + validFrom + '}';
+    }
+
 }

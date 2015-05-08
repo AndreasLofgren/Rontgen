@@ -61,33 +61,39 @@ public class CreateShow {
                     nextDay.add(shift);
                     shifts.add(nextDay);
                 }
-                int k = 0;
-                while (dayShifts.get(j).getRoom() == null) {
-                    System.out.println(rooms.size());
-                    if (rooms.get(k).getStatus().equals("åben")) {
-                        if (true                                   //tæller < rooms.get(k).getMinStaffAmount()
-                                ) {
-                            dayShifts.get(j).setRoom(rooms.get(k));
-                        } else if (rooms.size() > k) {
-                            k++;
+
+                if (dayShifts.get(j).getRoom() == null) {
+                    System.out.println("Room is null" + rooms.size());
+                    boolean foundRoom = false;
+                    for (int l = 0; l < rooms.size(); l++) {
+
+                        if (rooms.get(l).getStatus().equals("Åben") && !foundRoom) {
+                            foundRoom = true;
+                            dayShifts.get(j).setRoom(rooms.get(l));
+                            System.out.println("Første if sætning: " + dayShifts.get(j).getRoom().toString());
                         } else {
-                            while (dayShifts.get(j).getRoom().equals(null)) {
-                                dayShifts.get(j).setRoom(rooms.get(k));
-                            }
-                            k++;
+                            System.out.println(dayShifts.get(j).getRoom().toString() + "lukket");
                         }
                     }
+                    if (dayShifts.get(j).getRoom() == null) {
+                        System.out.println("OOPS - room is still null!");
+                    } else {
+                        System.out.println("Room found");
+                    }
+
                 }
 
 //                shufflePriority(staffs);
                 for (int l = 0; l < staffs.size(); l++) {
                     ActualCompetence aComp = new ActualCompetence(staffs.get(l));
-                    int m = 0;
-                    if (staffs.get(l).getId() == absencesToday.get(m).getStaff().getId()) {
-                        staffs.remove(l);
-                    } else if (aComp.getCompetance().getSkill().equals(dayShifts.get(j).getRoom().getType())) {
-                        dayShifts.get(j).setStaff(staffs.get(l));
+                    for (int m = 0; m < absencesToday.size(); m++) {
+                        if (staffs.get(l).getId() == absencesToday.get(m).getStaff().getId()) {
+                            staffs.remove(l);
+                        } else if (aComp.getCompetance().getSkill().equals(dayShifts.get(j).getRoom().getType())) {
+                            dayShifts.get(j).setStaff(staffs.get(l));
+                        }
                     }
+
                 }
 
             }

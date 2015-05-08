@@ -52,13 +52,13 @@ public class ShowStaff extends JPanel {
 
         StaffHandler sh = new StaffHandler();
         ArrayList<Staff> medarbejdere = new ArrayList<>();
-//        medarbejdere = sh.getStaff();
-//
-//        for (int i = 0; i < medarbejdere.size(); i++) {
-//
-//            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
-//                    + medarbejdere.get(i).getLastName());
-//        }
+        medarbejdere = sh.getStaff();
+
+        for (int i = 0; i < medarbejdere.size(); i++) {
+
+            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
+                    + medarbejdere.get(i).getLastName());
+        }
 
         JPanel personaleEast = new JPanel();
         this.add(personaleEast, BorderLayout.EAST);
