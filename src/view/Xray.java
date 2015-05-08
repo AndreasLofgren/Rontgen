@@ -20,7 +20,7 @@ import view.show.ShowRoom;
 import view.show.ShowStaff;
 import view.show.ShowWeek;
 import view.show.ShowCompetence;
-import view.show.ShowStatestik;
+import view.show.ShowStatistic;
 
 /**
  *
@@ -69,7 +69,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(5, "Vis kompetance");
 
         //Vis statistikker
-        ShowStatestik statistikVis = new ShowStatestik(jtp);
+        ShowStatistic statistikVis = new ShowStatistic(jtp);
         jtp.add(statistikVis);
         jtp.setTitleAt(6, "Statistik");
 
