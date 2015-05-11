@@ -52,14 +52,14 @@ public class AbsenceHandlerTest {
         ArrayList<Absence> list = ah.getAbsence();
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
-        String sql = "Select count(*) From absence";
-        try {
+        String sql = "Select count(*) From absence";    //Tæller elementer i absence i DB, skriver samlede antal elementer ud
+        try{
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
             int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer på listen passer ikke: ", expectedResult, result);
-        } catch (Exception ex) {
-            fail("getAbsence kaster exception: " + ex.getMessage());
+        assertEquals("Antal af elementer på listen passer ikke:",expectedResult, result);       // assertpEquals - sammeligner
+        } catch (Exception ex){
+            fail("getAbsence kaster exception: "+ex.getMessage());
         }
         // TODO review the generated test code and remove the default call to fail.
 
