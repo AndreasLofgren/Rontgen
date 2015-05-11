@@ -5,6 +5,7 @@
  */
 package view.show;
 
+import control.Statistic;
 import handler.RoomHandler;
 import handler.StaffHandler;
 import java.awt.BorderLayout;
@@ -19,7 +20,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import model.Absence;
 import model.Room;
+import model.Shift;
 import model.Staff;
 
 /**
@@ -53,14 +56,7 @@ public class ShowStatistic extends JPanel {
 
         JComboBox typecombobox = new JComboBox();
         statestikNorth.add(typecombobox);
-        typecombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         typecombobox.addItem("Dagsvagt");
         typecombobox.addItem("Aftenvagt");
         typecombobox.addItem("Nattevagt");
@@ -71,18 +67,12 @@ public class ShowStatistic extends JPanel {
 
         JComboBox arbejdercombobox = new JComboBox();
         statestikNorth.add(arbejdercombobox);
-        arbejdercombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         StaffHandler sh = new StaffHandler();
         ArrayList<Staff> medarbejdere = new ArrayList<>();
         medarbejdere = sh.getStaff();
 
+        arbejdercombobox.addItem("Alle");
         for (int i = 0; i < medarbejdere.size(); i++) {
 
             arbejdercombobox.addItem(medarbejdere.get(i).getFirstName() + " "
@@ -94,80 +84,53 @@ public class ShowStatistic extends JPanel {
 
         JComboBox rumcombobox = new JComboBox();
         statestikNorth.add(rumcombobox);
-        rumcombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         RoomHandler rh = new RoomHandler();
         ArrayList<Room> rum = new ArrayList<>();
         rum = rh.getRoom();
 
+        rumcombobox.addItem("Alle");
         for (int i = 0; i < rum.size(); i++) {
 
             rumcombobox.addItem(rum.get(i).getId());
         }
-                        
+
         JLabel statstart = new JLabel("Startdato");
         statestikNorth.add(statstart);
-        
+
         JPanel statestikx = new JPanel();
         statestikNorth.add(statestikx);
-        
+
         JLabel startday = new JLabel("Dag: ");
         statestikx.add(startday);
-        
+
         JComboBox startdaycombobox = new JComboBox();
         statestikx.add(startdaycombobox);
-        startdaycombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         for (int i = 1; i <= 31; i++) {
             startdaycombobox.addItem(i);
         }
-        
+
         JLabel startmonth = new JLabel("Måned: ");
         statestikx.add(startmonth);
-        
+
         JComboBox startmonthcombobox = new JComboBox();
         statestikx.add(startmonthcombobox);
-        startmonthcombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         for (int i = 1; i <= 12; i++) {
             startmonthcombobox.addItem(i);
         }
-        
+
         JLabel startyear = new JLabel("År: ");
         statestikx.add(startyear);
-        
+
         JComboBox startyearcombobox = new JComboBox();
         statestikx.add(startyearcombobox);
-        startyearcombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         for (int i = 2015; i <= 2021; i++) {
             startyearcombobox.addItem(i);
         }
-        
+
         startmonthcombobox.addActionListener(new ActionListener() {
 
             @Override
@@ -176,6 +139,7 @@ public class ShowStatistic extends JPanel {
                 int year = Integer.parseInt(String.valueOf(startyearcombobox.getSelectedItem()));
                 int month = Integer.parseInt(String.valueOf(startmonthcombobox.getSelectedItem()));
                 int daysInMonth = 0;
+                
                 switch (month) {
                     case 1:
                         daysInMonth = 31;
@@ -246,47 +210,40 @@ public class ShowStatistic extends JPanel {
 
         JLabel statslut = new JLabel("Slutdato");
         statestikNorth.add(statslut);
-        
+
         JPanel statestiky = new JPanel();
         statestikNorth.add(statestiky);
-        
+
         JLabel slutday = new JLabel("Dag: ");
         statestiky.add(slutday);
 
         JComboBox slutdaycombobox = new JComboBox();
         statestiky.add(slutdaycombobox);
-        slutdaycombobox.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        
         for (int i = 1; i <= 31; i++) {
             slutdaycombobox.addItem(i);
         }
-        
+
         JLabel slutmonth = new JLabel("Måned: ");
         statestiky.add(slutmonth);
-        
+
         JComboBox slutmonthcombobox = new JComboBox();
         statestiky.add(slutmonthcombobox);
-        
+
         for (int i = 1; i <= 12; i++) {
             slutmonthcombobox.addItem(i);
         }
-        
+
         JLabel slutyear = new JLabel("År: ");
         statestiky.add(slutyear);
-        
+
         JComboBox slutyearcombobox = new JComboBox();
-        statestiky.add(slutyearcombobox);        
-        
+        statestiky.add(slutyearcombobox);
+
         for (int i = 2015; i <= 2021; i++) {
             slutyearcombobox.addItem(i);
         }
-        
+
         slutmonthcombobox.addActionListener(new ActionListener() {
 
             @Override
@@ -363,28 +320,104 @@ public class ShowStatistic extends JPanel {
             }
         });
 
+        JButton createStatistik = new JButton("Lav statistik");
+        statestikSouth.add(createStatistik);
+
         JTextArea statestiktekst = new JTextArea();
         statestikCenter.add(statestiktekst);
         statestiktekst.setPreferredSize(new Dimension(800, 400));            // tallene skal erstattes med variabler
 
-        JButton gem3 = new JButton("Gem som PDF");
-        gem3.addActionListener(new ActionListener() {
+        createStatistik.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
+                Statistic metoder = new Statistic();
+                System.out.println(typecombobox.getSelectedIndex());
+
+                switch (typecombobox.getSelectedIndex()) {
+                    case 0:
+                        ArrayList<ArrayList<Shift>> dagsVagt = new ArrayList<>();
+
+                        dagsVagt = (metoder.createDagsvagt(startyearcombobox.getSelectedItem() + ":"
+                                + startmonthcombobox.getSelectedItem() + ":"
+                                + startdaycombobox.getSelectedItem(),
+                                slutyearcombobox.getSelectedItem() + ":"
+                                + slutmonthcombobox.getSelectedItem() + ":"
+                                + slutdaycombobox.getSelectedItem()));
+
+                        for (int i = 0; i < dagsVagt.size(); i++) {
+
+                            statestiktekst.setText("Statistik: \n" + dagsVagt.get(i).size());
+
+                        }
+                        break;
+                    case 1:
+                        ArrayList<Shift> aftenVagt = new ArrayList<>();
+                        aftenVagt = (metoder.createVagt(startyearcombobox.getSelectedItem() + ":"
+                                + startmonthcombobox.getSelectedItem() + ":"
+                                + startdaycombobox.getSelectedItem(),
+                                slutyearcombobox.getSelectedItem() + ":"
+                                + slutmonthcombobox.getSelectedItem() + ":"
+                                + slutdaycombobox.getSelectedItem()));
+
+                        for (int i = 0; i < aftenVagt.size(); i++) {
+
+                            statestiktekst.setText("Statistik: \n" + aftenVagt.size());
+
+                        }
+                        break;
+                    case 2:
+                        ArrayList<Shift> natteVagt = new ArrayList<>();
+                        natteVagt = (metoder.createVagt(startyearcombobox.getSelectedItem() + ":"
+                                + startmonthcombobox.getSelectedItem() + ":"
+                                + startdaycombobox.getSelectedItem(),
+                                slutyearcombobox.getSelectedItem() + ":"
+                                + slutmonthcombobox.getSelectedItem() + ":"
+                                + slutdaycombobox.getSelectedItem()));
+
+                        for (int i = 0; i < natteVagt.size(); i++) {
+
+                            statestiktekst.setText("Statistik: \n" + natteVagt.size());
+
+                        }
+                        break;
+                    case 3:
+                        ArrayList<ArrayList<Absence>> fravaer = new ArrayList<>();
+                        fravaer = (metoder.createfravaer(startyearcombobox.getSelectedItem() + ":"
+                                + startmonthcombobox.getSelectedItem() + ":"
+                                + startdaycombobox.getSelectedItem(),
+                                slutyearcombobox.getSelectedItem() + ":"
+                                + slutmonthcombobox.getSelectedItem() + ":"
+                                + slutdaycombobox.getSelectedItem()));
+
+                        for (int i = 0; i < fravaer.size(); i++) {
+
+                            statestiktekst.setText("Statistik: \n" + fravaer.get(i).size());
+
+                        }
+                        break;
+                }
             }
-        });
+        }
+        );
+
+        JButton gem3 = new JButton("Gem som PDF");
+
         statestikSouth.add(gem3);
 
         JButton tilbage33 = new JButton("Tilbage til startside");
-        tilbage33.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
+        tilbage33.addActionListener(
+                new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e
+                    ) {
+                        jtp.setSelectedIndex(0);
+                    }
+                }
+        );
         statestikSouth.add(tilbage33);
     }
 

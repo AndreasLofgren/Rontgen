@@ -24,12 +24,12 @@ public class CompetenceHandler {
         competenceResult = new ArrayList<>();
 
         try {
-            String sql = "Select * From compentences";
+            String sql = "Select * From competence";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String skill = rs.getString("skill");
+                String skill = rs.getString("navn");
                 String roomId = rs.getString("roomId");
 
                 Competence c2 = new Competence(skill, new Room(roomId));

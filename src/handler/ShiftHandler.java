@@ -49,7 +49,7 @@ public class ShiftHandler {
 
         return shiftResult;
     }
-    
+
     public ArrayList<Shift> getShift(String day) {
         shiftResult = new ArrayList<>();
 
@@ -78,12 +78,12 @@ public class ShiftHandler {
 
         return shiftResult;
     }
-    
-     public ArrayList<Shift> getShift(String dayStart, String dayEnd) {
-        shiftResult = new ArrayList<>();
 
+    public ArrayList<Shift> getShift(String dayStart, String dayEnd) {
+        shiftResult = new ArrayList<>();
+        String sql = "Select * from shift WHERE shiftStart >= '" + dayStart + "' AND shiftEnd <= '" + dayEnd + "';";
         try {
-            String sql = "Select * from shift WHERE shiftStart >= " + dayStart + " AND shiftEnd <=" + dayEnd + ";";
+
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -92,7 +92,7 @@ public class ShiftHandler {
                 String date = rs.getString("dates");
                 String shiftStart = rs.getString("shiftStart");
                 String shiftEnd = rs.getString("shiftEnd");
-                String comment = rs.getString("comment");
+                String comment = rs.getString("comments");
                 int staffId = rs.getInt("staffId");
                 String roomId = rs.getString("roomId");
 
@@ -102,6 +102,7 @@ public class ShiftHandler {
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
 

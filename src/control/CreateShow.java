@@ -63,16 +63,16 @@ public class CreateShow {
                 }
 
                 if (dayShifts.get(j).getRoom() == null) {
-                    System.out.println("Room is null" + rooms.size());
+                    System.out.println("Room is null");
                     boolean foundRoom = false;
-                    for (int l = 0; l < rooms.size(); l++) {
+                    for (int l = 0; l < rooms.size() && !foundRoom; l++) {
 
                         if (rooms.get(l).getStatus().equals("Åben") && !foundRoom) {
                             foundRoom = true;
                             dayShifts.get(j).setRoom(rooms.get(l));
                             System.out.println("Første if sætning: " + dayShifts.get(j).getRoom().toString());
                         } else {
-                            System.out.println(dayShifts.get(j).getRoom().toString() + "lukket");
+                            System.out.println(dayShifts.get(j).getRoom().toString() + " lukket");
                         }
                     }
                     if (dayShifts.get(j).getRoom() == null) {
@@ -89,6 +89,7 @@ public class CreateShow {
                     for (int m = 0; m < absencesToday.size(); m++) {
                         if (staffs.get(l).getId() == absencesToday.get(m).getStaff().getId()) {
                             staffs.remove(l);
+                            System.out.println("");
                         } else if (aComp.getCompetance().getSkill().equals(dayShifts.get(j).getRoom().getType())) {
                             dayShifts.get(j).setStaff(staffs.get(l));
                         }

@@ -23,33 +23,39 @@ public class Statistic {
         StaffHandler st = new StaffHandler();
         staffs = st.getStaff();
 
+        System.out.println("Antal vagter: " + shifts.size() + ". Antal ansatte: " + staffs.size());
+
         ArrayList<ArrayList<Shift>> dagsVagt = new ArrayList<>();
 
         for (int i = 0; i < staffs.size(); i++) {
-
+            System.out.println("1. for loop");
             for (int j = 0; j < shifts.size(); j++) {
+                System.out.println("2. for loop");
+                System.out.println(staffs.get(i).toString() + " og " + shifts.get(j).getStaff().toString()); //staffHandler laver objekter med alle felter. Shift.getStaff laver objekter med staffId.
+                if (staffs.get(i).getId() == shifts.get(j).getStaff().getId()) {
 
-                if (staffs.get(i).equals(shifts.get(j).getStaff())) {
+                    System.out.println("if sætning");
+                    int k = 0;
+                    int l = 0;
 
-                    for (int k = 0; k < dagsVagt.size(); k++) {
-                        for (int l = 0; l < dagsVagt.get(k).size(); l++) {
+                    if (dagsVagt.get(k).isEmpty() || shifts.get(j).getRoom().equals(dagsVagt.get(k).get(l - 1).getRoom())) {
+                        dagsVagt.get(k).add(shifts.get(j));
+                        System.out.println("Antal dage med dagsvagter: " + dagsVagt.size());
+                        System.out.println("Antal dagsvagter i rummet: " + dagsVagt.get(k).size() + dagsVagt.get(k).get(l).getRoom().toString());
+                        l++;
 
-                            if (dagsVagt.get(k).isEmpty() || shifts.get(j).getRoom().equals( dagsVagt.get(k).get(l-1).getRoom())) {
-                                dagsVagt.get(k).add(shifts.get(j));
-
-                            } else {
-                                ArrayList<Shift> vagt = new ArrayList<>();
-                                dagsVagt.add(vagt);
-                                vagt.add(shifts.get(j));
-                            }
-
-                        }
+                    } else {
+                        ArrayList<Shift> vagt = new ArrayList<>();
+                        dagsVagt.add(vagt);
+                        vagt.add(shifts.get(j));
+                        System.out.println("");
+                        k++;
 
                     }
+
                 }
 
             }
-
         }
 
         return dagsVagt;
