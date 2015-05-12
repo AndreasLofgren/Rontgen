@@ -35,4 +35,9 @@ public class Competence {
         this.room = room;
     }
 
+    @Override
+    public String toString() {
+        return "Competence{" + "skill=" + skill + ", room=" + room + '}';
+    }
+
 }

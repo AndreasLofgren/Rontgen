@@ -87,4 +87,9 @@ public class Shift {
         this.room = room;
     }
 
+    @Override
+    public String toString() {
+        return "Shift{" + "id=" + id + ", date=" + date + ", shiftStart=" + shiftStart + ", shiftEnd=" + shiftEnd + ", staff=" + staff + ", room=" + room + ", comment=" + comment + '}';
+    }
+
 }

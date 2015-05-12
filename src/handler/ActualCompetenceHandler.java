@@ -23,8 +23,10 @@ public class ActualCompetenceHandler {
 
     public ArrayList<ActualCompetence> getActualCompetance() {
         actualCompetanceResult = new ArrayList<>();
+        String sql = "Select * from actualcompetence";
+        
         try {
-            String sql = "Select * from actualcompentence";
+            
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -39,9 +41,33 @@ public class ActualCompetenceHandler {
                 actualCompetanceResult.add(a1);
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
+        return actualCompetanceResult;
+    }
 
+    public ArrayList<ActualCompetence> getActualCompetance(int id) {
+        actualCompetanceResult = new ArrayList<>();
+        String sql = "Select * from actualcompetence where staffId = " + id;
+        
+        try {
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String expirationDate = rs.getString("expirationDate");
+                String navn = rs.getString("navn");
+                int staffId = rs.getInt("staffId");
+
+                ActualCompetence a1 = new ActualCompetence(expirationDate,
+                        new Competence(navn), new Staff(staffId));
+                actualCompetanceResult.add(a1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(sql);
+            System.out.println("SQLException" + ex.getMessage());
+        }
         return actualCompetanceResult;
     }
 

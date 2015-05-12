@@ -51,7 +51,8 @@ public class Homepage extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 CreateShow newWeek = new CreateShow();
                 newWeek.createWeek("2015-05-05");
-                System.out.println(newWeek.createWeek("2015-05-05").get(0).get(0).getId());
+                
+                
                 jtp.setSelectedIndex(1);
             }
         });

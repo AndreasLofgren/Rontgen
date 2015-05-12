@@ -47,4 +47,9 @@ public class ActualCompetence {
         this.expirationDate = expirationDate;
     }
 
+    @Override
+    public String toString() {
+        return "ActualCompetence{" + "expirationDate=" + expirationDate + ", competence=" + competence + ", staff=" + staff + '}';
+    }
+
 }

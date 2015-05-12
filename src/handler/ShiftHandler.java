@@ -32,9 +32,9 @@ public class ShiftHandler {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String date = rs.getString("dates");
-                String shiftStart = rs.getString("dayStart");
-                String shiftEnd = rs.getString("dayEnd");
-                String comment = rs.getString("comment");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
                 int staffId = rs.getInt("staffId");
                 String roomId = rs.getString("roomId");
 
@@ -54,16 +54,16 @@ public class ShiftHandler {
         shiftResult = new ArrayList<>();
 
         try {
-            String sql = "Select * from shift WHERE date = " + day + ";";
+            String sql = "Select * from shift WHERE dates = " + day + ";";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String date = rs.getString("dates");
-                String shiftStart = rs.getString("dayStart");
-                String shiftEnd = rs.getString("dayEnd");
-                String comment = rs.getString("comment");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
                 int staffId = rs.getInt("staffId");
                 String roomId = rs.getString("roomId");
 

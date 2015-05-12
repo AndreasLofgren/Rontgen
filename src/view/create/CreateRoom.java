@@ -1,16 +1,19 @@
 package view.create;
 
+import handler.RoomHandler;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import model.Room;
 
 /**
  *
@@ -56,13 +59,14 @@ public class CreateRoom extends JPanel {
         infonorth.add(typecombo);
 
         //Tilføjer type til rummet i combobox
-        typecombo.addItem("MR");
-        typecombo.addItem("CT");
-        typecombo.addItem("Ultralyd");
-        typecombo.addItem("Gennemlysning");
-        typecombo.addItem("Knogle");
-        typecombo.addItem("Adminstrativ");
-        typecombo.addItem("Vagtrum");
+        RoomHandler rh = new RoomHandler();
+        ArrayList<String> rumType = new ArrayList<>();
+        rumType = rh.getRoomType();
+
+        for (int i = 0; i < rumType.size(); i++) {
+
+            typecombo.addItem(rumType.get(i));
+        }
 
         JLabel status = new JLabel("Status:");
         infonorth.add(status);
@@ -72,6 +76,14 @@ public class CreateRoom extends JPanel {
         infonorth.add(statuscombo);
 
 //      Tilføjer status til rummet i combobox
+//        RoomHandler rh = new RoomHandler();
+//        ArrayList<String> rumStatus = new ArrayList<>();
+//        rumStatus = rh.getRoomStatus();
+//
+//        for (int i = 0; i < rumStauts.size(); i++) {
+//
+//            statuscombo.addItem(rumStatus.get(i));
+//        }
         statuscombo.addItem("Åben");
         statuscombo.addItem("Lukket");
         statuscombo.addItem("Service");

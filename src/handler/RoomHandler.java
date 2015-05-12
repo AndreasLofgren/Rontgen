@@ -14,6 +14,7 @@ public class RoomHandler {
 
     private DBHandler dbhandler;
     private ArrayList<Room> roomResult;
+    private ArrayList<String> stringResult;
 
     public RoomHandler() {
         dbhandler = DBHandler.getInstance();
@@ -44,6 +45,48 @@ public class RoomHandler {
             System.out.println("SQLException" + ex.getMessage());
         }
         return roomResult;
+    }
+
+    public ArrayList<String> getRoomType() {
+        stringResult = new ArrayList<>();
+
+        try {
+            String sql = "select distinct(typ) from room;";
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+
+                String type = rs.getString("typ");
+
+                String s1 = type;
+                stringResult.add(s1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+        return stringResult;
+    }
+    
+    public ArrayList<String> getRoomStatus() {
+        stringResult = new ArrayList<>();
+
+        try {
+            String sql = "select distinct(status) from room;";
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+
+                String status = rs.getString("status");
+
+                String s1 = status;
+                stringResult.add(s1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+        return stringResult;
     }
 
     public void insertRoom(Room room) {

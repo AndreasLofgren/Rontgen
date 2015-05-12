@@ -43,6 +43,30 @@ public class StaffHandler {
         }
         return staffResult;
     }
+    
+    public ArrayList<Staff> getStaffForToday() {
+        staffResult = new ArrayList<>();
+
+        try {
+            String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = curdate());";
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String nickname = rs.getString("nickname");
+
+                Staff s1 = new Staff(id, firstName, lastName, nickname);
+                staffResult.add(s1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+        return staffResult;
+    }
 
     public void insertStaff(int id, String firstname, String lastname,
             String nickname) {

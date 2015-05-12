@@ -1,11 +1,9 @@
 package control;
 
-import handler.AbsenceHandler;
+import handler.ActualCompetenceHandler;
 import handler.RoomHandler;
-import handler.ShiftHandler;
 import handler.StaffHandler;
 import java.util.ArrayList;
-import model.Absence;
 import model.ActualCompetence;
 import model.Room;
 import model.Shift;
@@ -17,141 +15,99 @@ import model.Staff;
  */
 public class CreateShow {
 
+    StaffHandler sh = new StaffHandler();
+    RoomHandler rh = new RoomHandler();
+
+    ArrayList<Staff> staffs = sh.getStaffForToday();
+    ArrayList<ArrayList<Shift>> shifts = new ArrayList<>();
+    ArrayList<Room> rooms = rh.getRoom();
+
     public CreateShow() {
 
     }
 
     public ArrayList<ArrayList<Shift>> createWeek(String startDato) {
 
-        ArrayList<Staff> staffs = new ArrayList<>();
-        ArrayList<Shift> dayShifts = new ArrayList<>();
-        ArrayList<ArrayList<Shift>> shifts = new ArrayList<>();
-        ArrayList<Absence> absences = new ArrayList<>();
-        ArrayList<Absence> absencesToday = new ArrayList<>();
-        ArrayList<Room> rooms = new ArrayList<>();
-
-        StaffHandler sh = new StaffHandler();
-        staffs = sh.getStaff();
-
-        AbsenceHandler ah = new AbsenceHandler();
-        absences = ah.getAbsence();
-
-        shifts.add(dayShifts);
-
-        RoomHandler rh = new RoomHandler();
-        rooms = rh.getRoom();
-
-        Shift shift = new Shift(startDato);
-        dayShifts.add(shift);
+        System.out.println("Størrelse på uge: " + shifts.size());
 
         for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < absences.size(); j++) {
-                if (absences.get(j).getDayEnd().equals("")
-                        || absences.get(j).getDayEnd().equals(dayShifts.get(0).getDate()) // || staffs.getActive()
-                        ) {
-                    absencesToday.add(absences.get(j));
-                }
-            }
-            for (int j = 0; j < dayShifts.size() - absencesToday.size(); j++) {
+            ArrayList<Shift> dayShifts = new ArrayList<>();
+            shifts.add(dayShifts);
 
-                if (j == 0 || dayShifts.get(j - 1).getDate().equals(shift.getDate())) {
-                    dayShifts.add(shift);
-                } else {
-                    ArrayList<Shift> nextDay = new ArrayList<>();
-                    nextDay.add(shift);
-                    shifts.add(nextDay);
-                }
-
-                if (dayShifts.get(j).getRoom() == null) {
-                    System.out.println("Room is null");
-                    boolean foundRoom = false;
-                    for (int l = 0; l < rooms.size() && !foundRoom; l++) {
-
-                        if (rooms.get(l).getStatus().equals("Åben") && !foundRoom) {
-                            foundRoom = true;
-                            dayShifts.get(j).setRoom(rooms.get(l));
-                            System.out.println("Første if sætning: " + dayShifts.get(j).getRoom().toString());
-                        } else {
-                            System.out.println(dayShifts.get(j).getRoom().toString() + " lukket");
-                        }
-                    }
-                    if (dayShifts.get(j).getRoom() == null) {
-                        System.out.println("OOPS - room is still null!");
-                    } else {
-                        System.out.println("Room found");
-                    }
-
-                }
+            System.out.println("Antal ansatte: " + staffs.size());
 
 //                shufflePriority(staffs);
-                for (int l = 0; l < staffs.size(); l++) {
-                    ActualCompetence aComp = new ActualCompetence(staffs.get(l));
-                    for (int m = 0; m < absencesToday.size(); m++) {
-                        if (staffs.get(l).getId() == absencesToday.get(m).getStaff().getId()) {
-                            staffs.remove(l);
-                            System.out.println("");
-                        } else if (aComp.getCompetance().getSkill().equals(dayShifts.get(j).getRoom().getType())) {
-                            dayShifts.get(j).setStaff(staffs.get(l));
-                        }
-                    }
+            for (int j = 0; j < staffs.size(); j++) {
 
+                Shift shift = new Shift(startDato);
+                dayShifts.add(shift);
+                
+                ActualCompetenceHandler ach = new ActualCompetenceHandler();
+                ArrayList<ActualCompetence> aComps = ach.getActualCompetance(staffs.get(j).getId());
+
+                System.out.println("Nuværende ansat: " + staffs.get(j));
+                System.out.println("Antal vagter: " + dayShifts.size());
+
+                if (shift.getStaff() == null) {
+
+                    shift.setStaff(staffs.get(j));
                 }
 
+                if (shift.getStaff() == null) {
+                    System.out.println("OOPS - staff is still null!");
+                } else {
+                    System.out.println("Staff found");
+                }
+
+                if (shift.getRoom() == null) {
+
+                    addRoom(shift, aComps);
+                }
+
+                if (shift.getRoom() == null) {
+                    System.out.println("OOPS - room is still null!");
+                    System.out.println("");
+                } else {
+                    System.out.println("Room found");
+                    System.out.println("");
+                }
             }
+
+//            startDato = "+1";          !!!! Øg dato med en.!!!!!
+
+            System.out.println("----Næste dag----");
+            System.out.println("Størrelse på uge: " + shifts.size());
+            for (int j = 0; j < shifts.size(); j++) {
+                System.out.println("Antal vagter den " + j + 1 + ". dag: " + shifts.get(j).size());
+            }
+            
         }
         return shifts;
     }
 
-    public void showWeek(String monDate, String tuesDate, String wednesDate,
-            String thursDate, String friDate, String saturDate, String sunDate) {
+    private void addRoom(Shift shift, ArrayList<ActualCompetence> aComps) {
 
-        ArrayList<Shift> monday = showDay(monDate);
+        System.out.println("Antal rum: " + rooms.size());
+        System.out.println("Antal kompetencer: " + aComps.size());
 
-        ArrayList<Shift> tuesday = showDay(tuesDate);
+        boolean foundRoom = false;
+        for (int k = 0; k < rooms.size() && !foundRoom; k++) {
+            if (rooms.get(k).getStatus().equals("Åben")) {
+                for (int l = 0; l < aComps.size(); l++) {
 
-        ArrayList<Shift> wednesday = showDay(wednesDate);
+                    System.out.println("Rum: " + rooms.get(k).toString());
+                    System.out.println("Kompetence: " + aComps.get(l).toString());
 
-        ArrayList<Shift> thursday = showDay(thursDate);
+                    if (rooms.get(k).getType().equals(aComps.get(l).getCompetance().getSkill())) {
+                        foundRoom = true;
+                        shift.setRoom(rooms.get(k));
 
-        ArrayList<Shift> friday = showDay(friDate);
-
-        ArrayList<Shift> saturday = showDay(saturDate);
-
-        ArrayList<Shift> sunday = showDay(sunDate);
-
-        ArrayList<ArrayList<Shift>> week = new ArrayList<>();
-
-        week.add(monday);
-        week.add(tuesday);
-        week.add(wednesday);
-        week.add(thursday);
-        week.add(friday);
-        week.add(saturday);
-        week.add(sunday);
-
-        //sort by room and insert in weekplan.
-        insertInRooms(week);
-
-    }
-
-    private ArrayList<Shift> showDay(String date) {
-        ArrayList<Shift> day = new ArrayList<>();
-        ShiftHandler sh = new ShiftHandler();
-        day = sh.getShift(date);
-        sortByRoom(day);
-        return day;
-    }
-
-    private void sortByRoom(ArrayList<Shift> day) {
-
-    }
-
-    private void insertInRooms(ArrayList<ArrayList<Shift>> week) {
-
-        ArrayList<Room> rooms = new ArrayList<>();
-        if (week.get(1).get(1).getRoom().getId() == rooms.get(1).getId()) {
-
+                        System.out.println("Rummet er sat til " + shift.toString());
+                    }
+                }
+            } else {
+                System.out.println(rooms.get(k).toString() + " er lukket");
+            }
         }
     }
-
 }
