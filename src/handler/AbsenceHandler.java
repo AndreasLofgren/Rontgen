@@ -23,8 +23,8 @@ public class AbsenceHandler {
     // Henter alle data fra Absence tabellen, omformer til Absence-obj og returnerer en liste med objekterne
     public ArrayList<Absence> getAbsence() {
         absenceResult = new ArrayList<>();
+        String sql = "Select * From absence";
         try {
-            String sql = "Select * From absence";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -39,16 +39,17 @@ public class AbsenceHandler {
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
 
         return absenceResult;
     }
-    
-    public ArrayList<Absence> getAbsence(String dayBegyn, String daySlut) {
+
+    public ArrayList<Absence> getAbsence(String firstDay, String lastDay) {
         absenceResult = new ArrayList<>();
+        String sql = "Select * From absence where dayStart >= '" + firstDay + "' and dayEnd <= '" + lastDay + "';";
         try {
-            String sql = "Select * From absence where dayStart >=" + dayBegyn + " and dayEnd <=" + daySlut;
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -63,12 +64,13 @@ public class AbsenceHandler {
 
             }
         } catch (SQLException ex) {
-            System.out.println("SQLException" + ex.getMessage());
+            System.out.println(sql);
+            System.out.println("SQLException " + ex.getMessage());
         }
 
         return absenceResult;
     }
-    
+
     public ArrayList<Absence> getCurrentAbsence() {
         absenceResult = new ArrayList<>();
         String sql = "Select * From absence where dayEnd = null OR dayEnd = curdate()";

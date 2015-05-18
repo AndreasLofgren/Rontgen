@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
  * @author Andreas
  */
 public class CreateWeek extends JPanel {
+    JTextArea weekplanInfo = new JTextArea();
     
     public CreateWeek(String opret_ugeplan, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
@@ -40,10 +41,10 @@ public class CreateWeek extends JPanel {
         JComboBox infoListe = new JComboBox();
         CreateweekplanNorth.add(infoListe);
         
-        JTextArea weekplanInfo = new JTextArea();
+        
         CreateweekplanCenter.add(weekplanInfo);
         weekplanInfo.setPreferredSize(new Dimension(800, 300));  //erstat konstanter med variabler
-  
+        
         JButton gemweek = new JButton("Gem ændringer");
         gemweek.addActionListener(new ActionListener() {
 
@@ -73,5 +74,9 @@ public class CreateWeek extends JPanel {
             }
         });
         CreateweekplanSouth.add(tilbage);
+    }
+    
+    public JTextArea getTextArea() {
+        return weekplanInfo;
     }
 }

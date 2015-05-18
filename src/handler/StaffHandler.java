@@ -43,12 +43,12 @@ public class StaffHandler {
         }
         return staffResult;
     }
-    
-    public ArrayList<Staff> getStaffForToday() {
+
+    public ArrayList<Staff> getStaffForToday(String date) {
         staffResult = new ArrayList<>();
 
         try {
-            String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = curdate());";
+            String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = " + date + ");";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 

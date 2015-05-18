@@ -11,10 +11,13 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import model.Shift;
+import view.create.CreateWeek;
 
 /**
  *
@@ -49,10 +52,16 @@ public class Homepage extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 CreateShow newWeek = new CreateShow();
-                newWeek.createWeek("2015-05-05");
+                ArrayList<ArrayList<Shift>> ugeplan = newWeek.createWeek("2015-05-05");
+                CreateWeek cw = new CreateWeek("Opret ugeplan", jtp);
                 
-                
+                for (int i = 0; i < ugeplan.size(); i++) {
+                    for (int j = 0; j < ugeplan.get(i).size(); j++) {
+                        cw.getTextArea().setText(ugeplan.get(i).get(j).getStaff().getFirstName());
+                    }                    
+                }                
                 jtp.setSelectedIndex(1);
             }
         });
