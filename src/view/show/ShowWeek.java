@@ -1,5 +1,6 @@
 package view.show;
 
+import control.Print;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -50,7 +51,12 @@ public class ShowWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
+                Print print = new Print();
+
+                Thread t = new Thread(print);
+                t.start();
+
             }
         });
         flowborder.add(printugeplan);
@@ -69,7 +75,7 @@ public class ShowWeek extends JPanel {
         //Vis ugerne COMBOBOX
         JPanel comboPane = new JPanel();
         this.add(comboPane, BorderLayout.WEST);
-        
+
         JComboBox uger = new JComboBox();
         comboPane.add(uger);
 
