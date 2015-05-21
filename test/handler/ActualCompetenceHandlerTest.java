@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.ActualCompetence;
-import model.Competence;
-import model.Staff;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Birgit Schæffer
  */
 public class ActualCompetenceHandlerTest {
-    
+
     public ActualCompetenceHandlerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -53,46 +51,17 @@ public class ActualCompetenceHandlerTest {
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
         String sql = "Select count(*) From actualcompetence";
-        try{
+        try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-        assertEquals("Antal af elementer på listen passer ikke:",expectedResult, result);
-        } catch (Exception ex){
-            fail("getActualCompetence kaster exception: "+ex.getMessage());
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            }
+        } catch (Exception ex) {
+            fail("getActualCompetence kaster exception: " + ex.getMessage());
         }
         // TODO review the generated test code and remove the default call to fail.
     }
 
-    /**
-     * Test of insertActualCompetance method, of class ActualCompetenceHandler.
-     */
-    @Test
-    public void testInsertActualCompetance() {
-        System.out.println("insertActualCompetance");
-        String expirationDate = "";
-        Competence competence = null;
-        Staff staff = null;
-        ActualCompetenceHandler instance = new ActualCompetenceHandler();
-        instance.insertActualCompetance(expirationDate, competence, staff);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateAcutualCompetance method, of class ActualCompetenceHandler.
-     */
-    @Test
-    public void testUpdateAcutualCompetance() {
-        System.out.println("updateAcutualCompetance");
-        String newExpirationDate = "";
-        String newName = "";
-        int newStaffId = 0;
-        int uniqueStaffId = 0;
-        ActualCompetenceHandler instance = new ActualCompetenceHandler();
-        instance.updateAcutualCompetance(newExpirationDate, newName, newStaffId, uniqueStaffId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

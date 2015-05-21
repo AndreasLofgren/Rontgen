@@ -55,47 +55,13 @@ public class RoomHandlerTest {
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer i listen passer ikke: ", expectedResult, result);
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            }
         } catch (Exception ex) {
             fail("getRoom kaster exception: " + ex.getMessage());
         }
     }
 
-    /**
-     * Test of insertRoom method, of class RoomHandler.
-     */
-//    @Test
-//    public void testInsertRoom() {
-//        System.out.println("insertRoom");
-//        int id = 0;
-//        String type = "";
-//        String status = "";
-//        int minStaffAmount = 0;
-//        int maxStaffAmount = 0;
-//        String validFrom = "";
-//        RoomHandler instance = new RoomHandler();
-//        instance.insertRoom(id, type, status, minStaffAmount, maxStaffAmount, validFrom);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of updateRoom method, of class RoomHandler.
-//     */
-//    @Test
-//    public void testUpdateRoom() {
-//        System.out.println("updateRoom");
-//        int newRoomId = 0;
-//        String newTyp = "";
-//        String newState = "";
-//        int newMinStaffAmount = 0;
-//        int newMaxStaffAmount = 0;
-//        String newValidFrom = "";
-//        int uniqueId = 0;
-//        RoomHandler instance = new RoomHandler();
-//        instance.updateRoom(newRoomId, newTyp, newState, newMinStaffAmount, newMaxStaffAmount, newValidFrom, uniqueId);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 }

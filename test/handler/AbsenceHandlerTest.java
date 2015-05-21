@@ -56,43 +56,16 @@ public class AbsenceHandlerTest {
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            }
+
         } catch (Exception ex) {
             fail("getAbsence kaster exception: " + ex.getMessage());
         }
         // TODO review the generated test code and remove the default call to fail.
 
-    }
-
-    /**
-     * Test of insertAbsence method, of class AbsenceHandler.
-     */
-    @Test
-    public void testInsertAbsence() {
-        System.out.println("insertAbsence");
-        int id = 0;
-        Staff staff = null;
-        AbsenceHandler instance = null;
-        instance.insertAbsence(id, staff);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateAbsence method, of class AbsenceHandler.
-     */
-    @Test
-    public void testUpdateAbsence() {
-        System.out.println("updateAbsence");
-        String newdayStart = "";
-        String newdayEnd = "";
-        int newStaffId = 0;
-        int uniqueStaffId = 0;
-        AbsenceHandler instance = null;
-        instance.updateAbsence(newdayStart, newdayEnd, newStaffId, uniqueStaffId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

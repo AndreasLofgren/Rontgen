@@ -54,45 +54,14 @@ public class StaffHandlerTest {
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            }
         } catch (Exception ex) {
             fail("getStaff kaster exception: " + ex.getMessage());
-            
+
         }
-    }
-
-    /**
-     * Test of insertStaff method, of class StaffHandler.
-     */
-    @Test
-    public void testInsertStaff() {
-        System.out.println("insertStaff");
-        int id = 0;
-        String firstname = "";
-        String lastname = "";
-        String nickname = "";
-        StaffHandler instance = new StaffHandler();
-        instance.insertStaff(id, firstname, lastname, nickname);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateStaff method, of class StaffHandler.
-     */
-    @Test
-    public void testUpdateStaff() {
-        System.out.println("updateStaff");
-        int newId = 0;
-        String newfirstName = "";
-        String newlastName = "";
-        String newnickname = "";
-        String uniqueId = "";
-        StaffHandler instance = new StaffHandler();
-        instance.updateStaff(newId, newfirstName, newlastName, newnickname, uniqueId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

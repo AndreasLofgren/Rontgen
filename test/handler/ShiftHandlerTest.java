@@ -56,8 +56,10 @@ public class ShiftHandlerTest {
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke: ", expectedResult, result);       // assertpEquals - sammeligner
+            }
         } catch (Exception ex) {
             fail("getShift kaster exception: " + ex.getMessage());
         }
@@ -77,8 +79,10 @@ public class ShiftHandlerTest {
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-            assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke: ", expectedResult, result);       // assertpEquals - sammeligner
+            }
         } catch (Exception ex) {
             fail("getShift kaster exception: " + ex.getMessage());
         }
@@ -90,55 +94,36 @@ public class ShiftHandlerTest {
     @Test
     public void testGetShift_String_String() {
         ShiftHandler sh3 = new ShiftHandler();
-        String shiftStart = "2015-10-10";
-        String shiftEnd = "2015-10-12";
+        String shiftStart = "7:30:00";
+        String shiftEnd = "15:30:00";
         ArrayList<Shift> list = sh3.getShift(shiftStart, shiftEnd);
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
-        String sql = "Select count(*) From shift WHERE shiftStart >= " + shiftStart + " AND shiftEnd <=" + shiftEnd + ";";
-        try{
+        String sql = "Select count(*) from shift WHERE shiftStart >= '" + shiftStart + "' AND shiftStart < '" + shiftEnd + "';";
+        try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-        assertEquals("Antal af elementer på listen passer ikke:",expectedResult, result);       // assertpEquals - sammeligner
-        } catch (Exception ex){
-            fail("getShift kaster exception: "+ex.getMessage());
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                System.out.println(sql);
+                assertEquals("Antal af elementer på listen passer ikke: ", expectedResult, result);       // assertpEquals - sammeligner
+            }
+        } catch (Exception ex) {
+            fail("getShift kaster exception: " + ex.getMessage());
         }
     }
 
     /**
-     * Test of insertShift method, of class ShiftHandler.
+     * Test of getShift method, of class ShiftHandler.
      */
     @Test
-    public void testInsertShift() {
-        System.out.println("insertShift");
-        int id = 0;
-        String date = "";
-        String shiftStart = "";
-        String shiftEnd = "";
-        Staff staff = null;
-        Room room = null;
+    public void testGetShift_int() {
+        System.out.println("getShift");
+        int sId = 0;
         ShiftHandler instance = new ShiftHandler();
-        instance.insertShift(id, date, shiftStart, shiftEnd, staff, room);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateShift method, of class ShiftHandler.
-     */
-    @Test
-    public void testUpdateShift() {
-        System.out.println("updateShift");
-        String newId = "";
-        String newDate = "";
-        String newShiftStart = "";
-        String newShiftEnd = "";
-        int newStaffId = 0;
-        String newRoomId = "";
-        int uniqueId = 0;
-        ShiftHandler instance = new ShiftHandler();
-        instance.updateShift(newId, newDate, newShiftStart, newShiftEnd, newStaffId, newRoomId, uniqueId);
+        ArrayList<Shift> expResult = null;
+        ArrayList<Shift> result = instance.getShift(sId);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

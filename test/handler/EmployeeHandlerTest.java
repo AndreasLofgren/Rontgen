@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Birgit Schæffer
  */
 public class EmployeeHandlerTest {
-    
+
     public EmployeeHandlerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -51,15 +51,17 @@ public class EmployeeHandlerTest {
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
         String sql = "Select count(*) From employee";
-        try{
+        try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            int expectedResult = rs.getInt(1);
-        assertEquals("Antal af elementer på listen passer ikke:",expectedResult, result);
-        } catch (Exception ex){
-            fail("getEmployee kaster exception: "+ex.getMessage());
+            while (rs.next()) {
+                int expectedResult = rs.getInt(1);
+                assertEquals("Antal af elementer på listen passer ikke:", expectedResult, result);       // assertpEquals - sammeligner
+            }
+        } catch (Exception ex) {
+            fail("getEmployee kaster exception: " + ex.getMessage());
         }
         // TODO review the generated test code and remove the default call to fail.
     }
-    
+
 }
