@@ -52,13 +52,13 @@ public class ShowStaff extends JPanel {
 
         StaffHandler sh = new StaffHandler();
         ArrayList<Staff> medarbejdere = new ArrayList<>();
-//        medarbejdere = sh.getStaff();
-//
-//        for (int i = 0; i < medarbejdere.size(); i++) {
-//
-//            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
-//                    + medarbejdere.get(i).getLastName());
-//        }
+        medarbejdere = sh.getStaff();
+
+        for (int i = 0; i < medarbejdere.size(); i++) {
+
+            medarbejderListe.addItem(medarbejdere.get(i).getFirstName() + " "
+                    + medarbejdere.get(i).getLastName());
+        }
 
         JPanel personaleEast = new JPanel();
         this.add(personaleEast, BorderLayout.EAST);
@@ -78,7 +78,11 @@ public class ShowStaff extends JPanel {
 
         MessageHandler mh = new MessageHandler();
         ArrayList<Message> beskeder = new ArrayList<>();
-//        beskeder = mh.getMessage();
+        beskeder = mh.getMessage();
+        
+//        for (int i = 0; i < beskeder.size(); i++) {
+//            description = beskeder.get(i).getDescription();
+//        }
 
         JButton visMedarbejder1 = new JButton("Vis Medarbejder");
         visMedarbejder1.addActionListener(new ActionListener() {
@@ -88,8 +92,10 @@ public class ShowStaff extends JPanel {
                 medarbejderInfo.setText(" Navn: " + medarbejderListe.getSelectedItem()
                         + "\n Adresse: " + "\n Telefon: " + "\n Mobil: "
                         + "\n E-mail: " + "\n Stilling: " + "\n Noter: \n");
-                //+ beskeder.get(1).getDescription()
+//                        + description);
+
             }
+
         });
         personalePaneCenter.add(visMedarbejder1);
 
@@ -108,7 +114,7 @@ public class ShowStaff extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(12);
+
             }
         });
         personalePaneCenter.add(redigerKompetencer1);

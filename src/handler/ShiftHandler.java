@@ -32,12 +32,13 @@ public class ShiftHandler {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String date = rs.getString("dates");
-                String shiftStart = rs.getString("dayStart");
-                String shiftEnd = rs.getString("dayEnd");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
-                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
                         new Staff(staffId), new Room(roomId));
                 shiftResult.add(s1);
 
@@ -48,29 +49,88 @@ public class ShiftHandler {
 
         return shiftResult;
     }
-    
-    public ArrayList<Shift> getShift(String day) {
+    public ArrayList<Shift> getShift(int sId) {
         shiftResult = new ArrayList<>();
 
         try {
-            String sql = "Select * from shift WHERE date = " + day + ";";
+            String sql = "Select * from shift WHERE staffId = " + sId + ";";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String date = rs.getString("dates");
-                String shiftStart = rs.getString("dayStart");
-                String shiftEnd = rs.getString("dayEnd");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
                 int staffId = rs.getInt("staffId");
-                int roomId = rs.getInt("roomId");
+                String roomId = rs.getString("roomId");
 
-                Shift s1 = new Shift(id, date, shiftStart, shiftEnd,
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
                         new Staff(staffId), new Room(roomId));
                 shiftResult.add(s1);
 
             }
         } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+
+        return shiftResult;
+    }
+
+    public ArrayList<Shift> getShift(String day) {
+        shiftResult = new ArrayList<>();
+
+        try {
+            String sql = "Select * from shift WHERE dates = " + day + ";";
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String date = rs.getString("dates");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
+                int staffId = rs.getInt("staffId");
+                String roomId = rs.getString("roomId");
+
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
+                        new Staff(staffId), new Room(roomId));
+                shiftResult.add(s1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException" + ex.getMessage());
+        }
+
+        return shiftResult;
+    }
+
+    public ArrayList<Shift> getShift(String dayStart, String dayEnd) {
+        shiftResult = new ArrayList<>();
+        String sql = "Select * from shift WHERE '" + dayStart + "' < '" + dayEnd + "' AND shiftStart > '" + dayStart + "';";
+        try {
+
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String date = rs.getString("dates");
+                String shiftStart = rs.getString("shiftStart");
+                String shiftEnd = rs.getString("shiftEnd");
+                String comment = rs.getString("comments");
+                int staffId = rs.getInt("staffId");
+                String roomId = rs.getString("roomId");
+
+                Shift s1 = new Shift(id, date, shiftStart, shiftEnd, comment,
+                        new Staff(staffId), new Room(roomId));
+                shiftResult.add(s1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
 
@@ -92,11 +152,11 @@ public class ShiftHandler {
     }
 
     public void updateShift(String newId, String newDate, String newShiftStart,
-            String newShiftEnd, int newStaffId, int newRoomId, int uniqueId) {
+            String newShiftEnd, int newStaffId, String newRoomId, int uniqueId) {
         try {
-            String sql = "UPDATE shift SET id=" + newId + ", date=" + newDate
-                    + ", " + "shiftStart=" + newShiftStart + ", shiftEnd="
-                    + newShiftEnd + ", " + "staffId=" + newStaffId + ", roomId="
+            String sql = " UPDATE shift SET id=" + newId + " , date=" + newDate
+                    + ", " + " shiftStart=" + newShiftStart + " , shiftEnd="
+                    + newShiftEnd + ", " + "staffId=" + newStaffId + " , roomId="
                     + newRoomId + " WHERE id=" + uniqueId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);

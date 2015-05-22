@@ -79,7 +79,7 @@ public class ShowRoom extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(10);
+                jtp.setSelectedIndex(8);
             }
         });
         rumPaneCenter.add(opretRum);

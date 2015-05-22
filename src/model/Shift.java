@@ -7,18 +7,25 @@ package model;
 public class Shift {
 
     private int id;
-    private String type;
+    private String date;
     private String shiftStart;
     private String shiftEnd;
     private Staff staff;
     private Room room;
+    private String comment;
 
-    public Shift(int id, String type, String shiftStart, String shiftEnd,
+    public Shift(String date) {
+        this.date = date;
+    }
+
+    
+    public Shift(int id, String date, String shiftStart, String shiftEnd, String comment,
             Staff staff, Room room) {
         this.id = id;
-        this.type = type;
+        this.date = date;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
+        this.comment = comment;
         this.staff = staff;
         this.room = room;
 
@@ -32,12 +39,20 @@ public class Shift {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getDate() {
+        return date;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getShiftStart() {
@@ -70,6 +85,11 @@ public class Shift {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    @Override
+    public String toString() {
+        return "Shift{" + "id=" + id + ", date=" + date + ", shiftStart=" + shiftStart + ", shiftEnd=" + shiftEnd + ", staff=" + staff + ", room=" + room + ", comment=" + comment + '}';
     }
 
 }

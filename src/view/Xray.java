@@ -6,21 +6,22 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import view.create.CreateStaff;
 import view.create.CreateCompetence;
 import view.create.CreateRoom;
 import view.create.CreateWeek;
+import view.edit.EditCompetence;
+import view.edit.EditRoom;
+import view.edit.EditStaff;
+import view.show.ShowAbsence;
 import view.show.ShowRoom;
 import view.show.ShowStaff;
 import view.show.ShowWeek;
 import view.show.ShowCompetence;
- 
+import view.show.ShowStatistic;
+
 /**
  *
  * @author stine
@@ -66,26 +67,17 @@ public class Xray extends JFrame {
         ShowCompetence kompetanceVis = new ShowCompetence("Vis kompetence", jtp);
         jtp.add(kompetanceVis);
         jtp.setTitleAt(5, "Vis kompetance");
-        
+
         //Vis statistikker
-        JPanel statistikVis = new JPanel();
+        ShowStatistic statistikVis = new ShowStatistic(jtp);
         jtp.add(statistikVis);
         jtp.setTitleAt(6, "Statistik");
-        JButton tilbage3 = new JButton("Tilbage");
-        tilbage3.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        statistikVis.add(tilbage3);
 
         //Opret personale
         CreateStaff opretMedarbejder = new CreateStaff("Opret personale", jtp);
         jtp.add(opretMedarbejder);
         jtp.setTitleAt(7, "Opret personale");
-        
+
         //Opret rum
         CreateRoom opretRum = new CreateRoom(jtp);
         jtp.add(opretRum);
@@ -97,64 +89,24 @@ public class Xray extends JFrame {
         jtp.setTitleAt(9, "Opret kompetance");
 
         //Fravær
-        JPanel fravar = new JPanel();
+        ShowAbsence fravar = new ShowAbsence(jtp);
         jtp.add(fravar);
         jtp.setTitleAt(10, "Fravær");
 
-        JButton tilbage9 = new JButton("Tilbage");
-        tilbage9.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        fravar.add(tilbage9);
-
         //Rediger personale
-        JPanel redPersonale = new JPanel();
+        EditStaff redPersonale = new EditStaff("Rediger personale", jtp);
         jtp.add(redPersonale);
         jtp.setTitleAt(11, "Rediger personale");
 
-        JButton tilbage10 = new JButton("Tilbage");
-        tilbage10.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        redPersonale.add(tilbage10);
-
         //Rediger kompetance
-        JPanel redKompetance = new JPanel();
+        EditCompetence redKompetance = new EditCompetence(jtp);
         jtp.add(redKompetance);
         jtp.setTitleAt(12, "Rediger kompetance");
 
-        JButton tilbage11 = new JButton("Tilbage");
-        tilbage11.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        redKompetance.add(tilbage11);
-
         //Rediger rum
-        JPanel redRum = new JPanel();
+        EditRoom redRum = new EditRoom(jtp);
         jtp.add(redRum);
         jtp.setTitleAt(13, "Rediger rum");
-
-        JButton tilbage12 = new JButton("Tilbage");
-        tilbage12.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(3);
-            }
-        });
-        redRum.add(tilbage12);
 
         jf.setContentPane(jtp);
         jf.pack();

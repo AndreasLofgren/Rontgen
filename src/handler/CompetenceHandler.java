@@ -24,13 +24,13 @@ public class CompetenceHandler {
         competenceResult = new ArrayList<>();
 
         try {
-            String sql = "Select * From compentences";
+            String sql = "Select * From competence";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String skill = rs.getString("skill");
-                int roomId = rs.getInt("roomId");
+                String skill = rs.getString("navn");
+                String roomId = rs.getString("roomId");
 
                 Competence c2 = new Competence(skill, new Room(roomId));
                 competenceResult.add(c2);
@@ -44,7 +44,7 @@ public class CompetenceHandler {
 
     public void insertCompetances(String skill, Room room) {
         try {
-            String sql = "INSERT INTO Compentences VALUES (" + skill + ", "
+            String sql = " INSERT INTO Compentences VALUES (" + skill + ", "
                     + room.getId() + ");";
             Statement stmnt = dbhandler.getStmt();
             stmnt.executeUpdate(sql);
@@ -54,11 +54,11 @@ public class CompetenceHandler {
         }
     }
 
-    public void updateCompetance(String newSkill, int newRoomId,
+    public void updateCompetance(String newSkill, Room room,
             String uniqueSkill) {
         try {
-            String sql = "UPDATE compentences SET skill=" + newSkill
-                    + ",roomId=" + newRoomId + " WHERE skill=" + uniqueSkill
+            String sql = " UPDATE compentences SET skill=" + newSkill
+                    + " , roomId= " + room.getId()+ " WHERE skill=" + uniqueSkill
                     + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);

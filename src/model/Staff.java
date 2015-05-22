@@ -55,4 +55,9 @@ public class Staff {
         this.nickname = nickname;
     }
 
+    @Override
+    public String toString() {
+        return "Staff{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nickname=" + nickname + '}';
+    }
+
 }

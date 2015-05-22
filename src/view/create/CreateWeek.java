@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
  * @author Andreas
  */
 public class CreateWeek extends JPanel {
+    JTextArea weekplanInfo = new JTextArea();
     
     public CreateWeek(String opret_ugeplan, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
@@ -40,16 +41,16 @@ public class CreateWeek extends JPanel {
         JComboBox infoListe = new JComboBox();
         CreateweekplanNorth.add(infoListe);
         
-        JTextArea weekplanInfo = new JTextArea();
+        
         CreateweekplanCenter.add(weekplanInfo);
         weekplanInfo.setPreferredSize(new Dimension(800, 300));  //erstat konstanter med variabler
-  
+        
         JButton gemweek = new JButton("Gem ændringer");
         gemweek.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(2);
             }
         });
         CreateweekplanSouth.add(gemweek);  
@@ -59,29 +60,23 @@ public class CreateWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(7);
             }
         });
         CreateweekplanSouth.add(medarbejder);
         
-        JButton ugeplan = new JButton("Vis Ugeplan");
-        ugeplan.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        CreateweekplanSouth.add(ugeplan);
-        
-        JButton tilbage = new JButton("Tilbage til Ugeplan");
+        JButton tilbage = new JButton("Annuller");
         tilbage.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(1);
             }
         });
         CreateweekplanSouth.add(tilbage);
+    }
+    
+    public JTextArea getTextArea() {
+        return weekplanInfo;
     }
 }

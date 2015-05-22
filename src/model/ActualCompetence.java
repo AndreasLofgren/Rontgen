@@ -10,6 +10,12 @@ public class ActualCompetence {
     private Competence competence;
     private Staff staff;
 
+    public ActualCompetence(Staff staff) {
+        this.staff = staff;
+    }
+    
+    
+
     public ActualCompetence(String expirationDate, Competence competence,
             Staff staff) {
         this.expirationDate = expirationDate;
@@ -39,6 +45,11 @@ public class ActualCompetence {
 
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "ActualCompetence{" + "expirationDate=" + expirationDate + ", competence=" + competence + ", staff=" + staff + '}';
     }
 
 }

@@ -23,7 +23,7 @@ public class EmployeeHandler {
         employeeResult = new ArrayList<>();
         
          try {
-            String sql = "Select * From employee";
+            String sql = "Select * From employee LEFT JOIN Occupation ON employee.id = occupation.staffId";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
             
@@ -34,7 +34,7 @@ public class EmployeeHandler {
             String mail = rs.getString("mail");
             String occupation = rs.getString("occupation");
             
-            Employee e1 = new Employee(id, tlf, mobil, mail, occupation );
+            Employee e1 = new Employee(id, tlf, mobil, mail, occupation);
             employeeResult.add(e1);
         }
             

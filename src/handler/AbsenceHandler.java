@@ -23,8 +23,8 @@ public class AbsenceHandler {
     // Henter alle data fra Absence tabellen, omformer til Absence-obj og returnerer en liste med objekterne
     public ArrayList<Absence> getAbsence() {
         absenceResult = new ArrayList<>();
+        String sql = "Select * From absence";
         try {
-            String sql = "Select * From absence";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -39,6 +39,57 @@ public class AbsenceHandler {
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
+            System.out.println("SQLException" + ex.getMessage());
+        }
+
+        return absenceResult;
+    }
+
+    public ArrayList<Absence> getAbsence(String firstDay, String lastDay) {
+        absenceResult = new ArrayList<>();
+        String sql = "Select * From absence where dayStart >= '" + firstDay + "' and dayEnd <= '" + lastDay + "';";
+        try {
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String dayStart = rs.getString("dayStart");
+                String dayEnd = rs.getString("dayEnd");
+                int staffId = rs.getInt("staffId");
+
+                Absence a1 = new Absence(new Staff(staffId), dayStart, dayEnd);
+
+                absenceResult.add(a1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(sql);
+            System.out.println("SQLException " + ex.getMessage());
+        }
+
+        return absenceResult;
+    }
+
+    public ArrayList<Absence> getCurrentAbsence() {
+        absenceResult = new ArrayList<>();
+        String sql = "Select * From absence where dayEnd = null OR dayEnd = curdate()";
+        try {
+            Statement stmt = dbhandler.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String dayStart = rs.getString("dayStart");
+                String dayEnd = rs.getString("dayEnd");
+                int staffId = rs.getInt("staffId");
+
+                Absence a1 = new Absence(new Staff(staffId), dayStart, dayEnd);
+
+                absenceResult.add(a1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
 
@@ -58,7 +109,7 @@ public class AbsenceHandler {
 
     public void updateAbsence(String newdayStart, String newdayEnd, int newStaffId, int uniqueStaffId) {
         try {
-            String sql = "UPDATE absence SET dayStart=" + newdayStart + "dayEnd=" + newdayEnd + "staffId=" + newStaffId + "WHERE staffId =" + uniqueStaffId;
+            String sql = " UPDATE absence SET dayStart=" + newdayStart + " dayEnd=" + newdayEnd + " staffId=" + newStaffId + " WHERE staffId =" + uniqueStaffId;
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 

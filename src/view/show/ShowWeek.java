@@ -1,5 +1,6 @@
 package view.show;
 
+import control.Print;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -39,21 +40,10 @@ public class ShowWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+                jtp.setSelectedIndex(1);
             }
         });
         flowborder.add(opretugeplan);
-
-        //Knap vis uge
-        JButton visuge = new JButton("Vis Uge");
-        visuge.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
-            }
-        });
-        flowborder.add(visuge);
 
         //Knap Print ugeplan
         JButton printugeplan = new JButton("Print Ugeplan");
@@ -61,7 +51,12 @@ public class ShowWeek extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jtp.setSelectedIndex(0);
+
+                Print print = new Print();
+
+                Thread t = new Thread(print);
+                t.start();
+
             }
         });
         flowborder.add(printugeplan);
@@ -80,7 +75,7 @@ public class ShowWeek extends JPanel {
         //Vis ugerne COMBOBOX
         JPanel comboPane = new JPanel();
         this.add(comboPane, BorderLayout.WEST);
-        
+
         JComboBox uger = new JComboBox();
         comboPane.add(uger);
 

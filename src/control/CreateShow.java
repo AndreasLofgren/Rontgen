@@ -1,16 +1,13 @@
 package control;
 
-import handler.ShiftHandler;
+import handler.ActualCompetenceHandler;
+import handler.RoomHandler;
+import handler.StaffHandler;
 import java.util.ArrayList;
-import model.Absence;
 import model.ActualCompetence;
-import model.Competence;
-import model.Employee;
-import model.Message;
 import model.Room;
 import model.Shift;
 import model.Staff;
-import model.Student;
 
 /**
  *
@@ -18,86 +15,198 @@ import model.Student;
  */
 public class CreateShow {
 
-    private Staff staff;
-    private Shift shift;
-    private Room room;
-    private Absence absence;
-    private Competence competance;
-    private ActualCompetence actualCompetance;
-    private Student student;
-    private Employee employee;
-    private Message message;
+    StaffHandler sh = new StaffHandler();
+    RoomHandler rh = new RoomHandler();
 
-    public CreateShow(Staff staff, Shift shift, Room room, Absence absence,
-            Competence competance, ActualCompetence actualCompetance,
-            Student student, Employee employee, Message message) {
-        this.staff = staff;
-        this.shift = shift;
-        this.room = room;
-        this.absence = absence;
-        this.competance = competance;
-        this.actualCompetance = actualCompetance;
-        this.student = student;
-        this.employee = employee;
-        this.message = message;
-    }
+    ArrayList<ArrayList<Shift>> shifts = new ArrayList<>();
+    ArrayList<Room> rooms = rh.getRoom();
 
-    public void createWeek() {
+    public CreateShow() {
 
     }
 
-    public void showWeek(String monDate, String tuesDate, String wednesDate,
-            String thursDate, String friDate, String saturDate, String sunDate) {
-        
-        ArrayList<Shift> monday = showDay(monDate);
+    public ArrayList<ArrayList<Shift>> createWeek(String startDato) {
 
-        ArrayList<Shift> tuesday = showDay(tuesDate);
+        ArrayList<Staff> staffs = sh.getStaffForToday(startDato);
+        System.out.println("Størrelse på uge: " + shifts.size());
 
-        ArrayList<Shift> wednesday = showDay(wednesDate);
-        
-        ArrayList<Shift> thursday = showDay(thursDate);
-        
-        ArrayList<Shift> friday = showDay(friDate);
-        
-        ArrayList<Shift> saturday = showDay(saturDate);
-        
-        ArrayList<Shift> sunday = showDay(sunDate);
-        
-        ArrayList<ArrayList<Shift>> week = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            ArrayList<Shift> dayShifts = new ArrayList<>();
+            shifts.add(dayShifts);
 
-        week.add(monday);
-        week.add(tuesday);
-        week.add(wednesday);
-        week.add(thursday);
-        week.add(friday);
-        week.add(saturday);
-        week.add(sunday);
+            System.out.println("Dato: " + startDato);
+            System.out.println("Antal ansatte: " + staffs.size());
 
-        //sort by room and insert in weekplan.
-        insertInRooms(week);
-        
+//                shufflePriority(staffs);
+            for (int j = 0; j < staffs.size(); j++) {
+
+                Shift shift = new Shift(startDato);
+                dayShifts.add(shift);
+
+                ActualCompetenceHandler ach = new ActualCompetenceHandler();
+                ArrayList<ActualCompetence> aComps = ach.getActualCompetance(staffs.get(j).getId());
+
+                System.out.println("Nuværende ansat: " + staffs.get(j));
+                System.out.println("Antal vagter: " + dayShifts.size());
+
+                if (shift.getStaff() == null) {
+
+                    shift.setStaff(staffs.get(j));
+                }
+
+                if (shift.getStaff() == null) {
+                    System.out.println("OOPS - staff is still null!");
+                } else {
+                    System.out.println("Staff found");
+                }
+
+                if (shift.getRoom() == null) {
+
+                    addRoom(dayShifts, shift, aComps);
+                }
+
+                if (shift.getRoom() == null) {
+                    System.out.println("OOPS - room is still null!");
+                    System.out.println("");
+                } else {
+                    System.out.println("Room found");
+                    System.out.println("");
+                }
+            }
+
+            startDato = changeDate(startDato);
+
+            System.out.println("----Næste dag----");
+            System.out.println("Dato: " + startDato);
+            System.out.println("Størrelse på uge: " + shifts.size());
+            for (int j = 0; j < shifts.size(); j++) {
+                System.out.println("Antal vagter den " + (j + 1) + ". dag: " + shifts.get(j).size());
+            }
+
+        }
+
+        return shifts;
     }
-    
-    
-    private ArrayList<Shift> showDay(String date) {
-        ArrayList<Shift> day = new ArrayList<>();
-        ShiftHandler sh = new ShiftHandler();
-        day = sh.getShift(date);
-        sortByRoom(day);
-        return day;
-    }
 
-    private void sortByRoom(ArrayList<Shift> day) {
+    private void addRoom(ArrayList<Shift> shifts, Shift shift, ArrayList<ActualCompetence> aComps) {
 
-    }
+        System.out.println("Antal rum: " + rooms.size());
+        System.out.println("Antal kompetencer: " + aComps.size());
 
-    private void insertInRooms(ArrayList<ArrayList<Shift>> week) {
-        
-        ArrayList<Room> rooms = new ArrayList<>();        
-        if (week.get(1).get(1).getRoom().getId() == rooms.get(1).getId()) {
-            
+        boolean foundRoom = false;
+        for (int k = 0; k < rooms.size() && !foundRoom; k++) {
+
+            if (rooms.get(k).getStatus().equals("Åben")) {
+
+                int count = 0;
+
+                System.out.println("Rum: " + rooms.get(k));
+                for (int i = 0; i < shifts.size() && count < rooms.get(k).getMinStaffAmount(); i++) {
+
+//                    System.out.println("Vagt: " + shifts.get(i));
+                    if (i != 0 && shifts.get(i - 1).getRoom() != null && shifts.get(i - 1).getRoom().getId().equals(rooms.get(k).getId())) {
+                        count++;
+                    }
+                }
+
+                if (rooms.get(k).getMinStaffAmount() > count) {
+
+                    for (int l = 0; l < aComps.size(); l++) {
+
+                        System.out.println("Kompetence: " + aComps.get(l).toString());
+
+                        if (rooms.get(k).getType().equals(aComps.get(l).getCompetance().getSkill())) {
+                            foundRoom = true;
+                            shift.setRoom(rooms.get(k));
+
+                            System.out.println("Rummet er sat til " + shift.toString());
+                        }
+                    }
+                }
+            } else {
+                System.out.println(rooms.get(k).toString() + " er lukket");
+            }
         }
     }
 
+    private String changeDate(String startDato) {
 
+        int year = Integer.parseInt(startDato.substring(0, 4));
+        int month = Integer.parseInt(startDato.substring(5, 7));
+        int day = Integer.parseInt(startDato.substring(8));
+
+        int daysInMonth = 0;
+
+        switch (month) {
+            case 1:
+                daysInMonth = 31;
+                break;
+            case 2:
+                daysInMonth = (year % 4 == 0) && (year % 100 != 0)
+                        || (year % 400 == 0) ? 29 : 28;
+                break;
+            case 3:
+                daysInMonth = 31;
+                break;
+            case 4:
+                daysInMonth = 30;
+                break;
+            case 5:
+                daysInMonth = 31;
+                break;
+            case 6:
+                daysInMonth = 30;
+                break;
+            case 7:
+                daysInMonth = 31;
+                break;
+            case 8:
+                daysInMonth = 31;
+                break;
+            case 9:
+                daysInMonth = 30;
+                break;
+            case 10:
+                daysInMonth = 31;
+                break;
+            case 11:
+                daysInMonth = 30;
+                break;
+            case 12:
+                daysInMonth = 31;
+                break;
+            default:
+                daysInMonth = 30;
+        }
+
+        if (day < daysInMonth) {
+            day++;
+
+        } else if (day == daysInMonth) {
+            day = 1;
+
+            if (month < 12) {
+                month++;
+
+            } else {
+                month = 1;
+                year++;
+            }
+        } else {
+            System.out.println("Du prøver at lave en dag som ikke er mulig. " + day);
+        }
+
+        if (day < 10 && month < 10) {
+            startDato = year + "-0" + month + "-0" + day;
+        } else if (day < 10) {
+            startDato = year + "-" + month + "-0" + day;
+        } else if (month < 10) {
+            startDato = year + "-0" + month + "-" + day;
+        } else {
+            startDato = year + "-" + month + "-" + day;
+        }
+
+        return startDato;
+
+    }
 }

@@ -5,23 +5,26 @@
  */
 package view;
 
+import control.CreateShow;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import model.Shift;
+import view.create.CreateWeek;
 
 /**
  *
  * @author Andreas
  */
-public class Homepage extends JPanel{
-    
+public class Homepage extends JPanel {
+
     public Homepage(JFrame jf, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 
@@ -35,6 +38,7 @@ public class Homepage extends JPanel{
         //Midlertidligt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         JButton ugeplaneOversigt = new JButton("Vis uger");
         pane.add(ugeplaneOversigt);
+
         ugeplaneOversigt.addActionListener(new ActionListener() {
 
             @Override
@@ -49,6 +53,16 @@ public class Homepage extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                CreateShow newWeek = new CreateShow();
+                ArrayList<ArrayList<Shift>> ugeplan = newWeek.createWeek("2015-05-05");
+                CreateWeek cw = new CreateWeek("Opret ugeplan", jtp);
+
+                for (int i = 0; i < ugeplan.size(); i++) {
+                    for (int j = 0; j < ugeplan.get(i).size(); j++) {
+                        cw.getTextArea().setText(ugeplan.get(i).get(j).getStaff().getFirstName());
+                    }
+                }
                 jtp.setSelectedIndex(1);
             }
         });
