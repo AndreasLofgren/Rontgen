@@ -101,7 +101,7 @@ public class EditCompetence extends JPanel {
         JLabel vagt = new JLabel("Vagt");
         checks.add(vagt);
         
-        Competence competence = new Competence("MR");
+//        Competence competence = new Competence("MR");
 
         JButton gem = new JButton("Gem");
         panelSouth.add(gem);

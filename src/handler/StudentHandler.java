@@ -21,9 +21,8 @@ public class StudentHandler {
 
     public ArrayList<Student> getStudent() {
         studentResult = new ArrayList<>();
-
+        String sql = "Select * From student";
         try {
-            String sql = "Select * From student";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -35,6 +34,7 @@ public class StudentHandler {
                 studentResult.add(s1);
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
         return studentResult;

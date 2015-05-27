@@ -48,7 +48,8 @@ public class AbsenceHandler {
 
     public ArrayList<Absence> getAbsence(String firstDay, String lastDay) {
         absenceResult = new ArrayList<>();
-        String sql = "Select * From absence where dayStart >= '" + firstDay + "' and dayEnd <= '" + lastDay + "';";
+        String sql = "Select * From absence where dayStart >= '" + firstDay
+                + "' and dayEnd <= '" + lastDay;
         try {
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
@@ -96,24 +97,30 @@ public class AbsenceHandler {
         return absenceResult;
     }
 
-    public void insertAbsence(int id, Staff staff) {
+    public void insertAbsence(Absence absence) {
+        String sql = "INSERT INTO Absence VALUES (" + absence.getDayStart()
+                + ", " + absence.getDayEnd() + ", " + absence.getStaff().getId()
+                + ")";
         try {
-            String sql = "INSERT INTO Absence VALUES (" + id + ", " + staff.getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
-    public void updateAbsence(String newdayStart, String newdayEnd, int newStaffId, int uniqueStaffId) {
+    public void updateAbsence(Absence absence, int id) {
+        String sql = " UPDATE absence SET dayStart=" + absence.getDayStart()
+                + " dayEnd=" + absence.getDayEnd() + " staffId="
+                + absence.getStaff().getId() + " WHERE id =" + id;
         try {
-            String sql = " UPDATE absence SET dayStart=" + newdayStart + " dayEnd=" + newdayEnd + " staffId=" + newStaffId + " WHERE staffId =" + uniqueStaffId;
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }

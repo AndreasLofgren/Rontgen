@@ -27,8 +27,8 @@ public class MessageHandler {
 
     public ArrayList<Message> getMessage() {
         messageResult = new ArrayList<>();
+        String sql = "Select * from message";
         try {
-            String sql = "Select * from message";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -41,34 +41,37 @@ public class MessageHandler {
             }
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
 
         }
         return messageResult;
     }
 
-    public void insertMesssage(String description, Staff staff) {
+    public void insertMesssage(Message message) {
+        String sql = "INSERT INTO Message VALUES (" + message.getDescription()
+                + ", " + message.getStaff().getId() + ")";
         try {
-            String sql = "INSERT INTO Message VALUES (" + description + ", "
-                    + staff.getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
-    public void updateMessage(String newdescription, int newstaffId,
-            String uniquestaffId) {
+    public void updateMessage(Message message, int id) {
+        String sql = " UPDATE Message SET description = " + message.getDescription()
+                + " , staffId = " + message.getStaff().getId() + " WHERE id ="
+                + id;
         try {
-            String sql = " UPDATE Message SET description=" + newdescription
-                    + " , staffId=" + newstaffId + " WHERE staffId="
-                    + uniquestaffId + ";";
+
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }

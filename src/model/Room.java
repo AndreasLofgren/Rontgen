@@ -6,16 +6,21 @@ package model;
  */
 public class Room {
 
-    private String id;
+    private int id;
+    private String name;
     private String type;
     private String status;
     private int minStaffAmount;
     private int maxStaffAmount;
     private String validFrom;
 
-    public Room(String id, String type, String status, int minStaffAmount,
-            int maxStaffAmount, String validFrom) {
+    public Room(int id) {
         this.id = id;
+    }
+
+    public Room(int id, String name, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
+        this.id = id;
+        this.name = name;
         this.type = type;
         this.status = status;
         this.minStaffAmount = minStaffAmount;
@@ -23,16 +28,20 @@ public class Room {
         this.validFrom = validFrom;
     }
 
-    public Room(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -77,7 +86,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" + "id=" + id + ", type=" + type + ", status=" + status + ", minStaffAmount=" + minStaffAmount + ", maxStaffAmount=" + maxStaffAmount + ", validFrom=" + validFrom + '}';
+        return "Room{" + "id=" + id + ", name=" + name + ", type=" + type + ", status=" + status + ", minStaffAmount=" + minStaffAmount + ", maxStaffAmount=" + maxStaffAmount + ", validFrom=" + validFrom + '}';
     }
-
 }

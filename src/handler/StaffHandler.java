@@ -22,9 +22,8 @@ public class StaffHandler {
 
     public ArrayList<Staff> getStaff() {
         staffResult = new ArrayList<>();
-
+        String sql = "Select * From staff";
         try {
-            String sql = "Select * From staff";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -39,6 +38,7 @@ public class StaffHandler {
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
         return staffResult;
@@ -46,9 +46,8 @@ public class StaffHandler {
 
     public ArrayList<Staff> getStaffForToday(String date) {
         staffResult = new ArrayList<>();
-
+        String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = " + date + ")";
         try {
-            String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = " + date + ");";
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -63,34 +62,35 @@ public class StaffHandler {
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
         return staffResult;
     }
 
-    public void insertStaff(int id, String firstname, String lastname,
-            String nickname) {
+    public void insertStaff(Staff staff) {
+        String sql = "INSERT INTO Staff VALUES(" + staff.getId() + ", " + staff.getFirstName()
+                + ", " + staff.getLastName() + "," + staff.getNickname() + ")";
         try {
-            String sql = "INSERT INTO Staff VALUES(" + id + ", " + firstname
-                    + ", " + lastname + "," + nickname + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
-    public void updateStaff(int newId, String newfirstName, String newlastName,
-            String newnickname, String uniqueId) {
+    public void updateStaff(Staff staff, int id) {
+        String sql = " UPDATE Staff SET Id = " + staff.getId() + " , firstName = "
+                + staff.getFirstName() + " , lastName = " + staff.getLastName() + " , nickname = "
+                + staff.getNickname() + " WHERE id = " + id;
         try {
-            String sql = " UPDATE Staff SET Id=" + newId + " , firstName="
-                    + newfirstName + " , lastName=" + newlastName + " , nickname="
-                    + newnickname + " WHERE Id= " + uniqueId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }

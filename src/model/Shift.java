@@ -7,6 +7,7 @@ package model;
 public class Shift {
 
     private int id;
+    private String type;
     private String date;
     private String shiftStart;
     private String shiftEnd;
@@ -18,17 +19,16 @@ public class Shift {
         this.date = date;
     }
 
-    
-    public Shift(int id, String date, String shiftStart, String shiftEnd, String comment,
-            Staff staff, Room room) {
+    public Shift(int id, String type, String date, String shiftStart,
+            String shiftEnd, Staff staff, Room room, String comment) {
         this.id = id;
+        this.type = type;
         this.date = date;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
-        this.comment = comment;
         this.staff = staff;
         this.room = room;
-
+        this.comment = comment;
     }
 
     public int getId() {
@@ -37,6 +37,14 @@ public class Shift {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDate() {

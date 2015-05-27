@@ -104,7 +104,7 @@ public class CreateShow {
                 for (int i = 0; i < shifts.size() && count < rooms.get(k).getMinStaffAmount(); i++) {
 
 //                    System.out.println("Vagt: " + shifts.get(i));
-                    if (i != 0 && shifts.get(i - 1).getRoom() != null && shifts.get(i - 1).getRoom().getId().equals(rooms.get(k).getId())) {
+                    if (i != 0 && shifts.get(i - 1).getRoom() != null && shifts.get(i - 1).getRoom().getName().equals(rooms.get(k).getName())) {
                         count++;
                     }
                 }
@@ -115,7 +115,7 @@ public class CreateShow {
 
                         System.out.println("Kompetence: " + aComps.get(l).toString());
 
-                        if (rooms.get(k).getType().equals(aComps.get(l).getCompetance().getSkill())) {
+                        if (rooms.get(k).getType().equals(aComps.get(l).getCompetance().getName())) {
                             foundRoom = true;
                             shift.setRoom(rooms.get(k));
 

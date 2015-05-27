@@ -24,20 +24,18 @@ public class ActualCompetenceHandler {
     public ArrayList<ActualCompetence> getActualCompetance() {
         actualCompetanceResult = new ArrayList<>();
         String sql = "Select * from actualcompetence";
-        
         try {
-            
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 String expirationDate = rs.getString("expirationDate");
-
-                String navn = rs.getString("navn");
+                int competenceId = rs.getInt("competenceId");
                 int staffId = rs.getInt("staffId");
 
                 ActualCompetence a1 = new ActualCompetence(expirationDate,
-                        new Competence(navn), new Staff(staffId));
+                        new Competence(competenceId), new Staff(staffId));
+
                 actualCompetanceResult.add(a1);
             }
         } catch (SQLException ex) {
@@ -50,18 +48,17 @@ public class ActualCompetenceHandler {
     public ArrayList<ActualCompetence> getActualCompetance(int id) {
         actualCompetanceResult = new ArrayList<>();
         String sql = "Select * from actualcompetence where staffId = " + id;
-        
         try {
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 String expirationDate = rs.getString("expirationDate");
-                String navn = rs.getString("navn");
+                int competenceId = rs.getInt("competenceId");
                 int staffId = rs.getInt("staffId");
 
                 ActualCompetence a1 = new ActualCompetence(expirationDate,
-                        new Competence(navn), new Staff(staffId));
+                        new Competence(competenceId), new Staff(staffId));
                 actualCompetanceResult.add(a1);
             }
         } catch (SQLException ex) {
@@ -71,30 +68,31 @@ public class ActualCompetenceHandler {
         return actualCompetanceResult;
     }
 
-    public void insertActualCompetance(String expirationDate,
-            Competence competence, Staff staff) {
+    public void insertActualCompetance(ActualCompetence aComp) {
+        String sql = " INSERT INTO ActualCompentence VALUES ("
+                + aComp.getExpirationDate() + ", " + aComp.getCompetance().getId()
+                + ", " + aComp.getStaff().getId() + ")";
         try {
-            String sql = " INSERT INTO ActualCompentence VALUES ("
-                    + expirationDate + ", " + competence.getSkill() + ", "
-                    + staff.getId() + ");";
             Statement stmt = dbhandler.getStmt();
             stmt.executeQuery(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
-    public void updateAcutualCompetance(String newExpirationDate,
-            String newName, int newStaffId, int uniqueStaffId) {
+    public void updateAcutualCompetance(ActualCompetence aComp, int id) {
+        String sql = " UPDATE actualcCompentence SET expirationDate = "
+                + aComp.getExpirationDate() + " , competenceId = "
+                + aComp.getCompetance().getId() + " , staffId = "
+                + aComp.getStaff().getId() + " WHERE id= " + id;
         try {
-            String sql = " UPDATE actualcCompentence SET skill="
-                    + newExpirationDate + " , roomId=" + newName + " , staffId="
-                    + newStaffId + " WHERE skill= " + uniqueStaffId + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }

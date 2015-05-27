@@ -14,10 +14,10 @@ import model.Staff;
  */
 public class Statistic {
 
-    public ArrayList<ArrayList<Shift>> createDagsvagt(String dayStart, String dayEnd) {
+    public ArrayList<ArrayList<Shift>> createDagsvagt(String type) {
 
         ShiftHandler sh = new ShiftHandler();
-        ArrayList<Shift> shifts = sh.getShift(dayStart, dayEnd);
+        ArrayList<Shift> shifts = sh.getShiftByType(type);
 
         StaffHandler st = new StaffHandler();
         ArrayList<Staff> staffs = st.getStaff();
@@ -85,10 +85,10 @@ public class Statistic {
         return dagsVagt;
     }
 
-    public ArrayList<Shift> createVagt(String dayStart, String dayEnd) {
+    public ArrayList<Shift> createVagt(String type) {
 
         ShiftHandler sh = new ShiftHandler();
-        ArrayList<Shift> shifts = sh.getShift(dayStart, dayEnd);
+        ArrayList<Shift> shifts = sh.getShiftByType(type);
 
         StaffHandler st = new StaffHandler();
         ArrayList<Staff> staffs = st.getStaff();
@@ -153,16 +153,11 @@ public class Statistic {
                                 absences.add(newAbsence);
                                 newAbsence.add(absence.get(i));
                             }
-
                         }
-
                     }
                 }
-
             }
-
         }
         return absences;
     }
-
 }

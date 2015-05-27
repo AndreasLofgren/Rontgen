@@ -22,50 +22,53 @@ public class CompetenceHandler {
 
     public ArrayList<Competence> getCompetance() {
         competenceResult = new ArrayList<>();
-
+        String sql = "Select * From competence";
         try {
-            String sql = "Select * From competence";
+
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String skill = rs.getString("navn");
-                String roomId = rs.getString("roomId");
+                int roomId = rs.getInt("roomId");
 
-                Competence c2 = new Competence(skill, new Room(roomId));
-                competenceResult.add(c2);
+                Competence c1 = new Competence(id, skill, new Room(roomId));
+                competenceResult.add(c1);
 
             }
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
         return competenceResult;
     }
 
-    public void insertCompetances(String skill, Room room) {
+    public void insertCompetances(Competence competence) {
+        String sql = " INSERT INTO Compentences VALUES (" + competence.getId()
+                + ", " + competence.getName() + ", " + competence.getRoom().getId()
+                + ")";
         try {
-            String sql = " INSERT INTO Compentences VALUES (" + skill + ", "
-                    + room.getId() + ");";
             Statement stmnt = dbhandler.getStmt();
             stmnt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
     }
 
-    public void updateCompetance(String newSkill, Room room,
-            String uniqueSkill) {
+    public void updateCompetance(Competence competence, int id) {
+        String sql = " UPDATE compentences SET id = " + competence.getId()
+                + ", name = " + competence.getName() + " , roomId = "
+                + competence.getRoom().getId() + " WHERE skill=" + id;
         try {
-            String sql = " UPDATE compentences SET skill=" + newSkill
-                    + " , roomId= " + room.getId()+ " WHERE skill=" + uniqueSkill
-                    + ";";
             Statement stmt = dbhandler.getStmt();
             stmt.executeUpdate(sql);
 
         } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex);
         }
-
     }
 }

@@ -11,34 +11,34 @@ import model.Employee;
  * @author stine
  */
 public class EmployeeHandler {
-    
+
     private DBHandler dbhandler;
     private ArrayList<Employee> employeeResult;
-    
-    public EmployeeHandler(){
+
+    public EmployeeHandler() {
         dbhandler = DBHandler.getInstance();
     }
-    
-    public ArrayList<Employee> getEmployee(){
+
+    public ArrayList<Employee> getEmployee() {
         employeeResult = new ArrayList<>();
-        
-         try {
-            String sql = "Select * From employee LEFT JOIN Occupation ON employee.id = occupation.staffId";
+        String sql = "Select * From employee LEFT JOIN Occupation ON employee.ocupationId = occupation.id";
+        try {
             Statement stmt = dbhandler.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
-            
-        while(rs.next()) {
-            int id = rs.getInt("id");
-            int tlf = rs.getInt("tlf");
-            int mobil = rs.getInt("mobil");
-            String mail = rs.getString("mail");
-            String occupation = rs.getString("occupation");
-            
-            Employee e1 = new Employee(id, tlf, mobil, mail, occupation);
-            employeeResult.add(e1);
-        }
-            
-         }catch (SQLException ex) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int tlf = rs.getInt("tlf");
+                int mobil = rs.getInt("mobil");
+                String mail = rs.getString("mail");
+                String occupation = rs.getString("occupation");
+
+                Employee e1 = new Employee(id, tlf, mobil, mail, occupation);
+                employeeResult.add(e1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(sql);
             System.out.println("SQLException" + ex.getMessage());
         }
         return employeeResult;

@@ -82,7 +82,7 @@ public class ShowCompetence extends JPanel {
         competenceList = ch.getCompetance();
         
         for (int i = 0; i < competenceList.size(); i++) {
-            kompetenceList.addItem(competenceList.get(i).getSkill());
+            kompetenceList.addItem(competenceList.get(i).getName());
         }
 
         JTextField fornyelsesInfo = new JTextField();

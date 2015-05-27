@@ -92,7 +92,7 @@ public class ShowStatistic extends JPanel {
         rumcombobox.addItem("Alle");
         for (int i = 0; i < rum.size(); i++) {
 
-            rumcombobox.addItem(rum.get(i).getId());
+            rumcombobox.addItem(rum.get(i).getName());
         }
 
         JLabel statstart = new JLabel("Startdato");
@@ -185,7 +185,6 @@ public class ShowStatistic extends JPanel {
                 for (int i = 1; i <= daysInMonth; i++) {
                     startdaycombobox.addItem(i);
                 }
-
             }
         });
 
@@ -297,7 +296,6 @@ public class ShowStatistic extends JPanel {
                 for (int i = 1; i <= daysInMonth; i++) {
                     slutdaycombobox.addItem(i);
                 }
-
             }
         });
 
@@ -345,8 +343,7 @@ public class ShowStatistic extends JPanel {
 
                 switch (typecombobox.getSelectedIndex()) {
                     case 0:
-                        ArrayList<ArrayList<Shift>> dagsVagt = metoder.createDagsvagt("7:30:00",
-                                "15:30:00");
+                        ArrayList<ArrayList<Shift>> dagsVagt = metoder.createDagsvagt("dagsvagt");
 
                         if (dagsVagt.isEmpty()) {
                             statestiktekst.setText("Ingen dagsvagter i denne periode");
@@ -360,15 +357,14 @@ public class ShowStatistic extends JPanel {
                                             + " "
                                             + dagsVagt.get(i).get(j).getStaff().getLastName()
                                             + "\n Antal vagter i "
-                                            + dagsVagt.get(i).get(j).getRoom().getId()
+                                            + dagsVagt.get(i).get(j).getRoom().getName()
                                             + ": " + dagsVagt.get(i).size());
                                 }
                             }
                         }
                         break;
                     case 1:
-                        ArrayList<Shift> aftenVagt = metoder.createVagt("15:30:00",
-                                "23:30:00");
+                        ArrayList<Shift> aftenVagt = metoder.createVagt("aftenvagt");
 
                         if (aftenVagt.isEmpty()) {
                             statestiktekst.setText("Intet aftenvagt i denne periode");
@@ -381,14 +377,13 @@ public class ShowStatistic extends JPanel {
                                         + " "
                                         + aftenVagt.get(i).getStaff().getLastName()
                                         + "\n Antal vagter i "
-                                        + aftenVagt.get(i).getRoom().getId()
+                                        + aftenVagt.get(i).getRoom().getName()
                                         + ": " + aftenVagt.size());
                             }
                         }
                         break;
                     case 2:
-                        ArrayList<Shift> natteVagt = metoder.createVagt("23:30:00",
-                                "7:30:00");
+                        ArrayList<Shift> natteVagt = metoder.createVagt("nattevagt");
 
                         if (natteVagt.isEmpty()) {
                             statestiktekst.setText("Inngen nattevagt i denne periode");
@@ -401,7 +396,7 @@ public class ShowStatistic extends JPanel {
                                         + " "
                                         + natteVagt.get(i).getStaff().getLastName()
                                         + "\n Antal vagter i "
-                                        + natteVagt.get(i).getRoom().getId()
+                                        + natteVagt.get(i).getRoom().getName()
                                         + ": " + natteVagt.size());
                             }
                         }
@@ -423,7 +418,6 @@ public class ShowStatistic extends JPanel {
                                             + fravaer.get(i).get(j).getStaff().getLastName()
                                             + "\n Fravær: " + fravaer.get(i).size());
                                 }
-
                             }
                         }
                         break;
@@ -450,5 +444,4 @@ public class ShowStatistic extends JPanel {
         );
         statestikSouth.add(tilbage33);
     }
-
 }
