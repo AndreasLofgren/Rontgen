@@ -5,7 +5,10 @@
  */
 package control;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Shift;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,33 +47,19 @@ public class CreateShowTest {
      */
     @org.junit.Test
     public void testCreateWeek() {
-        System.out.println("createWeek");
-        String startDato = "";
-        CreateShow instance = new CreateShow();
-        ArrayList<ArrayList<Shift>> expResult = null;
-        ArrayList<ArrayList<Shift>> result = instance.createWeek(startDato);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+            System.out.println("createWeek");
+            String startDato = "";
+            CreateShow instance = new CreateShow();
+            ArrayList<ArrayList<Shift>> expResult = null;
+            ArrayList<ArrayList<Shift>> result = instance.createWeek(startDato);
+            assertEquals(expResult, result);
+            fail("test not done yet");
+        } catch (FileNotFoundException ex) {
+            fail("Exception: "+ex.getLocalizedMessage());
+        }
     }
 
-    /**
-     * Test of showWeek method, of class CreateShow.
-     */
-    @org.junit.Test
-    public void testShowWeek() {
-        System.out.println("showWeek");
-        String monDate = "";
-        String tuesDate = "";
-        String wednesDate = "";
-        String thursDate = "";
-        String friDate = "";
-        String saturDate = "";
-        String sunDate = "";
-        CreateShow instance = new CreateShow();
-        instance.showWeek(monDate, tuesDate, wednesDate, thursDate, friDate, saturDate, sunDate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   
     
 }

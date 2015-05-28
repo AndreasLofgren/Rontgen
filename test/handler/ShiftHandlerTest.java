@@ -72,7 +72,7 @@ public class ShiftHandlerTest {
     public void testGetShift_String() {
         ShiftHandler sh2 = new ShiftHandler();
         String date = "2015-01-12";
-        ArrayList<Shift> list = sh2.getShift(date);
+        ArrayList<Shift> list = sh2.getShiftByDate(date);
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
         String sql = "Select count(*) From shift WHERE dates = " + date;
@@ -94,12 +94,11 @@ public class ShiftHandlerTest {
     @Test
     public void testGetShift_String_String() {
         ShiftHandler sh3 = new ShiftHandler();
-        String shiftStart = "7:30:00";
-        String shiftEnd = "15:30:00";
-        ArrayList<Shift> list = sh3.getShift(shiftStart, shiftEnd);
+        String type = "dagsvagt";
+        ArrayList<Shift> list = sh3.getShiftByType(type);
         int result = list.size();
         DBHandler dbh = DBHandler.getInstance();
-        String sql = "Select count(*) from shift WHERE shiftStart >= '" + shiftStart + "' AND shiftStart < '" + shiftEnd + "';";
+        String sql = "Select count(*) from shift WHERE type = '" + type + "';";
         try {
             Statement stmt = dbh.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
@@ -113,19 +112,19 @@ public class ShiftHandlerTest {
         }
     }
 
-    /**
-     * Test of getShift method, of class ShiftHandler.
-     */
-    @Test
-    public void testGetShift_int() {
-        System.out.println("getShift");
-        int sId = 0;
-        ShiftHandler instance = new ShiftHandler();
-        ArrayList<Shift> expResult = null;
-        ArrayList<Shift> result = instance.getShift(sId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    /**
+//     * Test of getShift method, of class ShiftHandler.
+//     */
+//    @Test
+//    public void testGetShift_int() {
+//        System.out.println("getShift");
+//        int sId = 0;
+//        ShiftHandler instance = new ShiftHandler();
+//        ArrayList<Shift> expResult = null;
+//        ArrayList<Shift> result = instance.getShift(sId);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
 }
