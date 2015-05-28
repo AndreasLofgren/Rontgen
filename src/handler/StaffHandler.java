@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,10 +17,18 @@ public class StaffHandler {
     private DBHandler dbhandler;
     private ArrayList<Staff> staffResult;
 
-    public StaffHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public StaffHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Staff> getStaff() {
         staffResult = new ArrayList<>();
         String sql = "Select * From staff";
@@ -44,6 +53,11 @@ public class StaffHandler {
         return staffResult;
     }
 
+    /**
+     *
+     * @param date
+     * @return
+     */
     public ArrayList<Staff> getStaffForToday(String date) {
         staffResult = new ArrayList<>();
         String sql = "select * from staff where id NOT IN (select staffId from absence where dayEnd = null OR dayEnd = " + date + ")";
@@ -68,6 +82,10 @@ public class StaffHandler {
         return staffResult;
     }
 
+    /**
+     *
+     * @param staff
+     */
     public void insertStaff(Staff staff) {
         String sql = "INSERT INTO Staff VALUES(" + staff.getId() + ", " + staff.getFirstName()
                 + ", " + staff.getLastName() + "," + staff.getNickname() + ")";
@@ -81,6 +99,11 @@ public class StaffHandler {
         }
     }
 
+    /**
+     *
+     * @param staff
+     * @param id
+     */
     public void updateStaff(Staff staff, int id) {
         String sql = " UPDATE Staff SET Id = " + staff.getId() + " , firstName = "
                 + staff.getFirstName() + " , lastName = " + staff.getLastName() + " , nickname = "

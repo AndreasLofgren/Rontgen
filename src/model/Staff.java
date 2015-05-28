@@ -11,10 +11,21 @@ public class Staff {
     private String lastName;
     private String nickname;
 
+    /**
+     *
+     * @param id
+     */
     public Staff(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param nickname
+     */
     public Staff(int id, String firstName, String lastName, String nickname) {
         this.id = id;
         this.firstName = firstName;
@@ -23,34 +34,66 @@ public class Staff {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     *
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     *
+     * @param lastName
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNickname() {
         return nickname;
     }
 
+    /**
+     *
+     * @param nickname
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

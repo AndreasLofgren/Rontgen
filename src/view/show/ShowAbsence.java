@@ -21,6 +21,10 @@ import javax.swing.JTabbedPane;
  */
 public class ShowAbsence extends JPanel {
 
+    /**
+     *
+     * @param jtp
+     */
     public ShowAbsence(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 

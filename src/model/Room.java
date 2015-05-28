@@ -14,10 +14,24 @@ public class Room {
     private int maxStaffAmount;
     private String validFrom;
 
+    /**
+     *
+     * @param id
+     */
     public Room(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param type
+     * @param status
+     * @param minStaffAmount
+     * @param maxStaffAmount
+     * @param validFrom
+     */
     public Room(int id, String name, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
         this.id = id;
         this.name = name;
@@ -28,58 +42,114 @@ public class Room {
         this.validFrom = validFrom;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMinStaffAmount() {
         return minStaffAmount;
     }
 
+    /**
+     *
+     * @param minStaffAmount
+     */
     public void setMinStaffAmount(int minStaffAmount) {
         this.minStaffAmount = minStaffAmount;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxStaffAmount() {
         return maxStaffAmount;
     }
 
+    /**
+     *
+     * @param maxStaffAmount
+     */
     public void setMaxStaffAmount(int maxStaffAmount) {
         this.maxStaffAmount = maxStaffAmount;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getValidFrom() {
         return validFrom;
     }
 
+    /**
+     *
+     * @param validFrom
+     */
     public void setValidFrom(String validFrom) {
         this.validFrom = validFrom;
     }

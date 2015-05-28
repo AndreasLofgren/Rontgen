@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import view.create.CreateStaff;
 import view.create.CreateCompetence;
@@ -32,6 +33,7 @@ public class Xray extends JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try{
         JFrame jf = new JFrame();
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -112,6 +114,9 @@ public class Xray extends JFrame {
         jf.pack();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex, "Fejl", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

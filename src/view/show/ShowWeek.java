@@ -17,6 +17,10 @@ import javax.swing.JTextArea;
  */
 public class ShowWeek extends JPanel {
 
+    /**
+     *
+     * @param jtp
+     */
     public ShowWeek(JTabbedPane jtp) {
 
         this.setLayout(new BorderLayout());

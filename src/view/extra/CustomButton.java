@@ -19,6 +19,11 @@ public class CustomButton extends JButton {
     JButton custom = new JButton();
     JTabbedPane jtp = new JTabbedPane();
     
+    /**
+     *
+     * @param name
+     * @param index
+     */
     public void createNavBut(String name, int index) {
         
         custom.addActionListener(new ActionListener() {

@@ -23,6 +23,11 @@ import javax.swing.JTextArea;
 public class CreateWeek extends JPanel {
     JTextArea weekplanInfo = new JTextArea();
     
+    /**
+     *
+     * @param opret_ugeplan
+     * @param jtp
+     */
     public CreateWeek(String opret_ugeplan, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
         
@@ -76,6 +81,10 @@ public class CreateWeek extends JPanel {
         CreateweekplanSouth.add(tilbage);
     }
     
+    /**
+     *
+     * @return
+     */
     public JTextArea getTextArea() {
         return weekplanInfo;
     }

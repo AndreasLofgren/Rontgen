@@ -3,6 +3,7 @@ package control;
 import handler.ActualCompetenceHandler;
 import handler.RoomHandler;
 import handler.StaffHandler;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import model.ActualCompetence;
 import model.Room;
@@ -15,17 +16,32 @@ import model.Staff;
  */
 public class CreateShow {
 
-    StaffHandler sh = new StaffHandler();
-    RoomHandler rh = new RoomHandler();
+    private StaffHandler sh;
+    private RoomHandler rh;
 
-    ArrayList<ArrayList<Shift>> shifts = new ArrayList<>();
-    ArrayList<Room> rooms = rh.getRoom();
+    private ArrayList<ArrayList<Shift>> shifts;
+    private ArrayList<Room> rooms;
 
-    public CreateShow() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public CreateShow() throws FileNotFoundException {
+        sh = new StaffHandler();
+        rh = new RoomHandler();
+
+        shifts = new ArrayList<>();
+        rooms = rh.getRoom();
 
     }
 
-    public ArrayList<ArrayList<Shift>> createWeek(String startDato) {
+    /**
+     *
+     * @param startDato
+     * @return
+     * @throws FileNotFoundException
+     */
+    public ArrayList<ArrayList<Shift>> createWeek(String startDato) throws FileNotFoundException {
 
         ArrayList<Staff> staffs = sh.getStaffForToday(startDato);
         System.out.println("Størrelse på uge: " + shifts.size());

@@ -5,6 +5,7 @@
  */
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,10 +22,18 @@ public class MessageHandler {
     private DBHandler dbhandler;
     private ArrayList<Message> messageResult;
 
-    public MessageHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public MessageHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Message> getMessage() {
         messageResult = new ArrayList<>();
         String sql = "Select * from message";
@@ -48,6 +57,10 @@ public class MessageHandler {
         return messageResult;
     }
 
+    /**
+     *
+     * @param message
+     */
     public void insertMesssage(Message message) {
         String sql = "INSERT INTO Message VALUES (" + message.getDescription()
                 + ", " + message.getStaff().getId() + ")";
@@ -61,6 +74,11 @@ public class MessageHandler {
         }
     }
 
+    /**
+     *
+     * @param message
+     * @param id
+     */
     public void updateMessage(Message message, int id) {
         String sql = " UPDATE Message SET description = " + message.getDescription()
                 + " , staffId = " + message.getStaff().getId() + " WHERE id ="

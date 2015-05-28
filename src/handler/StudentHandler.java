@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,10 +16,18 @@ public class StudentHandler {
     private DBHandler dbhandler;
     private ArrayList<Student> studentResult;
 
-    public StudentHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public StudentHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Student> getStudent() {
         studentResult = new ArrayList<>();
         String sql = "Select * From student";

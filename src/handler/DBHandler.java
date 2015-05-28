@@ -17,7 +17,11 @@ public class DBHandler {
     private static DBHandler instance;
     private Statement stmt;
 
-    public DBHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public DBHandler() throws FileNotFoundException {
         String[] params = loadFromFile();
         for (String param : params) {
             System.out.println(param);
@@ -26,14 +30,24 @@ public class DBHandler {
 
     }
 
-    public static DBHandler getInstance() {
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static DBHandler getInstance() throws FileNotFoundException {
         if (instance == null) {
             instance = new DBHandler();
         }
         return instance;
     }
 
-    public String[] loadFromFile() {
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
+    public String[] loadFromFile() throws FileNotFoundException {
         String filename = "Database.ini";
         Scanner textScan;
         String[] params = new String[5];
@@ -53,14 +67,21 @@ public class DBHandler {
             textScan.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
+            throw new FileNotFoundException("Database.ini filen kunne ikke findes. Den skal ligge i dist-mappen.");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Index out of bound: " + e.getMessage());
+            throw new ArrayIndexOutOfBoundsException("Der mangler parametre i database.ini filen");
         } catch (ArrayStoreException e) {
             System.out.println("Wrong object: " + e.getMessage());
+            throw e;
         }
         return params;
     }
 
+    /**
+     *
+     * @param parameter
+     */
     public void startForbindelse(String[] parameter) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -78,6 +99,10 @@ public class DBHandler {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Statement getStmt() {
         return stmt;
     }

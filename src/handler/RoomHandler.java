@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,10 +17,18 @@ public class RoomHandler {
     private ArrayList<Room> roomResult;
     private ArrayList<String> stringResult;
 
-    public RoomHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public RoomHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Room> getRoom() {
         roomResult = new ArrayList<>();
         String sql = "Select * From room";
@@ -47,6 +56,10 @@ public class RoomHandler {
         return roomResult;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getRoomType() {
         stringResult = new ArrayList<>();
         String sql = "select distinct(type) from room";
@@ -67,6 +80,10 @@ public class RoomHandler {
         return stringResult;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getRoomStatus() {
         stringResult = new ArrayList<>();
         String sql = "select distinct(status) from room";
@@ -87,6 +104,10 @@ public class RoomHandler {
         return stringResult;
     }
 
+    /**
+     *
+     * @param room
+     */
     public void insertRoom(Room room) {
         String sql = "INSERT INTO Room VALUES (" + room.getName() + ", "
                 + room.getType() + ", " + room.getStatus() + ", "
@@ -101,6 +122,11 @@ public class RoomHandler {
         }
     }
 
+    /**
+     *
+     * @param room
+     * @param id
+     */
     public void updateRoom(Room room, int id) {
         String sql = "UPDATE room SET name=" + room.getName() + " typ="
                 + room.getType() + " state=" + room.getStatus()

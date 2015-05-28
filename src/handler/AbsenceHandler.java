@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,12 +17,21 @@ public class AbsenceHandler {
     private DBHandler dbhandler;
     private ArrayList<Absence> absenceResult;
 
-    public AbsenceHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public AbsenceHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
     // Henter alle data fra Absence tabellen, omformer til Absence-obj og returnerer en liste med objekterne
-    public ArrayList<Absence> getAbsence() {
+
+    /**
+     *
+     * @return
+     */
+        public ArrayList<Absence> getAbsence() {
         absenceResult = new ArrayList<>();
         String sql = "Select * From absence";
         try {
@@ -46,6 +56,12 @@ public class AbsenceHandler {
         return absenceResult;
     }
 
+    /**
+     *
+     * @param firstDay
+     * @param lastDay
+     * @return
+     */
     public ArrayList<Absence> getAbsence(String firstDay, String lastDay) {
         absenceResult = new ArrayList<>();
         String sql = "Select * From absence where dayStart >= '" + firstDay
@@ -72,6 +88,10 @@ public class AbsenceHandler {
         return absenceResult;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Absence> getCurrentAbsence() {
         absenceResult = new ArrayList<>();
         String sql = "Select * From absence where dayEnd = null OR dayEnd = curdate()";
@@ -97,6 +117,10 @@ public class AbsenceHandler {
         return absenceResult;
     }
 
+    /**
+     *
+     * @param absence
+     */
     public void insertAbsence(Absence absence) {
         String sql = "INSERT INTO Absence VALUES (" + absence.getDayStart()
                 + ", " + absence.getDayEnd() + ", " + absence.getStaff().getId()
@@ -111,6 +135,11 @@ public class AbsenceHandler {
         }
     }
 
+    /**
+     *
+     * @param absence
+     * @param id
+     */
     public void updateAbsence(Absence absence, int id) {
         String sql = " UPDATE absence SET dayStart=" + absence.getDayStart()
                 + " dayEnd=" + absence.getDayEnd() + " staffId="

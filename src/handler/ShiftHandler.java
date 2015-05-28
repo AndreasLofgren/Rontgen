@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,10 +18,18 @@ public class ShiftHandler {
     private DBHandler dbhandler;
     private ArrayList<Shift> shiftResult;
 
-    public ShiftHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public ShiftHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Shift> getShift() {
         shiftResult = new ArrayList<>();
         String sql = "Select * from shift";
@@ -50,6 +59,11 @@ public class ShiftHandler {
         return shiftResult;
     }
 
+    /**
+     *
+     * @param sId
+     * @return
+     */
     public ArrayList<Shift> getShiftById(int sId) {
         shiftResult = new ArrayList<>();
         String sql = "Select * from shift WHERE staffId = " + sId;
@@ -80,6 +94,11 @@ public class ShiftHandler {
         return shiftResult;
     }
 
+    /**
+     *
+     * @param day
+     * @return
+     */
     public ArrayList<Shift> getShiftByDate(String day) {
         shiftResult = new ArrayList<>();
         String sql = "Select * from shift WHERE dates = " + day;
@@ -111,6 +130,11 @@ public class ShiftHandler {
         return shiftResult;
     }
 
+    /**
+     *
+     * @param shiftType
+     * @return
+     */
     public ArrayList<Shift> getShiftByType(String shiftType) {
         shiftResult = new ArrayList<>();
         String sql = "Select * from shift WHERE type = " + shiftType;
@@ -142,6 +166,10 @@ public class ShiftHandler {
         return shiftResult;
     }
 
+    /**
+     *
+     * @param shift
+     */
     public void insertShift(Shift shift) {
         String sql = "INSERT INTO Shift (type, date, shiftStart, shiftEnd, comment, staffId, roomId) "
                 + "VALUES (" + shift.getType() + ", " + shift.getDate() + ", "
@@ -158,6 +186,11 @@ public class ShiftHandler {
         }
     }
 
+    /**
+     *
+     * @param shift
+     * @param id
+     */
     public void updateShift(Shift shift, int id) {
         String sql = " UPDATE shift SET type = " + shift.getType()
                 + " , date = " + shift.getDate() + ", " + " shiftStart = "

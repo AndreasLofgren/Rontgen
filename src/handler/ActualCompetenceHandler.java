@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,10 +18,18 @@ public class ActualCompetenceHandler {
     private DBHandler dbhandler;
     private ArrayList<ActualCompetence> actualCompetanceResult;
 
-    public ActualCompetenceHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public ActualCompetenceHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<ActualCompetence> getActualCompetance() {
         actualCompetanceResult = new ArrayList<>();
         String sql = "Select * from actualcompetence";
@@ -45,6 +54,11 @@ public class ActualCompetenceHandler {
         return actualCompetanceResult;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ArrayList<ActualCompetence> getActualCompetance(int id) {
         actualCompetanceResult = new ArrayList<>();
         String sql = "Select * from actualcompetence where staffId = " + id;
@@ -68,6 +82,10 @@ public class ActualCompetenceHandler {
         return actualCompetanceResult;
     }
 
+    /**
+     *
+     * @param aComp
+     */
     public void insertActualCompetance(ActualCompetence aComp) {
         String sql = " INSERT INTO ActualCompentence VALUES ("
                 + aComp.getExpirationDate() + ", " + aComp.getCompetance().getId()
@@ -82,6 +100,11 @@ public class ActualCompetenceHandler {
         }
     }
 
+    /**
+     *
+     * @param aComp
+     * @param id
+     */
     public void updateAcutualCompetance(ActualCompetence aComp, int id) {
         String sql = " UPDATE actualcCompentence SET expirationDate = "
                 + aComp.getExpirationDate() + " , competenceId = "

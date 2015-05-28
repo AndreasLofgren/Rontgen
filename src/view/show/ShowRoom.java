@@ -22,6 +22,10 @@ import javax.swing.JTextArea;
  */
 public class ShowRoom extends JPanel {
 
+    /**
+     *
+     * @param jtp
+     */
     public ShowRoom(JTabbedPane jtp) {
 
         this.setLayout(new BorderLayout());

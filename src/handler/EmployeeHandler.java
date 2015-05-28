@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,10 +16,18 @@ public class EmployeeHandler {
     private DBHandler dbhandler;
     private ArrayList<Employee> employeeResult;
 
-    public EmployeeHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public EmployeeHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Employee> getEmployee() {
         employeeResult = new ArrayList<>();
         String sql = "Select * From employee LEFT JOIN Occupation ON employee.ocupationId = occupation.id";

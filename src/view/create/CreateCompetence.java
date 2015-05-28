@@ -26,6 +26,10 @@ import model.Room;
  */
 public class CreateCompetence extends JPanel {
 
+    /**
+     *
+     * @param jtp
+     */
     public CreateCompetence(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 
@@ -107,7 +111,7 @@ public class CreateCompetence extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.setSelectedIndex(5);
-                CompetenceHandler ch = new CompetenceHandler();
+                //CompetenceHandler ch = new CompetenceHandler();
 //                ch.insertCompetances(skrivNavn.getText(), new Room(1));
             }
         });

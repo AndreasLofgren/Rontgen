@@ -13,10 +13,12 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -31,7 +33,12 @@ import model.Staff;
  */
 public class ShowStatistic extends JPanel {
 
-    public ShowStatistic(JTabbedPane jtp) {
+    /**
+     *
+     * @param jtp
+     * @throws FileNotFoundException
+     */
+    public ShowStatistic(JTabbedPane jtp) throws FileNotFoundException {
 
         this.setLayout(new BorderLayout());
 
@@ -330,98 +337,103 @@ public class ShowStatistic extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Statistic metoder = new Statistic();
-                System.out.println("Index i combobox: " + typecombobox.getSelectedIndex());
+                try {
+                    Statistic metoder = new Statistic();
+                    System.out.println("Index i combobox: " + typecombobox.getSelectedIndex());
 
-                String startDato = startyearcombobox.getSelectedItem() + ":"
-                        + startmonthcombobox.getSelectedItem() + ":"
-                        + startdaycombobox.getSelectedItem();
+                    String startDato = startyearcombobox.getSelectedItem() + ":"
+                            + startmonthcombobox.getSelectedItem() + ":"
+                            + startdaycombobox.getSelectedItem();
 
-                String slutDato = slutyearcombobox.getSelectedItem() + ":"
-                        + slutmonthcombobox.getSelectedItem() + ":"
-                        + slutdaycombobox.getSelectedItem();
+                    String slutDato = slutyearcombobox.getSelectedItem() + ":"
+                            + slutmonthcombobox.getSelectedItem() + ":"
+                            + slutdaycombobox.getSelectedItem();
 
-                switch (typecombobox.getSelectedIndex()) {
-                    case 0:
-                        ArrayList<ArrayList<Shift>> dagsVagt = metoder.createDagsvagt("dagsvagt");
+                    switch (typecombobox.getSelectedIndex()) {
+                        case 0:
+                            ArrayList<ArrayList<Shift>> dagsVagt = metoder.createDagsvagt("dagsvagt");
 
-                        if (dagsVagt.isEmpty()) {
-                            statestiktekst.setText("Ingen dagsvagter i denne periode");
-                        } else {
-                            for (int i = 0; i < dagsVagt.size(); i++) {
-                                for (int j = 0; j < dagsVagt.get(i).size(); j++) {
+                            if (dagsVagt.isEmpty()) {
+                                statestiktekst.setText("Ingen dagsvagter i denne periode");
+                            } else {
+                                for (int i = 0; i < dagsVagt.size(); i++) {
+                                    for (int j = 0; j < dagsVagt.get(i).size(); j++) {
+                                        statestiktekst.setText(
+                                                "Statistik for d. " + startDato
+                                                + " til d. " + slutDato + ": \n Navn: "
+                                                + dagsVagt.get(i).get(j).getStaff().getFirstName()
+                                                + " "
+                                                + dagsVagt.get(i).get(j).getStaff().getLastName()
+                                                + "\n Antal vagter i "
+                                                + dagsVagt.get(i).get(j).getRoom().getName()
+                                                + ": " + dagsVagt.get(i).size());
+                                    }
+                                }
+                            }
+                            break;
+                        case 1:
+                            ArrayList<Shift> aftenVagt = metoder.createVagt("aftenvagt");
+
+                            if (aftenVagt.isEmpty()) {
+                                statestiktekst.setText("Intet aftenvagt i denne periode");
+                            } else {
+                                for (int i = 0; i < aftenVagt.size(); i++) {
                                     statestiktekst.setText(
                                             "Statistik for d. " + startDato
                                             + " til d. " + slutDato + ": \n Navn: "
-                                            + dagsVagt.get(i).get(j).getStaff().getFirstName()
+                                            + aftenVagt.get(i).getStaff().getFirstName()
                                             + " "
-                                            + dagsVagt.get(i).get(j).getStaff().getLastName()
+                                            + aftenVagt.get(i).getStaff().getLastName()
                                             + "\n Antal vagter i "
-                                            + dagsVagt.get(i).get(j).getRoom().getName()
-                                            + ": " + dagsVagt.get(i).size());
+                                            + aftenVagt.get(i).getRoom().getName()
+                                            + ": " + aftenVagt.size());
                                 }
                             }
-                        }
-                        break;
-                    case 1:
-                        ArrayList<Shift> aftenVagt = metoder.createVagt("aftenvagt");
+                            break;
+                        case 2:
+                            ArrayList<Shift> natteVagt = metoder.createVagt("nattevagt");
 
-                        if (aftenVagt.isEmpty()) {
-                            statestiktekst.setText("Intet aftenvagt i denne periode");
-                        } else {
-                            for (int i = 0; i < aftenVagt.size(); i++) {
-                                statestiktekst.setText(
-                                        "Statistik for d. " + startDato
-                                        + " til d. " + slutDato + ": \n Navn: "
-                                        + aftenVagt.get(i).getStaff().getFirstName()
-                                        + " "
-                                        + aftenVagt.get(i).getStaff().getLastName()
-                                        + "\n Antal vagter i "
-                                        + aftenVagt.get(i).getRoom().getName()
-                                        + ": " + aftenVagt.size());
-                            }
-                        }
-                        break;
-                    case 2:
-                        ArrayList<Shift> natteVagt = metoder.createVagt("nattevagt");
-
-                        if (natteVagt.isEmpty()) {
-                            statestiktekst.setText("Inngen nattevagt i denne periode");
-                        } else {
-                            for (int i = 0; i < natteVagt.size(); i++) {
-                                statestiktekst.setText(
-                                        "Statistik for d. " + startDato
-                                        + " til d. " + slutDato + ": \n Navn: "
-                                        + natteVagt.get(i).getStaff().getFirstName()
-                                        + " "
-                                        + natteVagt.get(i).getStaff().getLastName()
-                                        + "\n Antal vagter i "
-                                        + natteVagt.get(i).getRoom().getName()
-                                        + ": " + natteVagt.size());
-                            }
-                        }
-                        break;
-                    case 3:
-                        ArrayList<ArrayList<Absence>> fravaer = metoder.createfravaer(startDato,
-                                slutDato);
-                        if (fravaer.isEmpty()) {
-                            statestiktekst.setText("Intet fravær i denne periode");
-                        } else {
-
-                            for (int i = 0; i < fravaer.size(); i++) {
-                                for (int j = 0; j < fravaer.get(i).size(); j++) {
+                            if (natteVagt.isEmpty()) {
+                                statestiktekst.setText("Inngen nattevagt i denne periode");
+                            } else {
+                                for (int i = 0; i < natteVagt.size(); i++) {
                                     statestiktekst.setText(
                                             "Statistik for d. " + startDato
-                                            + " til d. " + slutDato + "\n Navn: "
-                                            + fravaer.get(i).get(j).getStaff().getFirstName()
+                                            + " til d. " + slutDato + ": \n Navn: "
+                                            + natteVagt.get(i).getStaff().getFirstName()
                                             + " "
-                                            + fravaer.get(i).get(j).getStaff().getLastName()
-                                            + "\n Fravær: " + fravaer.get(i).size());
+                                            + natteVagt.get(i).getStaff().getLastName()
+                                            + "\n Antal vagter i "
+                                            + natteVagt.get(i).getRoom().getName()
+                                            + ": " + natteVagt.size());
                                 }
                             }
-                        }
-                        break;
+                            break;
+                        case 3:
+                            ArrayList<ArrayList<Absence>> fravaer = metoder.createfravaer(startDato,
+                                    slutDato);
+                            if (fravaer.isEmpty()) {
+                                statestiktekst.setText("Intet fravær i denne periode");
+                            } else {
+
+                                for (int i = 0; i < fravaer.size(); i++) {
+                                    for (int j = 0; j < fravaer.get(i).size(); j++) {
+                                        statestiktekst.setText(
+                                                "Statistik for d. " + startDato
+                                                + " til d. " + slutDato + "\n Navn: "
+                                                + fravaer.get(i).get(j).getStaff().getFirstName()
+                                                + " "
+                                                + fravaer.get(i).get(j).getStaff().getLastName()
+                                                + "\n Fravær: " + fravaer.get(i).size());
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, ex, "Fejl", JOptionPane.ERROR_MESSAGE);
                 }
+
             }
         }
         );
@@ -443,5 +455,6 @@ public class ShowStatistic extends JPanel {
                 }
         );
         statestikSouth.add(tilbage33);
+
     }
 }

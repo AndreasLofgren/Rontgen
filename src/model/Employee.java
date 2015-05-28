@@ -13,11 +13,11 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param id
-     * @param tlf
-     * @param mobil
-     * @param mail
-     * @param occupation
+     * @param id the id of the staff
+     * @param tlf the worknumber
+     * @param mobil the mobilenumber
+     * @param mail the e-mail address
+     * @param occupation the occupation of the staff
      */
     public Employee(int id, int tlf, int mobil, String mail, String occupation) {
         super(id);
@@ -29,14 +29,14 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param tlf
-     * @param mobil
-     * @param mail
-     * @param occupation
-     * @param id
-     * @param firstName
-     * @param lastName
-     * @param nickname
+     * @param tlf the worknumber
+     * @param mobil the mobilenumber
+     * @param mail the e-mail address
+     * @param occupation the occupation of the staff
+     * @param id the id of the staff
+     * @param firstName the first name of the employee
+     * @param lastName the last name of the employee
+     * @param nickname the nickname of the employee
      */
     public Employee(int tlf, int mobil, String mail, String occupation, int id,
             String firstName, String lastName, String nickname) {
@@ -49,7 +49,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @return
+     * @return the worknumber
      */
     public int getTlf() {
         return tlf;
@@ -57,7 +57,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param tlf
+     * @param tlf the worknumber
      */
     public void setTlf(int tlf) {
         this.tlf = tlf;
@@ -65,7 +65,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @return
+     * @return the mobilenumber
      */
     public int getMobil() {
         return mobil;
@@ -73,7 +73,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param mobil
+     * @param mobil the mobilenumber
      */
     public void setMobil(int mobil) {
         this.mobil = mobil;
@@ -81,7 +81,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @return
+     * @return the e-mail address
      */
     public String getMail() {
         return mail;
@@ -89,7 +89,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param mail
+     * @param mail the e-mail address
      */
     public void setMail(String mail) {
         this.mail = mail;
@@ -97,7 +97,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @return
+     * @return the occupation of the staff
      */
     public String getOccupation() {
         return occupation;
@@ -105,7 +105,7 @@ public class Employee extends Staff {
 
     /**
      *
-     * @param occupation
+     * @param occupation the occupation of the staff
      */
     public void setOccupation(String occupation) {
         this.occupation = occupation;

@@ -19,12 +19,20 @@ public class Print implements Printable, Runnable {
 
     private String s = "Test";
 
+    /**
+     *
+     * @param g
+     * @param page
+     */
     public void createPrintObject(Graphics g, int page) {
         s = "Dette er et print " + page;
         g.drawString(s, 20, 20);
 
     }
 
+    /**
+     *
+     */
     public void printClick() {
         PrinterJob job = PrinterJob.getPrinterJob();
         Printable doc = this;
@@ -56,6 +64,10 @@ public class Print implements Printable, Runnable {
         return printResult;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getS() {
         return s;
     }

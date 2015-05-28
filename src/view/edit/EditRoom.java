@@ -19,6 +19,10 @@ import javax.swing.JTextField;
  */
 public class EditRoom extends JPanel {
 
+    /**
+     *
+     * @param jtp
+     */
     public EditRoom(JTabbedPane jtp) {
 
         this.setLayout(new BorderLayout());
@@ -210,7 +214,7 @@ public class EditRoom extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                RoomHandler rh = new RoomHandler();
+                //RoomHandler rh = new RoomHandler();
 //                rh.updateRoom(rumtext.getText(), String.valueOf(typecombo.getSelectedItem()), String.valueOf(statuscombo.getSelectedItem()),
 //                       Integer.parseInt(minbemandtext.getText()), Integer.parseInt(maxbemandtext.getText()), String.valueOf(validYear.getSelectedItem()) + String.valueOf(validMonth.getSelectedItem()) + String.valueOf(validDay.getSelectedItem()), 1 );
                 jtp.setSelectedIndex(4);

@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,10 +17,18 @@ public class CompetenceHandler {
     private DBHandler dbhandler;
     private ArrayList<Competence> competenceResult;
 
-    public CompetenceHandler() {
+    /**
+     *
+     * @throws FileNotFoundException
+     */
+    public CompetenceHandler() throws FileNotFoundException {
         dbhandler = DBHandler.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Competence> getCompetance() {
         competenceResult = new ArrayList<>();
         String sql = "Select * From competence";
@@ -44,6 +53,10 @@ public class CompetenceHandler {
         return competenceResult;
     }
 
+    /**
+     *
+     * @param competence
+     */
     public void insertCompetances(Competence competence) {
         String sql = " INSERT INTO Compentences VALUES (" + competence.getId()
                 + ", " + competence.getName() + ", " + competence.getRoom().getId()
@@ -58,6 +71,11 @@ public class CompetenceHandler {
         }
     }
 
+    /**
+     *
+     * @param competence
+     * @param id
+     */
     public void updateCompetance(Competence competence, int id) {
         String sql = " UPDATE compentences SET id = " + competence.getId()
                 + ", name = " + competence.getName() + " , roomId = "

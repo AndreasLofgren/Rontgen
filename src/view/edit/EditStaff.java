@@ -25,6 +25,11 @@ import javax.swing.JTextArea;
  */
 public class EditStaff extends JPanel {
 
+    /**
+     *
+     * @param opret_medarbejder
+     * @param jtp
+     */
     public EditStaff(String opret_medarbejder, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 
@@ -134,7 +139,7 @@ public class EditStaff extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.setSelectedIndex(3);
-                StaffHandler sh = new StaffHandler();
+                //StaffHandler sh = new StaffHandler();
 //              sh.updateStaff(1, fornavn.getText(), efternavn.getText(), kaldenavn.getText());
             }
         });

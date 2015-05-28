@@ -3,6 +3,7 @@ package control;
 import handler.AbsenceHandler;
 import handler.ShiftHandler;
 import handler.StaffHandler;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import model.Absence;
 import model.Shift;
@@ -14,7 +15,13 @@ import model.Staff;
  */
 public class Statistic {
 
-    public ArrayList<ArrayList<Shift>> createDagsvagt(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     * @throws FileNotFoundException
+     */
+    public ArrayList<ArrayList<Shift>> createDagsvagt(String type) throws FileNotFoundException {
 
         ShiftHandler sh = new ShiftHandler();
         ArrayList<Shift> shifts = sh.getShiftByType(type);
@@ -85,7 +92,13 @@ public class Statistic {
         return dagsVagt;
     }
 
-    public ArrayList<Shift> createVagt(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     * @throws FileNotFoundException
+     */
+    public ArrayList<Shift> createVagt(String type) throws FileNotFoundException {
 
         ShiftHandler sh = new ShiftHandler();
         ArrayList<Shift> shifts = sh.getShiftByType(type);
@@ -115,7 +128,14 @@ public class Statistic {
         return vagt;
     }
 
-    public ArrayList<ArrayList<Absence>> createfravaer(String dayBegyn, String daySlut) {
+    /**
+     *
+     * @param dayBegyn
+     * @param daySlut
+     * @return
+     * @throws FileNotFoundException
+     */
+    public ArrayList<ArrayList<Absence>> createfravaer(String dayBegyn, String daySlut) throws FileNotFoundException {
 
         AbsenceHandler ab = new AbsenceHandler();
         ArrayList<Absence> absence = ab.getAbsence(dayBegyn, daySlut);
