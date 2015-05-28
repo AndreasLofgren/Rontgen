@@ -24,7 +24,7 @@ public class ShowRoom extends JPanel {
 
     /**
      *
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public ShowRoom(JTabbedPane jtp) {
 

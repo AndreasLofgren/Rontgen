@@ -23,7 +23,7 @@ public class ShowAbsence extends JPanel {
 
     /**
      *
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public ShowAbsence(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());

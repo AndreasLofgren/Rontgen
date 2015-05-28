@@ -35,8 +35,8 @@ public class ShowStatistic extends JPanel {
 
     /**
      *
-     * @param jtp
-     * @throws FileNotFoundException
+     * @param jtp the JTabbedPane the JPanel is build on
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public ShowStatistic(JTabbedPane jtp) throws FileNotFoundException {
 

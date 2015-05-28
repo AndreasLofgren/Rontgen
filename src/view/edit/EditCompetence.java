@@ -5,7 +5,6 @@
  */
 package view.edit;
 
-import handler.CompetenceHandler;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -18,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import model.Competence;
-import model.Room;
 
 /**
  *
@@ -29,7 +26,7 @@ public class EditCompetence extends JPanel {
 
     /**
      *
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public EditCompetence(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());

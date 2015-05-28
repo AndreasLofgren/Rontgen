@@ -10,8 +10,8 @@ public class Student extends Staff {
 
     /**
      *
-     * @param module
-     * @param id
+     * @param module the module the student is on
+     * @param id the id of the staff
      */
     public Student(int module, int id) {
         super(id);
@@ -21,11 +21,11 @@ public class Student extends Staff {
 
     /**
      *
-     * @param module
-     * @param id
-     * @param firstName
-     * @param lastName
-     * @param nickname
+     * @param module the module the student is on
+     * @param id the id of the staff
+     * @param firstName the first name of the student
+     * @param lastName the last name of the student
+     * @param nickname the nickname of the student
      */
     public Student(int module, int id, String firstName, String lastName,
             String nickname) {
@@ -35,7 +35,7 @@ public class Student extends Staff {
 
     /**
      *
-     * @return
+     * @return the module the student is on
      */
     public int getModule() {
         return module;
@@ -43,7 +43,7 @@ public class Student extends Staff {
 
     /**
      *
-     * @param module
+     * @param module the module the student is on
      */
     public void setModule(int module) {
         this.module = module;

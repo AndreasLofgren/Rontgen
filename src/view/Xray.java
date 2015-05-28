@@ -46,7 +46,7 @@ public class Xray extends JFrame {
         startside.setPreferredSize(new Dimension(800, 600)); // ændrer tal til variabler
 
         //Oprettelse af ugeplan        
-        CreateWeek ugeplanOpret = new CreateWeek("Opret ugeplan", jtp);
+        CreateWeek ugeplanOpret = new CreateWeek(jtp);
         jtp.add(ugeplanOpret);
         jtp.setTitleAt(1, "Opret ugeplan");
 
@@ -66,7 +66,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(4, "Rum oversigt");
 
         //Vis kompetancer
-        ShowCompetence kompetanceVis = new ShowCompetence("Vis kompetence", jtp);
+        ShowCompetence kompetanceVis = new ShowCompetence(jtp);
         jtp.add(kompetanceVis);
         jtp.setTitleAt(5, "Vis kompetance");
 
@@ -76,7 +76,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(6, "Statistik");
 
         //Opret personale
-        CreateStaff opretMedarbejder = new CreateStaff("Opret personale", jtp);
+        CreateStaff opretMedarbejder = new CreateStaff(jtp);
         jtp.add(opretMedarbejder);
         jtp.setTitleAt(7, "Opret personale");
 
@@ -96,7 +96,7 @@ public class Xray extends JFrame {
         jtp.setTitleAt(10, "Fravær");
 
         //Rediger personale
-        EditStaff redPersonale = new EditStaff("Rediger personale", jtp);
+        EditStaff redPersonale = new EditStaff(jtp);
         jtp.add(redPersonale);
         jtp.setTitleAt(11, "Rediger personale");
 

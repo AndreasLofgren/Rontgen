@@ -19,7 +19,7 @@ public class ShowWeek extends JPanel {
 
     /**
      *
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public ShowWeek(JTabbedPane jtp) {
 

@@ -21,7 +21,7 @@ public class EditRoom extends JPanel {
 
     /**
      *
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public EditRoom(JTabbedPane jtp) {
 

@@ -21,8 +21,8 @@ public class Print implements Printable, Runnable {
 
     /**
      *
-     * @param g
-     * @param page
+     * @param g the graphics object
+     * @param page the pagenumber
      */
     public void createPrintObject(Graphics g, int page) {
         s = "Dette er et print " + page;
@@ -31,7 +31,7 @@ public class Print implements Printable, Runnable {
     }
 
     /**
-     *
+     * the method used to call the print function
      */
     public void printClick() {
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -66,7 +66,7 @@ public class Print implements Printable, Runnable {
 
     /**
      *
-     * @return
+     * @return the string
      */
     public String getS() {
         return s;

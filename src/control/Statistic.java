@@ -17,9 +17,9 @@ public class Statistic {
 
     /**
      *
-     * @param type
-     * @return
-     * @throws FileNotFoundException
+     * @param type the type of shift
+     * @return an arraylist of arraylist of shift object 
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public ArrayList<ArrayList<Shift>> createDagsvagt(String type) throws FileNotFoundException {
 
@@ -94,9 +94,9 @@ public class Statistic {
 
     /**
      *
-     * @param type
-     * @return
-     * @throws FileNotFoundException
+     * @param type the type of shift
+     * @return an arraylist of arraylist of shift object 
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public ArrayList<Shift> createVagt(String type) throws FileNotFoundException {
 
@@ -130,10 +130,10 @@ public class Statistic {
 
     /**
      *
-     * @param dayBegyn
-     * @param daySlut
-     * @return
-     * @throws FileNotFoundException
+     * @param dayBegyn the first day of the absence
+     * @param daySlut the last day of the absence
+     * @return an arraylist of arraylist of shift object 
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public ArrayList<ArrayList<Absence>> createfravaer(String dayBegyn, String daySlut) throws FileNotFoundException {
 

@@ -17,7 +17,7 @@ public class Shift {
 
     /**
      *
-     * @param date
+     * @param date the date of the shift
      */
     public Shift(String date) {
         this.date = date;
@@ -25,14 +25,14 @@ public class Shift {
 
     /**
      *
-     * @param id
-     * @param type
-     * @param date
-     * @param shiftStart
-     * @param shiftEnd
-     * @param staff
-     * @param room
-     * @param comment
+     * @param id the id of the shift
+     * @param type the type of shift
+     * @param date the date of the shift
+     * @param shiftStart the start of the shift
+     * @param shiftEnd the end of the shift
+     * @param staff the staff who has the shift
+     * @param room the room where the shift is
+     * @param comment comment attached to the shift
      */
     public Shift(int id, String type, String date, String shiftStart,
             String shiftEnd, Staff staff, Room room, String comment) {
@@ -48,7 +48,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the id of the shift
      */
     public int getId() {
         return id;
@@ -56,7 +56,7 @@ public class Shift {
 
     /**
      *
-     * @param id
+     * @param id the id of the shift
      */
     public void setId(int id) {
         this.id = id;
@@ -64,7 +64,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the type of shift
      */
     public String getType() {
         return type;
@@ -72,7 +72,7 @@ public class Shift {
 
     /**
      *
-     * @param type
+     * @param type the type of shift
      */
     public void setType(String type) {
         this.type = type;
@@ -80,7 +80,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the date of the shift
      */
     public String getDate() {
         return date;
@@ -88,7 +88,7 @@ public class Shift {
 
     /**
      *
-     * @param date
+     * @param date the date of the shift
      */
     public void setDate(String date) {
         this.date = date;
@@ -96,7 +96,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return comment attached to the shift
      */
     public String getComment() {
         return comment;
@@ -104,7 +104,7 @@ public class Shift {
 
     /**
      *
-     * @param comment
+     * @param comment comment attached to the shift
      */
     public void setComment(String comment) {
         this.comment = comment;
@@ -112,7 +112,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the start of the shift
      */
     public String getShiftStart() {
         return shiftStart;
@@ -120,7 +120,7 @@ public class Shift {
 
     /**
      *
-     * @param shiftStart
+     * @param shiftStart the start of the shift
      */
     public void setShiftStart(String shiftStart) {
         this.shiftStart = shiftStart;
@@ -128,7 +128,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the end of the shift
      */
     public String getShiftEnd() {
         return shiftEnd;
@@ -136,7 +136,7 @@ public class Shift {
 
     /**
      *
-     * @param shiftEnd
+     * @param shiftEnd the end of the shift
      */
     public void setShiftEnd(String shiftEnd) {
         this.shiftEnd = shiftEnd;
@@ -144,7 +144,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the staff who has the shift
      */
     public Staff getStaff() {
         return staff;
@@ -152,7 +152,7 @@ public class Shift {
 
     /**
      *
-     * @param staff
+     * @param staff the staff who has the shift
      */
     public void setStaff(Staff staff) {
         this.staff = staff;
@@ -160,7 +160,7 @@ public class Shift {
 
     /**
      *
-     * @return
+     * @return the room where the shift is
      */
     public Room getRoom() {
         return room;
@@ -168,7 +168,7 @@ public class Shift {
 
     /**
      *
-     * @param room
+     * @param room the room where the shift is
      */
     public void setRoom(Room room) {
         this.room = room;

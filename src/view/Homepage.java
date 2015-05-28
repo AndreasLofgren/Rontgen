@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,8 +29,8 @@ public class Homepage extends JPanel {
 
     /**
      *
-     * @param jf
-     * @param jtp
+     * @param jf the JFrame the GUI is build on
+     * @param jtp the JTabbedPane the JPanel is build on
      */
     public Homepage(JFrame jf, JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
@@ -66,8 +64,8 @@ public class Homepage extends JPanel {
                 try {
                     CreateShow newWeek = new CreateShow();
                     ArrayList<ArrayList<Shift>> ugeplan = newWeek.createWeek("2015-05-05");
-                    CreateWeek cw = new CreateWeek("Opret ugeplan", jtp);
-                    
+                    CreateWeek cw = new CreateWeek(jtp);
+
                     for (int i = 0; i < ugeplan.size(); i++) {
                         for (int j = 0; j < ugeplan.get(i).size(); j++) {
                             cw.getTextArea().setText(ugeplan.get(i).get(j).getStaff().getFirstName());

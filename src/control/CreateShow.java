@@ -24,7 +24,7 @@ public class CreateShow {
 
     /**
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public CreateShow() throws FileNotFoundException {
         sh = new StaffHandler();
@@ -38,8 +38,8 @@ public class CreateShow {
     /**
      *
      * @param startDato
-     * @return
-     * @throws FileNotFoundException
+     * @return an arraylist of arraylist of shift object 
+     * @throws FileNotFoundException if Database.ini is not found
      */
     public ArrayList<ArrayList<Shift>> createWeek(String startDato) throws FileNotFoundException {
 

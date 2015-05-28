@@ -13,7 +13,7 @@ public class Staff {
 
     /**
      *
-     * @param id
+     * @param id the id of the staff
      */
     public Staff(int id) {
         this.id = id;
@@ -21,10 +21,10 @@ public class Staff {
 
     /**
      *
-     * @param id
-     * @param firstName
-     * @param lastName
-     * @param nickname
+     * @param id the id of the staff
+     * @param firstName the first name of the staff
+     * @param lastName the last name of the staff
+     * @param nickname the nickname of the staff
      */
     public Staff(int id, String firstName, String lastName, String nickname) {
         this.id = id;
@@ -36,7 +36,7 @@ public class Staff {
 
     /**
      *
-     * @return
+     * @return the id of the staff
      */
     public int getId() {
         return id;
@@ -44,7 +44,7 @@ public class Staff {
 
     /**
      *
-     * @param id
+     * @param id the id of the staff
      */
     public void setId(int id) {
         this.id = id;
@@ -52,7 +52,7 @@ public class Staff {
 
     /**
      *
-     * @return
+     * @return the first name of the staff
      */
     public String getFirstName() {
         return firstName;
@@ -60,7 +60,7 @@ public class Staff {
 
     /**
      *
-     * @param firstName
+     * @param firstName the first name of the staff
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -68,7 +68,7 @@ public class Staff {
 
     /**
      *
-     * @return
+     * @return the last name of the staff
      */
     public String getLastName() {
         return lastName;
@@ -76,7 +76,7 @@ public class Staff {
 
     /**
      *
-     * @param lastName
+     * @param lastName the last name of the staff
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -84,7 +84,7 @@ public class Staff {
 
     /**
      *
-     * @return
+     * @return the nickname of the staff
      */
     public String getNickname() {
         return nickname;
@@ -92,7 +92,7 @@ public class Staff {
 
     /**
      *
-     * @param nickname
+     * @param nickname the nickname of the staff
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;

@@ -5,7 +5,6 @@
  */
 package view.edit;
 
-import handler.StaffHandler;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -27,10 +26,9 @@ public class EditStaff extends JPanel {
 
     /**
      *
-     * @param opret_medarbejder
-     * @param jtp
+     * @param jtp the JTabbedPane the JPanel is build on
      */
-    public EditStaff(String opret_medarbejder, JTabbedPane jtp) {
+    public EditStaff(JTabbedPane jtp) {
         this.setLayout(new BorderLayout());
 
         JPanel CreatePersonaleCenter = new JPanel();

@@ -16,7 +16,7 @@ public class Room {
 
     /**
      *
-     * @param id
+     * @param id the id of the room
      */
     public Room(int id) {
         this.id = id;
@@ -24,13 +24,13 @@ public class Room {
 
     /**
      *
-     * @param id
-     * @param name
-     * @param type
-     * @param status
-     * @param minStaffAmount
-     * @param maxStaffAmount
-     * @param validFrom
+     * @param id the id of the room
+     * @param name the name of the room
+     * @param type the type of the room
+     * @param status the status of the room
+     * @param minStaffAmount the minimun amount of staff working in the room
+     * @param maxStaffAmount the maximun amount of staff working in the room
+     * @param validFrom the date from which this information is valid
      */
     public Room(int id, String name, String type, String status, int minStaffAmount, int maxStaffAmount, String validFrom) {
         this.id = id;
@@ -44,7 +44,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the id of the room
      */
     public int getId() {
         return id;
@@ -52,7 +52,7 @@ public class Room {
 
     /**
      *
-     * @param id
+     * @param id the id of the room
      */
     public void setId(int id) {
         this.id = id;
@@ -60,7 +60,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the name of the room
      */
     public String getName() {
         return name;
@@ -68,7 +68,7 @@ public class Room {
 
     /**
      *
-     * @param name
+     * @param name the name of the room
      */
     public void setName(String name) {
         this.name = name;
@@ -76,7 +76,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the type of the room
      */
     public String getType() {
         return type;
@@ -84,7 +84,7 @@ public class Room {
 
     /**
      *
-     * @param type
+     * @param type the type of the room
      */
     public void setType(String type) {
         this.type = type;
@@ -92,7 +92,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the status of the room
      */
     public String getStatus() {
         return status;
@@ -100,7 +100,7 @@ public class Room {
 
     /**
      *
-     * @param status
+     * @param status the status of the room
      */
     public void setStatus(String status) {
         this.status = status;
@@ -108,7 +108,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the minimun amount of staff working in the room
      */
     public int getMinStaffAmount() {
         return minStaffAmount;
@@ -116,7 +116,7 @@ public class Room {
 
     /**
      *
-     * @param minStaffAmount
+     * @param minStaffAmount the minimun amount of staff working in the room
      */
     public void setMinStaffAmount(int minStaffAmount) {
         this.minStaffAmount = minStaffAmount;
@@ -124,7 +124,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the maximun amount of staff working in the room
      */
     public int getMaxStaffAmount() {
         return maxStaffAmount;
@@ -132,7 +132,7 @@ public class Room {
 
     /**
      *
-     * @param maxStaffAmount
+     * @param maxStaffAmount the maximun amount of staff working in the room
      */
     public void setMaxStaffAmount(int maxStaffAmount) {
         this.maxStaffAmount = maxStaffAmount;
@@ -140,7 +140,7 @@ public class Room {
 
     /**
      *
-     * @return
+     * @return the date from which this information is valid
      */
     public String getValidFrom() {
         return validFrom;
@@ -148,7 +148,7 @@ public class Room {
 
     /**
      *
-     * @param validFrom
+     * @param validFrom the date from which this information is valid
      */
     public void setValidFrom(String validFrom) {
         this.validFrom = validFrom;
